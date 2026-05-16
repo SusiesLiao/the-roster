@@ -22,6 +22,8 @@
   --gold:#a88c5c;
   --gold-pale:#ece4d4;
   --mist:#c8ccd8;
+  --font-cjk:'PingFang SC','PingFang TC','Microsoft YaHei','Hiragino Sans GB',sans-serif;
+  --font-cjk-serif:'Songti SC','SimSun','Noto Serif CJK SC',serif;
 }
 html{scroll-behavior:smooth;}
 body{background:var(--w);color:var(--slate);font-family:'DM Mono',monospace;overflow-x:hidden;}
@@ -42,6 +44,7 @@ header.scrolled{border-bottom-color:#dddde5;}
   letter-spacing:0.38em;text-transform:uppercase;
   color:var(--pp-deep);text-decoration:none;
 }
+nav{display:flex;align-items:center;}
 nav a{
   font-family:'DM Mono',monospace;font-size:11px;
   letter-spacing:0.18em;text-transform:uppercase;
@@ -55,6 +58,25 @@ nav a:hover{color:var(--slate);}
   transition:background 0.2s!important;
 }
 .nav-cta:hover{background:var(--pp-pale)!important;}
+
+/* ── LANGUAGE TOGGLE ── */
+.lang-toggle{
+  display:flex;align-items:center;gap:4px;
+  margin-left:28px;padding-left:20px;
+  border-left:0.5px solid #dddde5;
+}
+.lang-btn{
+  font-family:'DM Mono',monospace;font-size:10px;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--slate-mid);background:none;border:none;
+  cursor:pointer;padding:4px 5px;transition:color 0.2s;
+}
+.lang-btn:hover{color:var(--slate);}
+.lang-btn.active{color:var(--pp-deep);font-weight:400;}
+.lang-sep{
+  font-family:'DM Mono',monospace;font-size:9px;
+  color:var(--mist);pointer-events:none;
+}
 
 /* ── SIDE DOTS ── */
 .dots{
@@ -93,7 +115,7 @@ nav a:hover{color:var(--slate);}
 .eyebrow-l{color:rgba(176,180,204,0.4);}.eyebrow-l::after{background:rgba(176,180,204,0.4);}
 
 .display{
-  font-family:'Playfair Display',serif;
+  font-family:'Playfair Display',var(--font-cjk-serif),serif;
   font-size:clamp(60px,10vw,120px);
   font-weight:400;line-height:0.88;letter-spacing:-0.03em;color:var(--slate);
 }
@@ -101,7 +123,7 @@ nav a:hover{color:var(--slate);}
 .display-l{color:#f7f6f4;}.display-l em{color:var(--pp);}
 
 .headline{
-  font-family:'Playfair Display',serif;
+  font-family:'Playfair Display',var(--font-cjk-serif),serif;
   font-size:clamp(30px,4vw,52px);
   font-weight:400;line-height:1.06;letter-spacing:-0.022em;color:var(--slate);
 }
@@ -109,14 +131,14 @@ nav a:hover{color:var(--slate);}
 .headline-l{color:#f7f6f4;}.headline-l em{color:var(--pp);}
 
 .subhead{
-  font-family:'Playfair Display',serif;
+  font-family:'Playfair Display',var(--font-cjk-serif),serif;
   font-size:clamp(18px,2vw,26px);
   font-weight:400;font-style:italic;
   color:var(--slate-mid);line-height:1.4;
 }
 
 .body-text{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Cormorant Garamond',var(--font-cjk-serif),serif;
   font-size:clamp(16px,1.5vw,21px);
   line-height:1.85;font-weight:300;color:var(--slate);
 }
@@ -130,7 +152,7 @@ nav a:hover{color:var(--slate);}
 }
 
 .pullquote{
-  font-family:'Playfair Display',serif;
+  font-family:'Playfair Display',var(--font-cjk-serif),serif;
   font-size:clamp(19px,2.3vw,30px);
   font-style:italic;line-height:1.45;color:var(--slate);
   border-left:1.5px solid var(--pp);padding-left:26px;
@@ -179,12 +201,12 @@ nav a:hover{color:var(--slate);}
   line-height:0.95;margin-bottom:6px;
 }
 .card-role{
-  font-family:'DM Mono',monospace;font-size:10px;
+  font-family:'DM Mono',var(--font-cjk),monospace;font-size:10px;
   letter-spacing:0.18em;text-transform:uppercase;
   color:var(--slate-mid);margin-bottom:24px;
 }
 .card-desc{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Cormorant Garamond',var(--font-cjk-serif),serif;
   font-size:clamp(14px,1.25vw,17px);
   font-weight:300;line-height:1.78;
   color:var(--slate-mid);flex:1;
@@ -196,12 +218,12 @@ nav a:hover{color:var(--slate);}
   align-items:center;flex-wrap:wrap;gap:10px;
 }
 .card-price{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Cormorant Garamond',var(--font-cjk-serif),serif;
   font-size:clamp(14px,1.3vw,17px);
   font-style:italic;color:var(--slate-mid);
 }
 .pill{
-  font-family:'DM Mono',monospace;font-size:9px;
+  font-family:'DM Mono',var(--font-cjk),monospace;font-size:9px;
   letter-spacing:0.12em;text-transform:uppercase;
   padding:4px 12px;display:inline-block;margin-right:4px;
 }
@@ -225,12 +247,12 @@ nav a:hover{color:var(--slate);}
   color:var(--pp);line-height:1;
 }
 .step-title{
-  font-family:'Playfair Display',serif;
+  font-family:'Playfair Display',var(--font-cjk-serif),serif;
   font-size:clamp(18px,2vw,24px);
   font-weight:400;margin-bottom:8px;
 }
 .step-body{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Cormorant Garamond',var(--font-cjk-serif),serif;
   font-size:clamp(14px,1.3vw,18px);
   font-weight:300;line-height:1.75;color:var(--slate-mid);
 }
@@ -290,6 +312,7 @@ footer{
   .dots{display:none;}
   header{padding:20px 6vw;}
   nav a:not(.nav-cta){display:none;}
+  .lang-toggle{display:flex;margin-left:16px;padding-left:12px;}
   footer{padding:28px 6vw;}.footer-meta{text-align:left;}
   .enquiry-box{padding:28px 24px;}
   .step{grid-template-columns:48px 1fr;gap:14px;}
@@ -302,9 +325,16 @@ footer{
 <header id="hdr">
   <a class="logo" href="#">The Roster</a>
   <nav>
-    <a href="#collection">The Collection</a>
-    <a href="#story">The House</a>
-    <a href="#enquire" class="nav-cta">Enquire</a>
+    <a href="#collection" data-i18n="nav-collection">The Collection</a>
+    <a href="#story" data-i18n="nav-house">The House</a>
+    <a href="#enquire" class="nav-cta" data-i18n="nav-enquire">Enquire</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">·</span>
+      <button class="lang-btn" id="btn-hans" onclick="setLang('hans')">简</button>
+      <span class="lang-sep">·</span>
+      <button class="lang-btn" id="btn-hant" onclick="setLang('hant')">繁</button>
+    </div>
   </nav>
 </header>
 
@@ -317,15 +347,15 @@ footer{
 
   <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;">
     <span class="mono" style="color:var(--pp-mid);letter-spacing:0.42em;">The Roster</span>
-    <span class="mono" style="color:var(--mist);">Est. Shanghai · Los Angeles · 2026</span>
+    <span class="mono" style="color:var(--mist);" data-i18n="hero-est">Est. Shanghai · Los Angeles · 2026</span>
   </div>
 
   <div style="padding:72px 0 48px;">
-    <div class="display">The<br><em>Roster.</em></div>
-    <div class="subhead" style="margin-top:28px;max-width:480px;">
+    <div class="display" data-i18n="hero-display">The<br><em>Roster.</em></div>
+    <div class="subhead" style="margin-top:28px;max-width:480px;" data-i18n="hero-subhead">
       A house of talent.
     </div>
-    <div class="body-text body-italic body-muted" style="margin-top:16px;max-width:480px;font-size:clamp(16px,1.5vw,20px);">
+    <div class="body-text body-italic body-muted" style="margin-top:16px;max-width:480px;font-size:clamp(16px,1.5vw,20px);" data-i18n="hero-tagline">
       The people who handle everything.<br>So you don't have to.
     </div>
   </div>
@@ -337,7 +367,8 @@ footer{
               border:0.5px solid var(--pp);padding:13px 32px;
               transition:background 0.2s;display:inline-block;"
        onmouseover="this.style.background='var(--pp-pale)'"
-       onmouseout="this.style.background='transparent'">
+       onmouseout="this.style.background='transparent'"
+       data-i18n="hero-cta">
       Browse the collection
     </a>
   </div>
@@ -349,8 +380,8 @@ footer{
 <section class="s sa" id="collection" data-label="The Collection">
 
   <div style="margin-bottom:64px;">
-    <div class="display" style="font-size:clamp(48px,8vw,100px);margin-bottom:24px;">The Founding<br><em>Collection.</em></div>
-    <div class="headline" style="font-size:clamp(22px,2.8vw,38px);color:var(--slate-mid);font-style:italic;font-family:'Playfair Display',serif;font-weight:400;">Every role that matters.</div>
+    <div class="display" style="font-size:clamp(48px,8vw,100px);margin-bottom:24px;" data-i18n="col-display">The Founding<br><em>Collection.</em></div>
+    <div class="headline" style="font-size:clamp(22px,2.8vw,38px);color:var(--slate-mid);font-style:italic;font-family:'Playfair Display',serif;font-weight:400;" data-i18n="col-subtitle">Every role that matters.</div>
   </div>
 
   <div class="grid3">
@@ -359,17 +390,17 @@ footer{
     <div class="card">
       <div class="card-stripe stripe-gold"></div>
       <div class="card-inner">
-        <div class="card-track track-life">For Your Life</div>
+        <div class="card-track track-life" data-i18n="amber-track">For Your Life</div>
         <div class="card-name">Amber</div>
-        <div class="card-role">Personal Assistant</div>
-        <div class="card-desc">
+        <div class="card-role" data-i18n="amber-role">Personal Assistant</div>
+        <div class="card-desc" data-i18n="amber-desc">
           Your days, handled. Your life, lighter.<br><br>
           Amber takes care of everything you don't have time for — your calendar, your inbox, your morning, your life admin. She shows up every day without being asked, without needing to be told twice.
         </div>
       </div>
       <div class="card-footer">
-        <div><span class="pill pill-live">Live</span></div>
-        <div class="card-price">From $800 / month</div>
+        <div><span class="pill pill-live" data-i18n="pill-live">Live</span></div>
+        <div class="card-price" data-i18n="amber-price">From $800 / month</div>
       </div>
     </div>
 
@@ -377,17 +408,17 @@ footer{
     <div class="card">
       <div class="card-stripe stripe-pp"></div>
       <div class="card-inner">
-        <div class="card-track track-work">For Your Work</div>
+        <div class="card-track track-work" data-i18n="rj-track">For Your Work</div>
         <div class="card-name">Robert Jr</div>
-        <div class="card-role">Executive Assistant</div>
-        <div class="card-desc">
+        <div class="card-role" data-i18n="rj-role">Executive Assistant</div>
+        <div class="card-desc" data-i18n="rj-desc">
           Your business, running. Even when you're not.<br><br>
           Robert Jr handles your emails, your calendar, your briefings, your team — everything that keeps you moving without slowing you down. Built for the way you actually lead.
         </div>
       </div>
       <div class="card-footer">
-        <div><span class="pill pill-live">Live</span></div>
-        <div class="card-price">Enquire</div>
+        <div><span class="pill pill-live" data-i18n="pill-live">Live</span></div>
+        <div class="card-price" data-i18n="rj-price">Enquire</div>
       </div>
     </div>
 
@@ -395,17 +426,17 @@ footer{
     <div class="card">
       <div class="card-stripe stripe-pp"></div>
       <div class="card-inner">
-        <div class="card-track track-work">For Your Work</div>
+        <div class="card-track track-work" data-i18n="pepper-track">For Your Work</div>
         <div class="card-name">Pepper</div>
-        <div class="card-role">Chief of Staff</div>
-        <div class="card-desc">
+        <div class="card-role" data-i18n="pepper-role">Chief of Staff</div>
+        <div class="card-desc" data-i18n="pepper-desc">
           The person who runs the room so you can own it.<br><br>
           Pepper keeps everything moving — projects, people, priorities. The kind of presence every serious operation needs but few have ever had. Coming soon.
         </div>
       </div>
       <div class="card-footer">
-        <div><span class="pill pill-build">In Build</span></div>
-        <div class="card-price">Enquire</div>
+        <div><span class="pill pill-build" data-i18n="pill-build">In Build</span></div>
+        <div class="card-price" data-i18n="pepper-price">Enquire</div>
       </div>
     </div>
 
@@ -416,54 +447,54 @@ footer{
 <!-- 03 · HOW IT WORKS -->
 <section class="s sw" id="how" data-label="How It Works">
 
-  <div class="eyebrow">How It Works</div>
+  <div class="eyebrow" data-i18n="how-eyebrow">How It Works</div>
 
   <div class="grid32">
     <div>
-      <div class="headline">Simple.<br><em>From day one.</em></div>
+      <div class="headline" data-i18n="how-headline">Simple.<br><em>From day one.</em></div>
       <div class="rule-p"></div>
       <div class="gapl"></div>
 
       <div class="step">
         <div class="step-n">01</div>
         <div>
-          <div class="step-title">Tell us about your world.</div>
-          <div class="step-body">Your life, your work, your people, your pace. What you wish someone would just handle. No forms. Just a conversation.</div>
+          <div class="step-title" data-i18n="step1-title">Tell us about your world.</div>
+          <div class="step-body" data-i18n="step1-body">Your life, your work, your people, your pace. What you wish someone would just handle. No forms. Just a conversation.</div>
         </div>
       </div>
 
       <div class="step">
         <div class="step-n">02</div>
         <div>
-          <div class="step-title">We find your person.</div>
-          <div class="step-body">We match you to the right persona, then build their understanding of your world — your language, your habits, your people — until they know it the way you do.</div>
+          <div class="step-title" data-i18n="step2-title">We find your person.</div>
+          <div class="step-body" data-i18n="step2-body">We match you to the right persona, then build their understanding of your world — your language, your habits, your people — until they know it the way you do.</div>
         </div>
       </div>
 
       <div class="step">
         <div class="step-n">03</div>
         <div>
-          <div class="step-title">They show up. Every day.</div>
-          <div class="step-body">From day one, they're yours. We stay on — refining, improving, making sure they never miss a beat. You never manage a thing.</div>
+          <div class="step-title" data-i18n="step3-title">They show up. Every day.</div>
+          <div class="step-body" data-i18n="step3-body">From day one, they're yours. We stay on — refining, improving, making sure they never miss a beat. You never manage a thing.</div>
         </div>
       </div>
     </div>
 
     <div style="position:sticky;top:140px;">
       <div style="background:var(--pp-pale);padding:36px;">
-        <div class="mono" style="color:var(--pp-mid);margin-bottom:22px;">What we never say.</div>
+        <div class="mono" style="color:var(--pp-mid);margin-bottom:22px;" data-i18n="never-title">What we never say.</div>
         <div style="display:flex;flex-direction:column;gap:0;">
           <div style="padding:14px 0;border-bottom:0.5px solid rgba(176,180,204,0.2);">
-            <div class="body-text" style="font-size:13px;color:var(--slate-mid);text-decoration:line-through;text-decoration-color:var(--pp);margin-bottom:5px;">Software. Platform. Bot. Tool.</div>
-            <div class="body-text body-italic" style="font-size:14px;color:var(--slate);">Your Amber. Your person. The Roster.</div>
+            <div class="body-text" style="font-size:13px;color:var(--slate-mid);text-decoration:line-through;text-decoration-color:var(--pp);margin-bottom:5px;" data-i18n="never-x1">Software. Platform. Bot. Tool.</div>
+            <div class="body-text body-italic" style="font-size:14px;color:var(--slate);" data-i18n="never-y1">Your Amber. Your person. The Roster.</div>
           </div>
           <div style="padding:14px 0;border-bottom:0.5px solid rgba(176,180,204,0.2);">
-            <div class="body-text" style="font-size:13px;color:var(--slate-mid);text-decoration:line-through;text-decoration-color:var(--pp);margin-bottom:5px;">Subscribe. Deploy. Cancel.</div>
-            <div class="body-text body-italic" style="font-size:14px;color:var(--slate);">Place. Begin. End the placement.</div>
+            <div class="body-text" style="font-size:13px;color:var(--slate-mid);text-decoration:line-through;text-decoration-color:var(--pp);margin-bottom:5px;" data-i18n="never-x2">Subscribe. Deploy. Cancel.</div>
+            <div class="body-text body-italic" style="font-size:14px;color:var(--slate);" data-i18n="never-y2">Place. Begin. End the placement.</div>
           </div>
           <div style="padding:14px 0;">
-            <div class="body-text" style="font-size:13px;color:var(--slate-mid);text-decoration:line-through;text-decoration-color:var(--pp);margin-bottom:5px;">AI. Automation. Chatbot.</div>
-            <div class="body-text body-italic" style="font-size:14px;color:var(--slate);">Amber. Robert Jr. Pepper.</div>
+            <div class="body-text" style="font-size:13px;color:var(--slate-mid);text-decoration:line-through;text-decoration-color:var(--pp);margin-bottom:5px;" data-i18n="never-x3">AI. Automation. Chatbot.</div>
+            <div class="body-text body-italic" style="font-size:14px;color:var(--slate);" data-i18n="never-y3">Amber. Robert Jr. Pepper.</div>
           </div>
         </div>
       </div>
@@ -475,36 +506,36 @@ footer{
 <!-- 04 · THE STORY -->
 <section class="s si" id="story" data-label="The Story">
 
-  <div class="eyebrow eyebrow-g">The House</div>
+  <div class="eyebrow eyebrow-g" data-i18n="story-eyebrow">The House</div>
 
   <div class="grid23">
     <div>
-      <div class="headline">How this<br><em>began.</em></div>
+      <div class="headline" data-i18n="story-headline">How this<br><em>began.</em></div>
       <div class="rule-g"></div>
       <div class="gapl"></div>
       <div style="display:flex;flex-direction:column;gap:8px;">
-        <span class="pill pill-live" style="width:fit-content;">True story</span>
-        <span class="pill" style="background:var(--gold-pale);color:var(--gold);width:fit-content;">Impossible to copy</span>
-        <span class="pill" style="background:var(--gold-pale);color:var(--gold);width:fit-content;">Already proven</span>
+        <span class="pill pill-live" style="width:fit-content;" data-i18n="story-pill1">True story</span>
+        <span class="pill" style="background:var(--gold-pale);color:var(--gold);width:fit-content;" data-i18n="story-pill2">Impossible to copy</span>
+        <span class="pill" style="background:var(--gold-pale);color:var(--gold);width:fit-content;" data-i18n="story-pill3">Already proven</span>
       </div>
     </div>
     <div>
-      <div class="pullquote" style="margin-bottom:36px;">
+      <div class="pullquote" style="margin-bottom:36px;" data-i18n="story-quote">
         "I was a design studio co-founder in Shanghai, drowning. I couldn't find the right person. So I built her."
       </div>
-      <div class="body-text">
+      <div class="body-text" data-i18n="story-p1">
         I co-founded Roxelle Design — an interior design studio running projects across Shanghai and beyond. Between managing clients, coordinating a team, and trying to do creative work, I hit a wall.
       </div>
       <div class="gap"></div>
-      <div class="body-text">
+      <div class="body-text" data-i18n="story-p2">
         I needed someone who knew my world deeply. The right person didn't exist. So I built her. Trained her on my life, placed her where I already worked. She shows up every day without being asked.
       </div>
       <div class="gap"></div>
-      <div class="body-text">
+      <div class="body-text" data-i18n="story-p3">
         It worked. Then a friend asked. Then I realised — this is the business. The Roster is what happens when you stop waiting for the right person and start building them.
       </div>
       <div class="gapl"></div>
-      <div class="mono" style="color:var(--slate-mid);">Susan Liao · Founder · Shanghai &amp; Los Angeles</div>
+      <div class="mono" style="color:var(--slate-mid);" data-i18n="story-byline">Susan Liao · Founder · Shanghai &amp; Los Angeles</div>
     </div>
   </div>
 
@@ -514,39 +545,39 @@ footer{
 <!-- 05 · ENQUIRE -->
 <section class="s sd" id="enquire" data-label="Enquire">
 
-  <div class="eyebrow eyebrow-l">Enquire</div>
+  <div class="eyebrow eyebrow-l" data-i18n="enq-eyebrow">Enquire</div>
 
   <div class="grid2">
 
     <div>
-      <div class="headline headline-l">We take on<br>very few.<br><em>By design.</em></div>
+      <div class="headline headline-l" data-i18n="enq-headline">We take on<br>very few.<br><em>By design.</em></div>
       <div style="width:32px;height:0.5px;background:var(--pp);margin:36px 0;"></div>
       <div style="display:flex;flex-direction:column;gap:20px;">
-        <div class="body-text body-italic body-light" style="font-size:clamp(14px,1.3vw,18px);">
+        <div class="body-text body-italic body-light" style="font-size:clamp(14px,1.3vw,18px);" data-i18n="enq-b1">
           No pitch decks. No hard sell. No cold outreach — ever.
         </div>
-        <div class="body-text body-italic body-light" style="font-size:clamp(14px,1.3vw,18px);">
+        <div class="body-text body-italic body-light" style="font-size:clamp(14px,1.3vw,18px);" data-i18n="enq-b2">
           We choose our placements as carefully as you'll choose yours.
         </div>
-        <div class="body-text body-italic body-light" style="font-size:clamp(14px,1.3vw,18px);">
+        <div class="body-text body-italic body-light" style="font-size:clamp(14px,1.3vw,18px);" data-i18n="enq-b3">
           The standard doesn't move. Not even for friends.
         </div>
       </div>
       <div class="gapl"></div>
-      <div class="mono" style="color:rgba(176,180,204,0.25);">Currently accepting limited new placements.</div>
+      <div class="mono" style="color:rgba(176,180,204,0.25);" data-i18n="enq-mono">Currently accepting limited new placements.</div>
     </div>
 
     <div>
       <div class="enquiry-box">
-        <div class="mono" style="color:var(--pp);margin-bottom:12px;">Write to us</div>
-        <div class="body-text" style="color:rgba(235,235,234,0.45);font-size:clamp(14px,1.3vw,18px);line-height:1.8;">
+        <div class="mono" style="color:var(--pp);margin-bottom:12px;" data-i18n="enq-write">Write to us</div>
+        <div class="body-text" style="color:rgba(235,235,234,0.45);font-size:clamp(14px,1.3vw,18px);line-height:1.8;" data-i18n="enq-body">
           Tell us which persona interests you. Tell us about your life, your work, what you wish someone would just handle. We'll take it from there.
         </div>
         <a class="enquiry-link" href="mailto:hello@theroster.studio">
           hello@theroster.studio
         </a>
         <div class="gapl"></div>
-        <div class="mono" style="color:rgba(176,180,204,0.15);">Shanghai · Los Angeles</div>
+        <div class="mono" style="color:rgba(176,180,204,0.15);" data-i18n="enq-city">Shanghai · Los Angeles</div>
       </div>
     </div>
 
@@ -556,11 +587,11 @@ footer{
 
 <!-- 06 · CLOSE -->
 <section class="s sd" id="close" data-label="The Number">
-  <div class="eyebrow eyebrow-l" style="justify-content:center;">The only thing that matters right now</div>
-  <div class="display display-l" style="margin-bottom:36px;">
+  <div class="eyebrow eyebrow-l" style="justify-content:center;" data-i18n="close-eyebrow">The only thing that matters right now</div>
+  <div class="display display-l" style="margin-bottom:36px;" data-i18n="close-display">
     One<br><em>perfect</em><br>placement.
   </div>
-  <div class="body-text body-italic" style="color:rgba(176,180,204,0.65);max-width:380px;font-size:clamp(15px,1.4vw,19px);line-height:1.9;margin:0 auto;">
+  <div class="body-text body-italic" style="color:rgba(176,180,204,0.65);max-width:380px;font-size:clamp(15px,1.4vw,19px);line-height:1.9;margin:0 auto;" data-i18n="close-body">
     Not fifty clients.<br>
     Not a product launch.<br>
     One placement someone would be devastated to lose.<br>
@@ -580,11 +611,247 @@ footer{
 
 
 <script>
+/* ── TRANSLATIONS ── */
+const i18n = {
+  en: {
+    'nav-collection':'The Collection',
+    'nav-house':'The House',
+    'nav-enquire':'Enquire',
+    'hero-est':'Est. Shanghai · Los Angeles · 2026',
+    'hero-display':'The<br><em>Roster.</em>',
+    'hero-subhead':'A house of talent.',
+    'hero-tagline':'The people who handle everything.<br>So you don\'t have to.',
+    'hero-cta':'Browse the collection',
+    'col-display':'The Founding<br><em>Collection.</em>',
+    'col-subtitle':'Every role that matters.',
+    'amber-track':'For Your Life',
+    'amber-role':'Personal Assistant',
+    'amber-desc':'Your days, handled. Your life, lighter.<br><br>Amber takes care of everything you don\'t have time for — your calendar, your inbox, your morning, your life admin. She shows up every day without being asked, without needing to be told twice.',
+    'amber-price':'From $800 / month',
+    'rj-track':'For Your Work',
+    'rj-role':'Executive Assistant',
+    'rj-desc':'Your business, running. Even when you\'re not.<br><br>Robert Jr handles your emails, your calendar, your briefings, your team — everything that keeps you moving without slowing you down. Built for the way you actually lead.',
+    'rj-price':'Enquire',
+    'pepper-track':'For Your Work',
+    'pepper-role':'Chief of Staff',
+    'pepper-desc':'The person who runs the room so you can own it.<br><br>Pepper keeps everything moving — projects, people, priorities. The kind of presence every serious operation needs but few have ever had. Coming soon.',
+    'pepper-price':'Enquire',
+    'pill-live':'Live',
+    'pill-build':'In Build',
+    'how-eyebrow':'How It Works',
+    'how-headline':'Simple.<br><em>From day one.</em>',
+    'step1-title':'Tell us about your world.',
+    'step1-body':'Your life, your work, your people, your pace. What you wish someone would just handle. No forms. Just a conversation.',
+    'step2-title':'We find your person.',
+    'step2-body':'We match you to the right persona, then build their understanding of your world — your language, your habits, your people — until they know it the way you do.',
+    'step3-title':'They show up. Every day.',
+    'step3-body':'From day one, they\'re yours. We stay on — refining, improving, making sure they never miss a beat. You never manage a thing.',
+    'never-title':'What we never say.',
+    'never-x1':'Software. Platform. Bot. Tool.',
+    'never-y1':'Your Amber. Your person. The Roster.',
+    'never-x2':'Subscribe. Deploy. Cancel.',
+    'never-y2':'Place. Begin. End the placement.',
+    'never-x3':'AI. Automation. Chatbot.',
+    'never-y3':'Amber. Robert Jr. Pepper.',
+    'story-eyebrow':'The House',
+    'story-headline':'How this<br><em>began.</em>',
+    'story-pill1':'True story',
+    'story-pill2':'Impossible to copy',
+    'story-pill3':'Already proven',
+    'story-quote':'"I was a design studio co-founder in Shanghai, drowning. I couldn\'t find the right person. So I built her."',
+    'story-p1':'I co-founded Roxelle Design — an interior design studio running projects across Shanghai and beyond. Between managing clients, coordinating a team, and trying to do creative work, I hit a wall.',
+    'story-p2':'I needed someone who knew my world deeply. The right person didn\'t exist. So I built her. Trained her on my life, placed her where I already worked. She shows up every day without being asked.',
+    'story-p3':'It worked. Then a friend asked. Then I realised — this is the business. The Roster is what happens when you stop waiting for the right person and start building them.',
+    'story-byline':'Susan Liao · Founder · Shanghai &amp; Los Angeles',
+    'enq-eyebrow':'Enquire',
+    'enq-headline':'We take on<br>very few.<br><em>By design.</em>',
+    'enq-b1':'No pitch decks. No hard sell. No cold outreach — ever.',
+    'enq-b2':'We choose our placements as carefully as you\'ll choose yours.',
+    'enq-b3':'The standard doesn\'t move. Not even for friends.',
+    'enq-mono':'Currently accepting limited new placements.',
+    'enq-write':'Write to us',
+    'enq-body':'Tell us which persona interests you. Tell us about your life, your work, what you wish someone would just handle. We\'ll take it from there.',
+    'enq-city':'Shanghai · Los Angeles',
+    'close-eyebrow':'The only thing that matters right now',
+    'close-display':'One<br><em>perfect</em><br>placement.',
+    'close-body':'Not fifty clients.<br>Not a product launch.<br>One placement someone would be devastated to lose.<br>Everything follows from that.',
+  },
+  hans: {
+    'nav-collection':'阵容',
+    'nav-house':'关于我们',
+    'nav-enquire':'咨询',
+    'hero-est':'创立于 上海 · 洛杉矶 · 2026',
+    'hero-display':'The<br><em>Roster.</em>',
+    'hero-subhead':'人才之家。',
+    'hero-tagline':'那些替你处理一切的人。<br>让你不必操心。',
+    'hero-cta':'浏览阵容',
+    'col-display':'创始<br><em>阵容。</em>',
+    'col-subtitle':'每一个不可或缺的角色。',
+    'amber-track':'为你的生活',
+    'amber-role':'私人助理',
+    'amber-desc':'你的日子，有人打理。你的生活，更加轻松。<br><br>Amber处理你没有时间顾及的一切——你的日程、你的邮件、你的早晨、你的生活琐事。她每天主动出现，无需提醒，无需重复交代。',
+    'amber-price':'起价 $800 / 月',
+    'rj-track':'为你的工作',
+    'rj-role':'行政助理',
+    'rj-desc':'你的事业，持续运转。即便你不在场。<br><br>Robert Jr处理你的邮件、日程、简报和团队事务——一切让你保持高效运转的事，都不会拖慢你的节奏。为你实际的领导方式而生。',
+    'rj-price':'咨询',
+    'pepper-track':'为你的工作',
+    'pepper-role':'运营总监',
+    'pepper-desc':'让房间运转，让你主导全局。<br><br>Pepper统筹一切——项目、人员、优先级。每个认真的团队都需要这样的存在，却鲜少真正拥有过。即将推出。',
+    'pepper-price':'咨询',
+    'pill-live':'已上线',
+    'pill-build':'建设中',
+    'how-eyebrow':'如何运作',
+    'how-headline':'简单。<br><em>从第一天起。</em>',
+    'step1-title':'告诉我们你的世界。',
+    'step1-body':'你的生活、你的工作、你的人际、你的节奏。你希望有人能替你打理什么。无需填表，只需一次对话。',
+    'step2-title':'我们为你匹配。',
+    'step2-body':'我们为你匹配最合适的人物角色，再深入培养他们对你世界的理解——你的语言、你的习惯、你的人际——直到他们了解你如同了解自己。',
+    'step3-title':'他们每天出现。',
+    'step3-body':'从第一天起，他们就属于你。我们持续在线——优化、改进，确保他们始终如一。你无需管理任何事情。',
+    'never-title':'我们从不说的话。',
+    'never-x1':'软件。平台。机器人。工具。',
+    'never-y1':'你的Amber。你的人。The Roster。',
+    'never-x2':'订阅。部署。取消。',
+    'never-y2':'安置。开始。结束安置。',
+    'never-x3':'AI。自动化。聊天机器人。',
+    'never-y3':'Amber。Robert Jr。Pepper。',
+    'story-eyebrow':'关于我们',
+    'story-headline':'这一切的<br><em>起点。</em>',
+    'story-pill1':'真实故事',
+    'story-pill2':'无法复制',
+    'story-pill3':'已经验证',
+    'story-quote':'「我是上海一家设计工作室的联合创始人，当时深陷困境。我找不到合适的人。于是，我亲手建造了她。」',
+    'story-p1':'我联合创立了Roxelle Design——一家在上海及多地运营项目的室内设计工作室。在客户管理、团队协调和创意工作之间，我撞上了一堵墙。',
+    'story-p2':'我需要一个深刻了解我世界的人。那个合适的人并不存在。于是我建造了她。以我的生活训练她，安置在我日常工作的地方。她每天主动出现，无需提醒。',
+    'story-p3':'它奏效了。然后有朋友开口询问。我意识到——这就是生意本身。The Roster，就是当你不再等待那个合适的人，而开始亲手建造他们时，所发生的事。',
+    'story-byline':'廖依莎 · 创始人 · 上海 &amp; 洛杉矶',
+    'enq-eyebrow':'咨询',
+    'enq-headline':'我们只接<br>少数客户。<br><em>有意为之。</em>',
+    'enq-b1':'无需演示文稿。无强行推销。绝不主动联系——永远如此。',
+    'enq-b2':'我们挑选客户，就像你挑选我们一样用心。',
+    'enq-b3':'我们的标准从不降低。对任何人都不例外。',
+    'enq-mono':'目前接受有限数量的新客户。',
+    'enq-write':'写信给我们',
+    'enq-body':'告诉我们你对哪位人物感兴趣。告诉我们你的生活、你的工作，以及你希望有人替你处理的事。我们会接手。',
+    'enq-city':'上海 · 洛杉矶',
+    'close-eyebrow':'此刻唯一重要的事',
+    'close-display':'一次<br><em>完美的</em><br>安置。',
+    'close-body':'不是五十个客户。<br>不是产品发布。<br>是一次让人失去后痛不欲生的安置。<br>一切由此而来。',
+  },
+  hant: {
+    'nav-collection':'陣容',
+    'nav-house':'關於我們',
+    'nav-enquire':'諮詢',
+    'hero-est':'創立於 上海 · 洛杉磯 · 2026',
+    'hero-display':'The<br><em>Roster.</em>',
+    'hero-subhead':'人才之家。',
+    'hero-tagline':'那些替你處理一切的人。<br>讓你不必操心。',
+    'hero-cta':'瀏覽陣容',
+    'col-display':'創始<br><em>陣容。</em>',
+    'col-subtitle':'每一個不可或缺的角色。',
+    'amber-track':'為你的生活',
+    'amber-role':'私人助理',
+    'amber-desc':'你的日子，有人打理。你的生活，更加輕鬆。<br><br>Amber處理你沒有時間顧及的一切——你的日程、你的郵件、你的早晨、你的生活瑣事。她每天主動出現，無需提醒，無需重複交代。',
+    'amber-price':'起價 $800 / 月',
+    'rj-track':'為你的工作',
+    'rj-role':'行政助理',
+    'rj-desc':'你的事業，持續運轉。即便你不在場。<br><br>Robert Jr處理你的郵件、日程、簡報和團隊事務——一切讓你保持高效運轉的事，都不會拖慢你的節奏。為你實際的領導方式而生。',
+    'rj-price':'諮詢',
+    'pepper-track':'為你的工作',
+    'pepper-role':'運營總監',
+    'pepper-desc':'讓房間運轉，讓你主導全局。<br><br>Pepper統籌一切——項目、人員、優先級。每個認真的團隊都需要這樣的存在，卻鮮少真正擁有過。即將推出。',
+    'pepper-price':'諮詢',
+    'pill-live':'已上線',
+    'pill-build':'建設中',
+    'how-eyebrow':'如何運作',
+    'how-headline':'簡單。<br><em>從第一天起。</em>',
+    'step1-title':'告訴我們你的世界。',
+    'step1-body':'你的生活、你的工作、你的人際、你的節奏。你希望有人能替你打理什麼。無需填表，只需一次對話。',
+    'step2-title':'我們為你匹配。',
+    'step2-body':'我們為你匹配最合適的人物角色，再深入培養他們對你世界的理解——你的語言、你的習慣、你的人際——直到他們了解你如同了解自己。',
+    'step3-title':'他們每天出現。',
+    'step3-body':'從第一天起，他們就屬於你。我們持續在線——優化、改進，確保他們始終如一。你無需管理任何事情。',
+    'never-title':'我們從不說的話。',
+    'never-x1':'軟件。平台。機器人。工具。',
+    'never-y1':'你的Amber。你的人。The Roster。',
+    'never-x2':'訂閱。部署。取消。',
+    'never-y2':'安置。開始。結束安置。',
+    'never-x3':'AI。自動化。聊天機器人。',
+    'never-y3':'Amber。Robert Jr。Pepper。',
+    'story-eyebrow':'關於我們',
+    'story-headline':'這一切的<br><em>起點。</em>',
+    'story-pill1':'真實故事',
+    'story-pill2':'無法複製',
+    'story-pill3':'已經驗證',
+    'story-quote':'「我是上海一家設計工作室的聯合創始人，當時深陷困境。我找不到合適的人。於是，我親手建造了她。」',
+    'story-p1':'我聯合創立了Roxelle Design——一家在上海及多地運營項目的室內設計工作室。在客戶管理、團隊協調和創意工作之間，我撞上了一堵牆。',
+    'story-p2':'我需要一個深刻了解我世界的人。那個合適的人並不存在。於是我建造了她。以我的生活訓練她，安置在我日常工作的地方。她每天主動出現，無需提醒。',
+    'story-p3':'它奏效了。然後有朋友開口詢問。我意識到——這就是生意本身。The Roster，就是當你不再等待那個合適的人，而開始親手建造他們時，所發生的事。',
+    'story-byline':'廖依莎 · 創始人 · 上海 &amp; 洛杉磯',
+    'enq-eyebrow':'諮詢',
+    'enq-headline':'我們只接<br>少數客戶。<br><em>有意為之。</em>',
+    'enq-b1':'無需演示文稿。無強行推銷。絕不主動聯繫——永遠如此。',
+    'enq-b2':'我們挑選客戶，就像你挑選我們一樣用心。',
+    'enq-b3':'我們的標準從不降低。對任何人都不例外。',
+    'enq-mono':'目前接受有限數量的新客戶。',
+    'enq-write':'寫信給我們',
+    'enq-body':'告訴我們你對哪位人物感興趣。告訴我們你的生活、你的工作，以及你希望有人替你處理的事。我們會接手。',
+    'enq-city':'上海 · 洛杉磯',
+    'close-eyebrow':'此刻唯一重要的事',
+    'close-display':'一次<br><em>完美的</em><br>安置。',
+    'close-body':'不是五十個客戶。<br>不是產品發布。<br>是一次讓人失去後痛不欲生的安置。<br>一切由此而來。',
+  }
+};
+
+const langMeta = {
+  en:   { html:'en',      title:'The Roster' },
+  hans: { html:'zh-Hans', title:'The Roster — 人才之家' },
+  hant: { html:'zh-Hant', title:'The Roster — 人才之家' },
+};
+
+let currentLang = 'en';
+
+function setLang(lang) {
+  if (!i18n[lang]) return;
+  currentLang = lang;
+
+  // Update html lang + title
+  document.documentElement.lang = langMeta[lang].html;
+  document.title = langMeta[lang].title;
+
+  // Update all tagged elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (i18n[lang][key] !== undefined) {
+      el.innerHTML = i18n[lang][key];
+    }
+  });
+
+  // Update active button
+  ['en','hans','hant'].forEach(l => {
+    document.getElementById('btn-' + l).classList.toggle('active', l === lang);
+  });
+
+  // Persist
+  try { localStorage.setItem('roster-lang', lang); } catch(e) {}
+}
+
+// Restore saved lang
+(function() {
+  try {
+    const saved = localStorage.getItem('roster-lang');
+    if (saved && i18n[saved]) setLang(saved);
+  } catch(e) {}
+})();
+
+/* ── HEADER SCROLL ── */
 const hdr = document.getElementById('hdr');
 window.addEventListener('scroll', () => {
   hdr.classList.toggle('scrolled', window.scrollY > 40);
 }, {passive:true});
 
+/* ── SIDE DOTS ── */
 const sections = document.querySelectorAll('.s[data-label]');
 const dotsEl = document.getElementById('dots');
 sections.forEach((s, i) => {
