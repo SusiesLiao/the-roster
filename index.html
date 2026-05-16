@@ -317,6 +317,55 @@ footer{
   .enquiry-box{padding:28px 24px;}
   .step{grid-template-columns:48px 1fr;gap:14px;}
 }
+
+/* ── CJK OVERRIDES ── */
+html[lang^="zh"] .display{
+  font-family:var(--font-cjk-serif),serif;
+  font-size:clamp(32px,4.8vw,64px)!important;
+  letter-spacing:0.06em;line-height:1.25;
+}
+html[lang^="zh"] .display em{font-style:normal;color:var(--pp-deep);}
+html[lang^="zh"] .display-l em{color:var(--pp);}
+html[lang^="zh"] .headline{
+  font-family:var(--font-cjk-serif),serif;
+  font-size:clamp(19px,2.6vw,34px)!important;
+  letter-spacing:0.04em;line-height:1.5;
+}
+html[lang^="zh"] .headline em{font-style:normal;color:var(--pp-deep);}
+html[lang^="zh"] .headline-l em{color:var(--pp);}
+html[lang^="zh"] .subhead{
+  font-family:var(--font-cjk),sans-serif;
+  font-size:clamp(14px,1.5vw,19px);
+  letter-spacing:0.06em;line-height:1.75;font-style:normal;
+}
+html[lang^="zh"] .body-text{
+  font-family:var(--font-cjk),sans-serif;
+  font-size:clamp(14px,1.4vw,17px);
+  letter-spacing:0.04em;line-height:2.1;font-style:normal;
+}
+html[lang^="zh"] .pullquote{
+  font-family:var(--font-cjk-serif),serif;
+  font-size:clamp(15px,1.6vw,21px);
+  letter-spacing:0.04em;line-height:1.9;font-style:normal;
+}
+html[lang^="zh"] .card-desc{
+  font-family:var(--font-cjk),sans-serif;
+  font-size:clamp(13px,1.15vw,15px);
+  letter-spacing:0.04em;line-height:2.1;
+}
+html[lang^="zh"] .step-title{
+  font-family:var(--font-cjk-serif),serif;
+  letter-spacing:0.04em;
+}
+html[lang^="zh"] .step-body{
+  font-family:var(--font-cjk),sans-serif;
+  font-size:clamp(13px,1.2vw,16px);
+  letter-spacing:0.04em;line-height:2.1;
+}
+html[lang^="zh"] .card-price{
+  font-family:var(--font-cjk),sans-serif;
+  font-style:normal;font-size:13px;
+}
 </style>
 </head>
 <body>
@@ -683,37 +732,37 @@ const i18n = {
     'hero-est':'创立于 上海 · 洛杉矶 · 2026',
     'hero-display':'The<br><em>Roster.</em>',
     'hero-subhead':'人才之家。',
-    'hero-tagline':'那些替你处理一切的人。<br>让你不必操心。',
-    'hero-cta':'浏览阵容',
+    'hero-tagline':'有人替你承担一切。<br>你只需专注你自己。',
+    'hero-cta':'探索阵容',
     'col-display':'创始<br><em>阵容。</em>',
-    'col-subtitle':'每一个不可或缺的角色。',
+    'col-subtitle':'每一个位置，都有人担着。',
     'amber-track':'为你的生活',
     'amber-role':'私人助理',
-    'amber-desc':'你的日子，有人打理。你的生活，更加轻松。<br><br>Amber处理你没有时间顾及的一切——你的日程、你的邮件、你的早晨、你的生活琐事。她每天主动出现，无需提醒，无需重复交代。',
+    'amber-desc':'你的日子，有人掌管。你的生活，变得更轻。<br><br>Amber负责你没有精力顾及的一切——日程、邮件、清晨、琐事。她每天主动出现，无需交代，无需催促。',
     'amber-price':'起价 $800 / 月',
     'rj-track':'为你的工作',
     'rj-role':'行政助理',
-    'rj-desc':'你的事业，持续运转。即便你不在场。<br><br>Robert Jr处理你的邮件、日程、简报和团队事务——一切让你保持高效运转的事，都不会拖慢你的节奏。为你实际的领导方式而生。',
+    'rj-desc':'你的事业，持续向前。无论你在不在。<br><br>Robert Jr接管邮件、日程、简报与团队事务——一切让你能轻装前行的事，都不会拖慢你。专为你真实的领导节奏而生。',
     'rj-price':'咨询',
     'pepper-track':'为你的工作',
     'pepper-role':'运营总监',
-    'pepper-desc':'让房间运转，让你主导全局。<br><br>Pepper统筹一切——项目、人员、优先级。每个认真的团队都需要这样的存在，却鲜少真正拥有过。即将推出。',
+    'pepper-desc':'让一切运转。让你掌控全局。<br><br>Pepper统筹项目、人员与优先级——每个认真运转的组织都需要这样的人，却鲜少真正拥有过。即将推出。',
     'pepper-price':'咨询',
     'pill-live':'已上线',
     'pill-build':'建设中',
     'how-eyebrow':'如何运作',
     'how-headline':'简单。<br><em>从第一天起。</em>',
     'step1-title':'告诉我们你的世界。',
-    'step1-body':'你的生活、你的工作、你的人际、你的节奏。你希望有人能替你打理什么。无需填表，只需一次对话。',
-    'step2-title':'我们为你匹配。',
-    'step2-body':'我们为你匹配最合适的人物角色，再深入培养他们对你世界的理解——你的语言、你的习惯、你的人际——直到他们了解你如同了解自己。',
+    'step1-body':'你的生活、工作、节奏与边界。你希望有人直接接手的那些事。无需填表，一次对话，足矣。',
+    'step2-title':'我们为你配对。',
+    'step2-body':'我们匹配最适合你的人物角色，深度构建他们对你世界的理解——你的语言、习惯、关系——直到他们了解你的节奏如同了解自己。',
     'step3-title':'他们每天出现。',
-    'step3-body':'从第一天起，他们就属于你。我们持续在线——优化、改进，确保他们始终如一。你无需管理任何事情。',
-    'never-title':'我们从不说的话。',
+    'step3-body':'从第一天起，他们就是你的人。我们在背后持续打磨、优化，确保从不失手。你无需管理任何事。',
+    'never-title':'我们从不用的词。',
     'never-x1':'软件。平台。机器人。工具。',
     'never-y1':'你的Amber。你的人。The Roster。',
-    'never-x2':'订阅。部署。取消。',
-    'never-y2':'安置。开始。结束安置。',
+    'never-x2':'订阅。部署。取消账号。',
+    'never-y2':'配对。开始。结束配对。',
     'never-x3':'AI。自动化。聊天机器人。',
     'never-y3':'Amber。Robert Jr。Pepper。',
     'story-eyebrow':'关于我们',
@@ -721,23 +770,23 @@ const i18n = {
     'story-pill1':'真实故事',
     'story-pill2':'无法复制',
     'story-pill3':'已经验证',
-    'story-quote':'「我是上海一家设计工作室的联合创始人，当时深陷困境。我找不到合适的人。于是，我亲手建造了她。」',
-    'story-p1':'我联合创立了Roxelle Design——一家在上海及多地运营项目的室内设计工作室。在客户管理、团队协调和创意工作之间，我撞上了一堵墙。',
-    'story-p2':'我需要一个深刻了解我世界的人。那个合适的人并不存在。于是我建造了她。以我的生活训练她，安置在我日常工作的地方。她每天主动出现，无需提醒。',
-    'story-p3':'它奏效了。然后有朋友开口询问。我意识到——这就是生意本身。The Roster，就是当你不再等待那个合适的人，而开始亲手建造他们时，所发生的事。',
+    'story-quote':'「我是上海一间设计工作室的联合创始人，当时快撑不住了。找不到合适的人。于是，我亲手建了她。」',
+    'story-p1':'我联合创立了Roxelle Design——一间在上海运营多个项目的室内设计工作室。在客户、团队与创意工作之间反复周转，我撞上了一堵墙。',
+    'story-p2':'我需要一个真正了解我世界的人。那个人不存在。于是我建了她。用我的生活训练她，放在我日常运转的地方。她每天主动出现，从不需要我开口。',
+    'story-p3':'这行得通了。然后有朋友开口问。然后我明白——这本身就是一门生意。The Roster，是当你不再等那个合适的人，而是动手把他们建出来，之后发生的事。',
     'story-byline':'廖依莎 · 创始人 · 上海 &amp; 洛杉矶',
     'enq-eyebrow':'咨询',
-    'enq-headline':'我们只接<br>少数客户。<br><em>有意为之。</em>',
-    'enq-b1':'无需演示文稿。无强行推销。绝不主动联系——永远如此。',
-    'enq-b2':'我们挑选客户，就像你挑选我们一样用心。',
-    'enq-b3':'我们的标准从不降低。对任何人都不例外。',
-    'enq-mono':'目前接受有限数量的新客户。',
+    'enq-headline':'我们只接<br>极少数。<br><em>有意为之。</em>',
+    'enq-b1':'不需要演示文稿。不做强销。永不主动打扰。',
+    'enq-b2':'我们挑选客户的用心，不亚于你选择我们。',
+    'enq-b3':'标准从不打折。无论对谁。',
+    'enq-mono':'目前接受少量新配对。',
     'enq-write':'写信给我们',
-    'enq-body':'告诉我们你对哪位人物感兴趣。告诉我们你的生活、你的工作，以及你希望有人替你处理的事。我们会接手。',
+    'enq-body':'告诉我们你对哪位成员感兴趣。告诉我们你的生活、你的工作，以及你希望有人替你接手的那些事。我们会从这里出发。',
     'enq-city':'上海 · 洛杉矶',
     'close-eyebrow':'此刻唯一重要的事',
-    'close-display':'一次<br><em>完美的</em><br>安置。',
-    'close-body':'不是五十个客户。<br>不是产品发布。<br>是一次让人失去后痛不欲生的安置。<br>一切由此而来。',
+    'close-display':'一次<br><em>完美的</em><br>配对。',
+    'close-body':'不是五十个客户。<br>不是一场发布会。<br>是一次让人失去后痛不欲生的配对。<br>一切，从这里开始。',
   },
   hant: {
     'nav-collection':'陣容',
@@ -746,37 +795,37 @@ const i18n = {
     'hero-est':'創立於 上海 · 洛杉磯 · 2026',
     'hero-display':'The<br><em>Roster.</em>',
     'hero-subhead':'人才之家。',
-    'hero-tagline':'那些替你處理一切的人。<br>讓你不必操心。',
-    'hero-cta':'瀏覽陣容',
+    'hero-tagline':'有人替你承擔一切。<br>你只需專注你自己。',
+    'hero-cta':'探索陣容',
     'col-display':'創始<br><em>陣容。</em>',
-    'col-subtitle':'每一個不可或缺的角色。',
+    'col-subtitle':'每一個位置，都有人擔著。',
     'amber-track':'為你的生活',
     'amber-role':'私人助理',
-    'amber-desc':'你的日子，有人打理。你的生活，更加輕鬆。<br><br>Amber處理你沒有時間顧及的一切——你的日程、你的郵件、你的早晨、你的生活瑣事。她每天主動出現，無需提醒，無需重複交代。',
+    'amber-desc':'你的日子，有人掌管。你的生活，變得更輕。<br><br>Amber負責你沒有精力顧及的一切——日程、郵件、清晨、瑣事。她每天主動出現，無需交代，無需催促。',
     'amber-price':'起價 $800 / 月',
     'rj-track':'為你的工作',
     'rj-role':'行政助理',
-    'rj-desc':'你的事業，持續運轉。即便你不在場。<br><br>Robert Jr處理你的郵件、日程、簡報和團隊事務——一切讓你保持高效運轉的事，都不會拖慢你的節奏。為你實際的領導方式而生。',
+    'rj-desc':'你的事業，持續向前。無論你在不在。<br><br>Robert Jr接管郵件、日程、簡報與團隊事務——一切讓你能輕裝前行的事，都不會拖慢你。專為你真實的領導節奏而生。',
     'rj-price':'諮詢',
     'pepper-track':'為你的工作',
-    'pepper-role':'運營總監',
-    'pepper-desc':'讓房間運轉，讓你主導全局。<br><br>Pepper統籌一切——項目、人員、優先級。每個認真的團隊都需要這樣的存在，卻鮮少真正擁有過。即將推出。',
+    'pepper-role':'營運總監',
+    'pepper-desc':'讓一切運轉。讓你掌控全局。<br><br>Pepper統籌項目、人員與優先級——每個認真運轉的組織都需要這樣的人，卻鮮少真正擁有過。即將推出。',
     'pepper-price':'諮詢',
     'pill-live':'已上線',
     'pill-build':'建設中',
     'how-eyebrow':'如何運作',
     'how-headline':'簡單。<br><em>從第一天起。</em>',
     'step1-title':'告訴我們你的世界。',
-    'step1-body':'你的生活、你的工作、你的人際、你的節奏。你希望有人能替你打理什麼。無需填表，只需一次對話。',
-    'step2-title':'我們為你匹配。',
-    'step2-body':'我們為你匹配最合適的人物角色，再深入培養他們對你世界的理解——你的語言、你的習慣、你的人際——直到他們了解你如同了解自己。',
+    'step1-body':'你的生活、工作、節奏與邊界。你希望有人直接接手的那些事。無需填表，一次對話，足矣。',
+    'step2-title':'我們為你配對。',
+    'step2-body':'我們匹配最適合你的人物角色，深度構建他們對你世界的理解——你的語言、習慣、關係——直到他們了解你的節奏如同了解自己。',
     'step3-title':'他們每天出現。',
-    'step3-body':'從第一天起，他們就屬於你。我們持續在線——優化、改進，確保他們始終如一。你無需管理任何事情。',
-    'never-title':'我們從不說的話。',
+    'step3-body':'從第一天起，他們就是你的人。我們在背後持續打磨、優化，確保從不失手。你無需管理任何事。',
+    'never-title':'我們從不用的詞。',
     'never-x1':'軟件。平台。機器人。工具。',
     'never-y1':'你的Amber。你的人。The Roster。',
-    'never-x2':'訂閱。部署。取消。',
-    'never-y2':'安置。開始。結束安置。',
+    'never-x2':'訂閱。部署。取消帳號。',
+    'never-y2':'配對。開始。結束配對。',
     'never-x3':'AI。自動化。聊天機器人。',
     'never-y3':'Amber。Robert Jr。Pepper。',
     'story-eyebrow':'關於我們',
@@ -784,23 +833,23 @@ const i18n = {
     'story-pill1':'真實故事',
     'story-pill2':'無法複製',
     'story-pill3':'已經驗證',
-    'story-quote':'「我是上海一家設計工作室的聯合創始人，當時深陷困境。我找不到合適的人。於是，我親手建造了她。」',
-    'story-p1':'我聯合創立了Roxelle Design——一家在上海及多地運營項目的室內設計工作室。在客戶管理、團隊協調和創意工作之間，我撞上了一堵牆。',
-    'story-p2':'我需要一個深刻了解我世界的人。那個合適的人並不存在。於是我建造了她。以我的生活訓練她，安置在我日常工作的地方。她每天主動出現，無需提醒。',
-    'story-p3':'它奏效了。然後有朋友開口詢問。我意識到——這就是生意本身。The Roster，就是當你不再等待那個合適的人，而開始親手建造他們時，所發生的事。',
+    'story-quote':'「我是上海一間設計工作室的聯合創始人，當時快撐不住了。找不到合適的人。於是，我親手建了她。」',
+    'story-p1':'我聯合創立了Roxelle Design——一間在上海運營多個項目的室內設計工作室。在客戶、團隊與創意工作之間反覆周轉，我撞上了一堵牆。',
+    'story-p2':'我需要一個真正了解我世界的人。那個人不存在。於是我建了她。用我的生活訓練她，放在我日常運轉的地方。她每天主動出現，從不需要我開口。',
+    'story-p3':'這行得通了。然後有朋友開口問。然後我明白——這本身就是一門生意。The Roster，是當你不再等那個合適的人，而是動手把他們建出來，之後發生的事。',
     'story-byline':'廖依莎 · 創始人 · 上海 &amp; 洛杉磯',
     'enq-eyebrow':'諮詢',
-    'enq-headline':'我們只接<br>少數客戶。<br><em>有意為之。</em>',
-    'enq-b1':'無需演示文稿。無強行推銷。絕不主動聯繫——永遠如此。',
-    'enq-b2':'我們挑選客戶，就像你挑選我們一樣用心。',
-    'enq-b3':'我們的標準從不降低。對任何人都不例外。',
-    'enq-mono':'目前接受有限數量的新客戶。',
+    'enq-headline':'我們只接<br>極少數。<br><em>有意為之。</em>',
+    'enq-b1':'不需要演示文稿。不做強銷。永不主動打擾。',
+    'enq-b2':'我們挑選客戶的用心，不亞於你選擇我們。',
+    'enq-b3':'標準從不打折。無論對誰。',
+    'enq-mono':'目前接受少量新配對。',
     'enq-write':'寫信給我們',
-    'enq-body':'告訴我們你對哪位人物感興趣。告訴我們你的生活、你的工作，以及你希望有人替你處理的事。我們會接手。',
+    'enq-body':'告訴我們你對哪位成員感興趣。告訴我們你的生活、你的工作，以及你希望有人替你接手的那些事。我們會從這裡出發。',
     'enq-city':'上海 · 洛杉磯',
     'close-eyebrow':'此刻唯一重要的事',
-    'close-display':'一次<br><em>完美的</em><br>安置。',
-    'close-body':'不是五十個客戶。<br>不是產品發布。<br>是一次讓人失去後痛不欲生的安置。<br>一切由此而來。',
+    'close-display':'一次<br><em>完美的</em><br>配對。',
+    'close-body':'不是五十個客戶。<br>不是一場發布會。<br>是一次讓人失去後痛不欲生的配對。<br>一切，從這裡開始。',
   }
 };
 
