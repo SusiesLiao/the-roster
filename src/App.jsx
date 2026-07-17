@@ -4,6 +4,7 @@ import Home from './pages/Home.jsx'
 import AmberProfile from './pages/AmberProfile.jsx'
 import Interview from './pages/Interview.jsx'
 import Hire from './pages/Hire.jsx'
+import Permissions from './pages/Permissions.jsx'
 
 function ScrollTop() {
   const { pathname } = useLocation()
@@ -30,11 +31,12 @@ export default function App() {
         <Route path="/amber" element={<AmberProfile />} />
         <Route path="/interview" element={<Interview />} />
         <Route path="/hire" element={<Hire />} />
+        <Route path="/permissions" element={<Permissions />} />
       </Routes>
       <footer>
         <div className="wrap foot">
           <div>© 2026 The Roster · theroster.studio</div>
-          <div>AI employees, trained and placed. · <a href="mailto:hello@theroster.studio" style={{ textDecoration: 'underline' }}>hello@theroster.studio</a></div>
+          <div>AI employees, trained and placed. · <Link to="/permissions" style={{ textDecoration: 'underline' }}>Trust &amp; permissions</Link> · <a href="mailto:hello@theroster.studio" style={{ textDecoration: 'underline' }}>hello@theroster.studio</a></div>
         </div>
       </footer>
     </>

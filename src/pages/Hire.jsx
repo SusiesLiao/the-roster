@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import Avatar from '../components/Avatar.jsx'
 
-// Walkthrough of the paid onboarding — conversation, not forms.
-// In production this runs post-Stripe with real OAuth + Telegram deep link.
+// Two modes:
+// 1. /hire            → the conversational walkthrough demo + waitlist
+// 2. /hire?code=XXXX  → INVITE MODE: "Amber is expecting you" → one tap opens
+//    Telegram with the code preloaded (t.me deep link). This is the link Susan emails.
+
+const BOT = 'AmberRosterBot'
 
 const STEPS = [
   { amber: "You're officially my boss — love that for us. Three quick things and I'm fully yours. First: what should I call you, and roughly where in the world are your mornings?" },
@@ -21,7 +26,67 @@ const PROOFS = {
   tg: "Linked. Check your Telegram — I've already said hi. From here on, that's where you'll find me. This page is just my office.",
 }
 
+function InviteMode({ code }) {
+  const deepLink = `https://t.me/${BOT}?start=${code}`
+  return (
+    <section className="section">
+      <div className="wrap" style={{ maxWidth: 640 }}>
+        <div style={{ textAlign: 'center', marginBottom: 34 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}>
+            <Avatar initial="A" size={96} />
+          </div>
+          <div className="eyebrow gold">Private invite · {code}</div>
+          <h1 className="display" style={{ fontSize: 'clamp(34px, 5vw, 52px)' }}>
+            Amber is <em>expecting you.</em>
+          </h1>
+          <p className="lede" style={{ margin: '18px auto 0' }}>
+            You're one of her first ten clients. No forms, no setup screens — she interviews you,
+            connects to your calendar with two taps, and messages you first tomorrow morning.
+          </p>
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 34 }}>
+          <a href={deepLink} className="btn btn-primary" style={{ fontSize: 16, padding: '16px 34px' }}>
+            Meet Amber on Telegram →
+          </a>
+        </div>
+
+        <div className="steps-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))' }}>
+          <div className="step-card">
+            <div className="step-num">i.</div>
+            <h3 style={{ fontSize: 19 }}>Get Telegram</h3>
+            <p>
+              Don't have it? Two minutes, free —{' '}
+              <a href="https://apps.apple.com/app/telegram-messenger/id686449807" style={{ textDecoration: 'underline' }}>iPhone</a>{' or '}
+              <a href="https://play.google.com/store/apps/details?id=org.telegram.messenger" style={{ textDecoration: 'underline' }}>Android</a>.
+              Then come back and tap the button above.
+            </p>
+          </div>
+          <div className="step-card">
+            <div className="step-num">ii.</div>
+            <h3 style={{ fontSize: 19 }}>Tap Start</h3>
+            <p>Telegram opens straight to Amber with your invite attached. Tap Start — she takes it from there, in plain conversation.</p>
+          </div>
+          <div className="step-card">
+            <div className="step-num">iii.</div>
+            <h3 style={{ fontSize: 19 }}>She proves it</h3>
+            <p>Connect your calendar when she offers — she'll message you your real schedule within seconds, and your morning brief starts tomorrow.</p>
+          </div>
+        </div>
+
+        <div className="notice" style={{ marginTop: 30, textAlign: 'center' }}>
+          Your invite code is single-use and reserved for you. Stuck anywhere? Reply to your invite email — a human reads it.
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function Hire() {
+  const [params] = useSearchParams()
+  const rawCode = (params.get('code') ?? '').trim().toUpperCase()
+  const code = /^[A-Z0-9-]{4,24}$/.test(rawCode) ? rawCode : null
+
   const [msgs, setMsgs] = useState([])
   const [step, setStep] = useState(0)
   const [input, setInput] = useState('')
@@ -30,17 +95,20 @@ export default function Hire() {
   const logRef = useRef(null)
 
   useEffect(() => {
+    if (code) return
     setTyping(true)
     const t = setTimeout(() => {
       setTyping(false)
       setMsgs([{ from: 'amber', text: STEPS[0].amber }])
     }, 900)
     return () => clearTimeout(t)
-  }, [])
+  }, [code])
 
   useEffect(() => {
     logRef.current?.scrollTo({ top: logRef.current.scrollHeight, behavior: 'smooth' })
   }, [msgs, typing])
+
+  if (code) return <InviteMode code={code} />
 
   function advance(userText) {
     setMsgs((m) => [...m, { from: 'user', text: userText }])
@@ -78,9 +146,10 @@ export default function Hire() {
   return (
     <div className="wrap">
       <div className="notice" style={{ marginTop: 20, maxWidth: 760, marginLeft: 'auto', marginRight: 'auto' }}>
-        <strong>Beta walkthrough.</strong> This is exactly how hiring Amber works — as a conversation.
-        Live hiring opens to the first 10 clients when the backend ships. Want a spot?{' '}
-        <a href="mailto:hello@theroster.studio?subject=First 10 — hire Amber" style={{ textDecoration: 'underline', fontWeight: 600 }}>Claim one</a>.
+        <strong>This is the walkthrough.</strong> Hiring is invite-only — the first 10 clients this month.
+        Want a spot?{' '}
+        <a href="mailto:hello@theroster.studio?subject=First 10 — hire Amber" style={{ textDecoration: 'underline', fontWeight: 600 }}>Claim one</a>{' '}
+        — or interview her first and she'll hold it for you.
       </div>
       <div className="chat-shell" style={{ height: 'calc(100vh - 160px)' }}>
         <div className="chat-top">
