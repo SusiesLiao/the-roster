@@ -5,6 +5,7 @@ import AmberProfile from './pages/AmberProfile.jsx'
 import Interview from './pages/Interview.jsx'
 import Hire from './pages/Hire.jsx'
 import Permissions from './pages/Permissions.jsx'
+import Connect from './pages/Connect.jsx'
 
 function ScrollTop() {
   const { pathname } = useLocation()
@@ -32,6 +33,7 @@ export default function App() {
         <Route path="/interview" element={<Interview />} />
         <Route path="/hire" element={<Hire />} />
         <Route path="/permissions" element={<Permissions />} />
+        <Route path="/connect" element={<Connect />} />
       </Routes>
       <footer>
         <div className="wrap foot">
