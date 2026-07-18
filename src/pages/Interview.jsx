@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Avatar from '../components/Avatar.jsx'
 import { SAMPLE_BRIEF } from '../data/roster.js'
 import { amberOpener, amberReply, FREE_GATE_AT } from '../lib/interviewEngine.js'
-import { interviewReply, joinWaitlist } from '../lib/api.js'
+import { interviewReplyStream, joinWaitlist } from '../lib/api.js'
 
 function BriefEmbed() {
   const html = SAMPLE_BRIEF.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
@@ -33,12 +33,12 @@ export default function Interview() {
   const logRef = useRef(null)
 
   useEffect(() => {
-    // Amber talks first — the whole point.
+    // Amber talks first — the whole point. Fast — she's staff, not dial-up.
     setTyping(true)
     const t = setTimeout(() => {
       setTyping(false)
       setMsgs([{ from: 'amber', text: amberOpener() }])
-    }, 900)
+    }, 250)
     return () => clearTimeout(t)
   }, [])
 
@@ -58,10 +58,27 @@ export default function Interview() {
     if (live) {
       try {
         const history = nextMsgs.map((m) => ({ role: m.from === 'user' ? 'user' : 'assistant', content: m.text }))
-        const data = await interviewReply(sessionRef.current, history)
+        let started = false
+        const data = await interviewReplyStream(sessionRef.current, history, (textSoFar) => {
+          if (!started) {
+            started = true
+            setTyping(false)
+            setMsgs((m) => [...m, { from: 'amber', text: textSoFar, streaming: true }])
+          } else {
+            setMsgs((m) => {
+              const copy = [...m]
+              copy[copy.length - 1] = { ...copy[copy.length - 1], text: textSoFar }
+              return copy
+            })
+          }
+        })
         setTyping(false)
-        setMsgs((m) => [...m, { from: 'amber', text: data.reply }])
-        if (data.capped || data.remaining <= 0) setTimeout(() => setGated(true), 900)
+        setMsgs((m) => {
+          const copy = [...m]
+          copy[copy.length - 1] = { from: 'amber', text: data.reply }
+          return copy
+        })
+        if (data.capped || data.remaining <= 0) setTimeout(() => setGated(true), 600)
         return
       } catch {
         setLive(false) // backend not up (or hiccuped) — glide onto the scripted rails
@@ -73,12 +90,12 @@ export default function Interview() {
       setTyping(false)
       setMsgs((m) => [...m, { from: 'amber', text: reply.text, brief: reply.brief }])
       if (reply.followup) {
-        setTimeout(() => setMsgs((m) => [...m, { from: 'amber', text: reply.followup }]), 1400)
+        setTimeout(() => setMsgs((m) => [...m, { from: 'amber', text: reply.followup }]), 800)
       }
       const nextTurn = turn + 1
       setTurn(nextTurn)
-      if (nextTurn >= FREE_GATE_AT) setTimeout(() => setGated(true), reply.followup ? 2600 : 1200)
-    }, 1100 + Math.random() * 700)
+      if (nextTurn >= FREE_GATE_AT) setTimeout(() => setGated(true), reply.followup ? 1600 : 800)
+    }, 500 + Math.random() * 400)
   }
 
   async function holdSpot() {

@@ -1,11 +1,19 @@
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, lazy, Suspense } from 'react'
 import Home from './pages/Home.jsx'
-import AmberProfile from './pages/AmberProfile.jsx'
-import Interview from './pages/Interview.jsx'
-import Hire from './pages/Hire.jsx'
-import Permissions from './pages/Permissions.jsx'
-import Connect from './pages/Connect.jsx'
+const AmberProfile = lazy(() => import('./pages/AmberProfile.jsx'))
+const Interview = lazy(() => import('./pages/Interview.jsx'))
+const Hire = lazy(() => import('./pages/Hire.jsx'))
+const Permissions = lazy(() => import('./pages/Permissions.jsx'))
+const Connect = lazy(() => import('./pages/Connect.jsx'))
+
+function PageLoading() {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', paddingTop: 120 }}>
+      <div className="typing"><span /><span /><span /></div>
+    </div>
+  )
+}
 
 function ScrollTop() {
   const { pathname } = useLocation()
@@ -27,14 +35,16 @@ export default function App() {
           </div>
         </div>
       </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/amber" element={<AmberProfile />} />
-        <Route path="/interview" element={<Interview />} />
-        <Route path="/hire" element={<Hire />} />
-        <Route path="/permissions" element={<Permissions />} />
-        <Route path="/connect" element={<Connect />} />
-      </Routes>
+      <Suspense fallback={<PageLoading />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/amber" element={<AmberProfile />} />
+          <Route path="/interview" element={<Interview />} />
+          <Route path="/hire" element={<Hire />} />
+          <Route path="/permissions" element={<Permissions />} />
+          <Route path="/connect" element={<Connect />} />
+        </Routes>
+      </Suspense>
       <footer>
         <div className="wrap foot">
           <div>© 2026 The Roster · theroster.studio</div>
