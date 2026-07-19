@@ -17,7 +17,9 @@ function PageLoading() {
 
 function ScrollTop() {
   const { pathname } = useLocation()
-  useEffect(() => window.scrollTo(0, 0), [pathname])
+  // Braces matter: scrollTo returns a Promise in modern Chrome/Safari; returning it
+  // from useEffect makes React call it as a "cleanup" on the next navigation → crash.
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
   return null
 }
 
