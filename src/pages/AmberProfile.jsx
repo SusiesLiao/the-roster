@@ -60,8 +60,11 @@ export default function AmberProfile() {
             </div>
 
             <div className="notice" style={{ marginTop: 36 }}>
-              <strong>Scope, honestly:</strong> Amber connects to Google Calendar, Gmail and Telegram.
-              School-portal work (Seesaw and friends) is Concierge-tier only — it's handled by humans + Amber, and capped.
+              <strong>Scope, honestly:</strong> Amber lives on Telegram and connects to your calendar —
+              Outlook / Microsoft 365 (personal or work) or Google — granted on the provider's own consent
+              screen, revocable by you anytime. She does <em>not</em> read your email: that's a future,
+              separate grant, never a default. School-portal work (Seesaw and friends) is Concierge-tier
+              only — it's handled by humans + Amber, and capped.
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@ const SCRIPT = [
   () => ({
     text: "That one's my specialty. Here's roughly what tomorrow would look like if you hired me today:",
     brief: true,
-    followup: "That arrives every morning before your coffee's ready. I also watch the inbox and nudge you when something actually needs you. Want to know what I don't do? Wait to be asked.",
+    followup: "That arrives every morning before your coffee's ready. I also catch every list, reminder and \"don't let me forget\" you throw at me — snap a photo of the permission slip and I'll turn it into a plan. Want to know what I don't do? Wait to be asked.",
   }),
   () =>
     "Fair warning — this is where the free interview gets interesting. If you hire me, we go straight to a proper onboarding: I ask you a few real questions, you tap two buttons to connect your calendar and Telegram, and I message you first within the minute. No forms. Ever.",

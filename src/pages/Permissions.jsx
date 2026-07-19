@@ -9,7 +9,7 @@ const SECTIONS = [
     title: 'What Amber can access — only after you grant it',
     rows: [
       ['Telegram chat', 'The conversation you have with her. That\'s how she works. She never sees your other Telegram chats — bots can\'t.', 'Delete the chat, or tell her to stop.'],
-      ['Google Calendar', 'Your events — to brief you, spot conflicts, and (with your yes, every time) add or move things. Granted by you on Google\'s own consent screen.', 'Revoke anytime at myaccount.google.com/permissions — takes ten seconds.'],
+      ['Your calendar', 'Outlook / Microsoft 365 (personal or work) or Google Calendar. Your events — to brief you, spot conflicts, and (with your yes, every time) add, move or cancel things. Granted by you on the provider\'s own consent screen.', 'Google: myaccount.google.com/permissions · Microsoft personal: account.live.com/consent/Manage · work: myapps.microsoft.com. Ten seconds either way.'],
       ['What you tell her', 'Facts she saves so you never repeat yourself — sizes, allergies, the babysitter\'s rate, who hates mushrooms. Stored per client, encrypted at rest.', 'Ask her "what do you know about me?" — or tell her to forget something. She will.'],
     ],
   },

@@ -13,17 +13,17 @@ const STEPS = [
   { amber: "You're officially my boss — love that for us. Three quick things and I'm fully yours. First: what should I call you, and roughly where in the world are your mornings?" },
   { amber: 'Noted. Kids, chaos, priorities — give me the one-line version. I fill in the rest as we go; you never have to brief me twice.' },
   {
-    amber: "Perfect. Now the two taps I promised. Connect these and I'll prove myself immediately:",
+    amber: "Perfect. Now the two taps I promised. In the live version these open real consent screens — here in the preview, they show you what happens next:",
     chips: [
-      { id: 'gcal', label: 'Connect Google Calendar', done: 'Calendar connected' },
-      { id: 'tg', label: 'Get me on Telegram', done: 'Telegram linked' },
+      { id: 'gcal', label: 'Connect your calendar', done: 'Calendar step' },
+      { id: 'tg', label: 'Get me on Telegram', done: 'Telegram step' },
     ],
   },
 ]
 
 const PROOFS = {
-  gcal: "Connected. I can see tomorrow already — three meetings and a 3:30 you'd have been late to. I'll brief you every morning at 7:00. Say 'earlier' or 'later' anytime.",
-  tg: "Linked. Check your Telegram — I've already said hi. From here on, that's where you'll find me. This page is just my office.",
+  gcal: "In the real flow, that tap opens your calendar's own consent screen — Outlook / Microsoft 365 or Google. The moment you allow it, I message you tomorrow's actual schedule, including the conflict you haven't spotted yet. Your brief lands at 7:00 every morning; say 'earlier' or 'later' anytime.",
+  tg: "And at this point the real me is already in your Telegram saying hi — first message within the minute. From then on, that's where you'll find me. This page is just my office.",
 }
 
 function InviteMode({ code }) {
@@ -146,7 +146,9 @@ export default function Hire() {
   return (
     <div className="wrap">
       <div className="notice" style={{ marginTop: 20, maxWidth: 760, marginLeft: 'auto', marginRight: 'auto' }}>
-        <strong>This is the walkthrough.</strong> Hiring is invite-only — the first 10 clients this month.
+        <strong>This is a scripted preview</strong> of what day one feels like — nothing here is connected
+        to anything real. (Want the real AI? <a href="/interview" style={{ textDecoration: 'underline', fontWeight: 600 }}>Interview her</a> — that one's live.)
+        Hiring is invite-only — the first 10 clients this month.
         Want a spot?{' '}
         <a href="mailto:hello@theroster.studio?subject=First 10 — hire Amber" style={{ textDecoration: 'underline', fontWeight: 600 }}>Claim one</a>{' '}
         — or interview her first and she'll hold it for you.
@@ -168,7 +170,7 @@ export default function Hire() {
                   {m.chips.map((c) => (
                     <button key={c.id} className={`chip ${connected[c.id] ? 'done' : ''}`} onClick={() => connect(c)}>
                       <span>{connected[c.id] ? c.done : c.label}</span>
-                      <span className="st">{connected[c.id] ? '✓ live' : 'one tap'}</span>
+                      <span className="st">{connected[c.id] ? '✓ shown' : 'preview'}</span>
                     </button>
                   ))}
                 </div>
@@ -178,8 +180,10 @@ export default function Hire() {
           {typing && <div className="typing"><span /><span /><span /></div>}
           {allConnected && (
             <div className="gate">
-              <h4>That's it. She's yours.</h4>
-              <p>No settings to learn. No app to remember. Tomorrow at 7:00, your brief beats your alarm.</p>
+              <h4>That's day one.</h4>
+              <p>No settings to learn. No app to remember. In the live version, tomorrow at 7:00 your brief
+              beats your alarm. Ready for the real thing?{' '}
+              <a href="mailto:hello@theroster.studio?subject=First 10 — hire Amber" style={{ textDecoration: 'underline', fontWeight: 600 }}>Claim a founding spot</a>.</p>
             </div>
           )}
         </div>
