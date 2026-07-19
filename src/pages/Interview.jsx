@@ -27,6 +27,7 @@ export default function Interview() {
   const [gated, setGated] = useState(false)
   const [email, setEmail] = useState('')
   const [emailSent, setEmailSent] = useState(false)
+  const [holdError, setHoldError] = useState(false)
   const sessionRef = useRef(
     (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : `${Date.now()}-fallback`
   )
@@ -100,12 +101,13 @@ export default function Interview() {
 
   async function holdSpot() {
     if (!email.includes('@')) return
+    setHoldError(false)
     try {
       await joinWaitlist(email, gated ? 'interview-gate' : 'interview')
+      setEmailSent(true) // only claim the spot is held when the write actually succeeded
     } catch {
-      /* write-only table may not exist yet in beta — the email intent still matters, don't block the UI */
+      setHoldError(true) // insert failed — never tell them "Spot held" when it wasn't
     }
-    setEmailSent(true)
   }
 
   return (
@@ -146,6 +148,11 @@ export default function Interview() {
                   <button className="btn btn-primary btn-sm" style={{ width: '100%', justifyContent: 'center' }} onClick={holdSpot}>
                     Hold my spot
                   </button>
+                  {holdError && (
+                    <p style={{ color: 'var(--clay, #B85050)', fontSize: 13, marginTop: 8 }}>
+                      That didn't save — mind trying once more? Or email hello@theroster.studio and a human will hold it.
+                    </p>
+                  )}
                 </>
               )}
             </div>
