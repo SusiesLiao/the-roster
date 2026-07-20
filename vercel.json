@@ -7,5 +7,5 @@
       "permanent": true
     }
   ],
-  "rewrites": [{ "source": "/((?!assets/|favicon|\\.well-known).*)", "destination": "/index.html" }]
+  "rewrites": [{ "source": "/((?!assets/|favicon|\\.well-known|cadence/).*)", "destination": "/index.html" }]
 }
