@@ -1,3 +1,11 @@
 {
-  "rewrites": [{ "source": "/((?!assets/).*)", "destination": "/index.html" }]
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.theroster.studio" }],
+      "destination": "https://theroster.studio/$1",
+      "permanent": true
+    }
+  ],
+  "rewrites": [{ "source": "/((?!assets/|favicon|\\.well-known).*)", "destination": "/index.html" }]
 }
