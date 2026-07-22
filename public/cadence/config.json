@@ -1,5 +1,5 @@
 {
-  "supabaseUrl": "https://erulkblczpqblbuxllvz.supabase.co",
-  "supabaseAnonKey": "sb_publishable_5x2m281Fj-aIRTeCuVMkoA_j0sGeWvS",
-  "note": "Cadence remote config — the app reads this on launch and can be re-pointed WITHOUT an App Store release. Currently = the live (old) project, so it changes nothing. FLIP to odpgyjaqoghqesfdvytx only after NEO_TASK_cadence_migration_execute.md Step 8 is green. Treat every edit to this file as a production release."
+  "supabaseUrl": "https://odpgyjaqoghqesfdvytx.supabase.co",
+  "supabaseAnonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9kcGd5amFxb2docWVzZmR2eXR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM1MDg3ODUsImV4cCI6MjA3OTA4NDc4NX0.oMwy_7dJgNvKom36MfR8qqGndRgqBdJ-IQqY2FCWbVA",
+  "note": "Cadence remote config — LIVE = TARGET project (cutover Jul 22 2026). Rollback = revert this file to erulkblczpqblbuxllvz values and redeploy. Treat every edit as a production release."
 }
