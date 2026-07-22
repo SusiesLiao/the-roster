@@ -10,8 +10,14 @@ import Avatar from '../components/Avatar.jsx'
 const BOT = 'AmberRosterBot'
 
 const STEPS = [
-  { amber: "You're officially my boss — love that for us. Three quick things and I'm fully yours. First: what should I call you, and roughly where in the world are your mornings?" },
-  { amber: 'Noted. Kids, chaos, priorities — give me the one-line version. I fill in the rest as we go; you never have to brief me twice.' },
+  {
+    amber: "You're officially my boss — love that for us. Three quick things and I'm fully yours. First: what should I call you, and roughly where in the world are your mornings?",
+    sample: 'Sam. Mornings in Shanghai — design firm, two kids.',
+  },
+  {
+    amber: 'Noted. Kids, chaos, priorities — give me the one-line version. I fill in the rest as we go; you never have to brief me twice.',
+    sample: "School runs, a team that pings at all hours, and a calendar I'm scared to open.",
+  },
   {
     amber: "Perfect. Now the two taps I promised. In the live version these open real consent screens — here in the preview, they show you what happens next:",
     chips: [
@@ -123,12 +129,22 @@ export default function Hire() {
     }
   }
 
+  // Typed text must NEVER advance the script with a canned acknowledgment —
+  // that's a script pretending to listen ("That's not what I said" → "Perfect.").
+  // The preview only truly hears taps; typing gets an honest answer instead.
+  const HONEST = "Full honesty: on this page I'm a scripted preview — I can't actually read what you type here. The me that listens for real is one tap away: interview me (live AI, link up top) or claim a founding spot and I'm in your Telegram within the minute. To keep this tour rolling, tap the suggested reply below."
+
   function send(e) {
     e.preventDefault()
     const text = input.trim()
     if (!text || typing) return
     setInput('')
-    advance(text)
+    setMsgs((m) => [...m, { from: 'user', text }])
+    setTyping(true)
+    setTimeout(() => {
+      setTyping(false)
+      setMsgs((m) => [...m, { from: 'amber', text: HONEST }])
+    }, 900)
   }
 
   function connect(chip) {
@@ -178,6 +194,18 @@ export default function Hire() {
             </div>
           ))}
           {typing && <div className="typing"><span /><span /><span /></div>}
+          {!typing && STEPS[step].sample && msgs.length > 0 && (
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 10 }}>
+              <button
+                onClick={() => advance(STEPS[step].sample)}
+                className="chip"
+                style={{ maxWidth: '82%', textAlign: 'right', cursor: 'pointer' }}
+              >
+                <span style={{ fontStyle: 'italic' }}>“{STEPS[step].sample}”</span>
+                <span className="st">tap to reply</span>
+              </button>
+            </div>
+          )}
           {allConnected && (
             <div className="gate">
               <h4>That's day one.</h4>
@@ -191,7 +219,7 @@ export default function Hire() {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={step >= 2 ? 'Tap the buttons above — or ask her anything' : 'Reply to Amber…'}
+            placeholder={step >= 2 ? 'Tap the buttons above (typing here gets an honest answer)' : 'Tap the suggested reply — or type (she\'ll be honest)'}
           />
           <button className="btn btn-primary" type="submit" disabled={typing}>Send</button>
         </form>
