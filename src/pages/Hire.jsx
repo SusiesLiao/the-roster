@@ -9,6 +9,20 @@ import Avatar from '../components/Avatar.jsx'
 
 const BOT = 'AmberRosterBot'
 
+// Pre-filled claim email: a claimant should never face a blank compose window.
+// Send-as-is works — the from-address is all the pipeline actually needs.
+const CLAIM_MAILTO =
+  'mailto:hello@theroster.studio?subject=' +
+  encodeURIComponent('First 10 — hire Amber') +
+  '&body=' +
+  encodeURIComponent(
+    "Hi Amber — I'd like to claim one of the ten founding spots ($29/month, locked in).\n\n" +
+      'My name:\n' +
+      'City my mornings happen in:\n\n' +
+      "(Fine to send as-is — the address you're writing from is all she needs. " +
+      'Your private invite comes back from Amber herself.)'
+  )
+
 const STEPS = [
   {
     amber: "You're officially my boss — love that for us. Three quick things and I'm fully yours. First: what should I call you, and roughly where in the world are your mornings?",
@@ -166,7 +180,7 @@ export default function Hire() {
         to anything real. (Want the real AI? <a href="/interview" style={{ textDecoration: 'underline', fontWeight: 600 }}>Interview her</a> — that one's live.)
         Hiring is invite-only — the first 10 clients this month.
         Want a spot?{' '}
-        <a href="mailto:hello@theroster.studio?subject=First 10 — hire Amber" style={{ textDecoration: 'underline', fontWeight: 600 }}>Claim one</a>{' '}
+        <a href={CLAIM_MAILTO} style={{ textDecoration: 'underline', fontWeight: 600 }}>Claim one</a>{' '}
         — or interview her first and she'll hold it for you.
       </div>
       <div className="chat-shell" style={{ height: 'calc(100vh - 160px)' }}>
@@ -211,7 +225,7 @@ export default function Hire() {
               <h4>That's day one.</h4>
               <p>No settings to learn. No app to remember. In the live version, tomorrow at 7:00 your brief
               beats your alarm. Ready for the real thing?{' '}
-              <a href="mailto:hello@theroster.studio?subject=First 10 — hire Amber" style={{ textDecoration: 'underline', fontWeight: 600 }}>Claim a founding spot</a>.</p>
+              <a href={CLAIM_MAILTO} style={{ textDecoration: 'underline', fontWeight: 600 }}>Claim a founding spot</a>.</p>
             </div>
           )}
         </div>
