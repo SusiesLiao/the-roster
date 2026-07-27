@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import Avatar from '../components/Avatar.jsx'
 
 // Plain-language privacy policy — same voice as /permissions.
-// NOTE FOR SUSAN: have a professional review this before scaling past the founding 10.
+// NOTE FOR SUSAN: email access is a material change — have a professional review this
+// (esp. the email + data-minimization language) before scaling past the founding 10.
 
 const SECTIONS = [
   {
@@ -10,6 +11,7 @@ const SECTIONS = [
     rows: [
       ['Your conversations with Amber', 'The Telegram messages you exchange with her — that\'s how she works for you. She never sees your other Telegram chats; bots can\'t.'],
       ['Your calendar, if you connect it', 'Read/write access to the calendar you choose (Outlook/Microsoft 365 or Google), granted by you on the provider\'s own consent screen and revocable there anytime. Used to brief you, spot conflicts, and make the changes you ask for.'],
+      ['Your email, if you connect it', 'Read access to the mailbox you connect (Outlook/Microsoft 365 or Google), granted by you on the provider\'s own consent screen and revocable there anytime. Amber uses it to stay ahead of the logistics that land in your inbox — school notices, appointments, payments, deadlines. She reads for those; the rest of your inbox isn\'t her business (see "What we never do"). This is the difference between an assistant who\'s actually in the loop and one you have to forward everything to.'],
       ['What you tell her to remember', 'Facts you share — schedules, preferences, the babysitter\'s rate — stored per client so you never repeat yourself.'],
       ['Email you send us', 'Mail to @theroster.studio addresses (hello@, amber@) so we can reply and route it.'],
       ['Billing basics', 'Your payment is processed by Stripe. We never see or store your card number — Stripe sends us only confirmation that a subscription is active.'],
@@ -21,7 +23,8 @@ const SECTIONS = [
       ['Sell your data', 'Never, to anyone, in any form.'],
       ['Advertise to you or track you', 'The site sets no advertising trackers and runs no third-party analytics.'],
       ['Mix clients together', 'Every client\'s memory, calendar access and conversation are isolated per account — architecturally, not just politely.'],
-      ['Read what you didn\'t grant', 'No email-inbox access, no contacts, no photos beyond what you send her, no location.'],
+      ['Snoop beyond the job', 'When you connect your email, Amber surfaces the logistics — school, appointments, payments, deadlines — and leaves the rest alone. She never stores, sells, or trains AI on mail that isn\'t about running your life. Access to your inbox is not permission to mine it.'],
+      ['Read what you didn\'t grant', 'Nothing you haven\'t connected. No contacts, no photos beyond what you send her, no location, no accounts you didn\'t link.'],
     ],
   },
   {
@@ -71,8 +74,8 @@ export default function Privacy() {
         <div className="notice">
           <strong>How long we keep it.</strong> Amber's memory of you is kept while you're a client
           and after you lapse — so returning feels like rehiring someone who missed you, not starting
-          over. You can end that anytime: revoke calendar access at your provider, and request full
-          deletion of everything at{' '}
+          over. You can end that anytime: revoke calendar or email access at your provider (that
+          cuts her off instantly), and request full deletion of everything at{' '}
           <a href="mailto:hello@theroster.studio?subject=Delete my data" style={{ textDecoration: 'underline', fontWeight: 600 }}>hello@theroster.studio</a>.
           A human handles it and confirms when it's done.
         </div>
