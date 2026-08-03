@@ -23,9 +23,9 @@ function TalentCard({ a }) {
         </div>
       )}
       {a.status === 'vote' && (
-        <a href="mailto:hello@theroster.studio?subject=Train this role next" className="btn btn-ghost btn-sm" style={{ alignSelf: 'flex-start' }}>
+        <Link to="/suggest-a-role" className="btn btn-ghost btn-sm" style={{ alignSelf: 'flex-start' }}>
           Suggest a role
-        </a>
+        </Link>
       )}
     </div>
   )
@@ -48,6 +48,22 @@ export default function Home() {
             <Link to="/amber" className="btn btn-ghost">See her talent card</Link>
           </div>
           <div className="hero-note">No signup to start. No credit card. She talks first.</div>
+        </div>
+      </section>
+
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <div className="band">
+            <div>
+              <div className="eyebrow gold" style={{ marginBottom: 8 }}>Concierge</div>
+              <h2>The <em>white-glove</em> tier</h2>
+              <p>
+                School portals, family ops, done-for-you onboarding — the work no global AI tool will touch.
+                Five families at a time, by application only.
+              </p>
+            </div>
+            <Link to="/apply" className="btn btn-gold">Apply</Link>
+          </div>
         </div>
       </section>
 
@@ -89,21 +105,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="wrap">
-          <div className="band">
-            <div>
-              <div className="eyebrow gold" style={{ marginBottom: 8 }}>Concierge</div>
-              <h2>The <em>white-glove</em> tier</h2>
-              <p>
-                School portals, family ops, done-for-you onboarding — the work no global AI tool will touch.
-                Five families at a time, by application only.
-              </p>
-            </div>
-            <a href="mailto:hello@theroster.studio?subject=Concierge application" className="btn btn-gold">Apply</a>
-          </div>
-        </div>
-      </section>
     </>
   )
 }
