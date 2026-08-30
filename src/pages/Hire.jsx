@@ -13,10 +13,10 @@ const BOT = 'AmberRosterBot'
 // Send-as-is works — the from-address is all the pipeline actually needs.
 const CLAIM_MAILTO =
   'mailto:hello@theroster.studio?subject=' +
-  encodeURIComponent('First 10 — hire Amber') +
+  encodeURIComponent('First 8 — hire Amber') +
   '&body=' +
   encodeURIComponent(
-    "Hi Amber — I'd like to claim one of the ten founding spots ($29/month, locked in).\n\n" +
+    "Hi Amber — I'd like to claim one of the eight founding spots ($39/month for the household, locked in).\n\n" +
       'My name:\n' +
       'City my mornings happen in:\n\n' +
       "(Fine to send as-is — the address you're writing from is all she needs. " +
@@ -178,7 +178,7 @@ export default function Hire() {
       <div className="notice" style={{ marginTop: 20, maxWidth: 760, marginLeft: 'auto', marginRight: 'auto' }}>
         <strong>This is a scripted preview</strong> of what day one feels like — nothing here is connected
         to anything real. (Want the real AI? <a href="/interview" style={{ textDecoration: 'underline', fontWeight: 600 }}>Interview her</a> — that one's live.)
-        Hiring is invite-only — the first 10 clients this month.
+        Hiring is invite-only — the first 8 clients this month.
         Want a spot?{' '}
         <a href={CLAIM_MAILTO} style={{ textDecoration: 'underline', fontWeight: 600 }}>Claim one</a>{' '}
         — or interview her first and she'll hold it for you.

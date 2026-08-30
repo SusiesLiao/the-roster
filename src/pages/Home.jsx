@@ -58,9 +58,16 @@ export default function Home() {
         <div className="wrap">
           <div className="eyebrow">The Roster · A talent agency for AI employees</div>
           <h1 className="display">Meet your first<br /><em>AI employee.</em></h1>
+          {/* The old lede sold one assistant in one channel: "a person-shaped
+              hire who lives in your Telegram." The product is a roster now —
+              several people, trained and named, whose jobs you write and whose
+              reach you decide. Telegram is a window they work through, not the
+              thing being sold. This is the same claim the app's own first
+              screen makes, deliberately: one conversation, three surfaces. */}
           <p className="lede">
-            Not another app. A person-shaped hire who lives in your Telegram, learns your life,
-            and messages you first. Interviewed, hired, and working for you in ten minutes.
+            We don’t give you tools to build an AI team — we build yours. Each one arrives
+            trained and named, with the job already written. You change what you want,
+            grant what you choose, and nothing is connected until you say so.
           </p>
           <div className="hero-ctas">
             <Link to="/interview" className="btn btn-primary">Interview Amber — free</Link>
@@ -68,7 +75,7 @@ export default function Home() {
                 than a signup form. The app door sits beside it, not instead. */}
             <a href={APP_URL} className="btn btn-ghost">Build your Roster →</a>
           </div>
-          <div className="hero-note">No signup to start. No credit card. She talks first.</div>
+          <div className="hero-note">No signup to start. No card for 14 days. Nothing connected until you say so.</div>
         </div>
       </section>
 
@@ -103,8 +110,9 @@ export default function Home() {
                   <a href={SIGN_IN} className="btn btn-ghost">I already have one — sign in</a>
                 </div>
                 <div className="door-fine">
-                  Free while you build. Your first hire starts a <b>14-day trial</b>, then <b>$29/mo per
-                  employee</b> — cancelled from inside the app, not by emailing us.<br />
+                  Free while you build. Your first hire starts a <b>14-day trial</b>, then <b>$39/mo
+                  for the household</b> — up to five employees, however many you hire. Cancelled
+                  from inside the app, not by emailing us.<br />
                   Nothing is connected by default. Every permission is granted one at a time, and
                   revoked the same way. <Link to="/permissions">How permissions work →</Link>
                 </div>

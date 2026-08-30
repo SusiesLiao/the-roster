@@ -133,7 +133,7 @@ export default function Interview() {
           {gated && (
             <div className="gate">
               <h4>She'll hold you a spot</h4>
-              <p>Hiring opens to the first 10 clients this month. Leave your email and Amber finds you the moment it does.</p>
+              <p>Hiring opens to the first 8 clients this month. Leave your email and Amber finds you the moment it does.</p>
               {emailSent ? (
                 <p style={{ color: 'var(--moss)', fontWeight: 600 }}>Spot held. She doesn't forget.</p>
               ) : (
