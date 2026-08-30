@@ -1,5 +1,6 @@
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import { useEffect, lazy, Suspense } from 'react'
+import { APP_URL, SIGN_IN } from './lib/app.js'
 import Home from './pages/Home.jsx'
 const AmberProfile = lazy(() => import('./pages/AmberProfile.jsx'))
 const Interview = lazy(() => import('./pages/Interview.jsx'))
@@ -35,6 +36,10 @@ export default function App() {
           <div className="nav-links">
             <Link to="/#roster">The talent</Link>
             <Link to="/amber">Amber</Link>
+            {/* A paying customer had no way back into their Roster from this
+                site. Sign in is that way back, and it is a plain anchor because
+                the app is a different origin, not a route in this bundle. */}
+            <a href={SIGN_IN} className="nav-signin">Sign in</a>
             <Link to="/interview" className="btn btn-primary btn-sm">Interview Amber — free</Link>
           </div>
         </div>
@@ -54,7 +59,7 @@ export default function App() {
       <footer>
         <div className="wrap foot">
           <div>© 2026 The Roster · theroster.studio</div>
-          <div>AI employees, trained and placed. · <Link to="/permissions" style={{ textDecoration: 'underline' }}>Trust &amp; permissions</Link> · <Link to="/privacy" style={{ textDecoration: 'underline' }}>Privacy</Link> · <Link to="/terms" style={{ textDecoration: 'underline' }}>Terms</Link> · <a href="mailto:hello@theroster.studio" style={{ textDecoration: 'underline' }}>hello@theroster.studio</a></div>
+          <div>AI employees, trained and placed. · <a href={APP_URL} style={{ textDecoration: 'underline' }}>Your Roster</a> · <Link to="/permissions" style={{ textDecoration: 'underline' }}>Trust &amp; permissions</Link> · <Link to="/privacy" style={{ textDecoration: 'underline' }}>Privacy</Link> · <Link to="/terms" style={{ textDecoration: 'underline' }}>Terms</Link> · <a href="mailto:hello@theroster.studio" style={{ textDecoration: 'underline' }}>hello@theroster.studio</a></div>
         </div>
       </footer>
     </>

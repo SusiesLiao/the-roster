@@ -149,3 +149,50 @@ footer { border-top: 1px solid var(--hairline); padding: 40px 0 56px; margin-top
   .band { padding: 36px 30px; }
   .hero { padding: 56px 0 48px; }
 }
+
+/* ---------- the door into the app ---------- */
+.nav-signin { color: var(--emphasis); font-weight: 600; }
+.nav-signin:hover { color: var(--powder-deep); }
+
+.door { background: var(--emphasis); color: var(--ash-light); border-radius: 14px; padding: 52px 48px; }
+.door .eyebrow { color: var(--accent); }
+.door h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 4vw, 42px); letter-spacing: -0.8px; line-height: 1.08; color: var(--ash-light); }
+.door h2 em { font-style: italic; color: var(--powder); }
+.door-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 44px; align-items: start; }
+.door-sub { color: #B9C4D0; font-size: 16px; max-width: 560px; margin-top: 18px; }
+.door-sub b { color: var(--powder); font-weight: 600; }
+.door-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 30px; }
+.door .btn-primary { background: var(--accent); color: var(--emphasis); }
+.door .btn-primary:hover { filter: brightness(1.05); box-shadow: 0 8px 24px rgba(0,0,0,0.22); }
+.door .btn-ghost { border-color: rgba(184,201,217,0.55); color: var(--powder); }
+.door .btn-ghost:hover { background: var(--powder); color: var(--emphasis); }
+.door-fine { font-size: 12.5px; color: #8A98A8; margin-top: 18px; line-height: 1.7; }
+.door-fine b { color: var(--powder); font-weight: 600; }
+.door-fine a { color: var(--powder); text-decoration: underline; text-underline-offset: 3px; }
+
+.seatlist { background: rgba(249,250,248,0.045); border: 1px solid rgba(184,201,217,0.22); border-radius: 10px; overflow: hidden; }
+.seat { display: flex; align-items: center; gap: 14px; padding: 15px 18px; border-bottom: 1px solid rgba(184,201,217,0.14); }
+.seat:last-child { border-bottom: 0; }
+.seat-av { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 16px; font-weight: 600; flex-shrink: 0; background: linear-gradient(135deg, var(--powder) 0%, var(--powder-deep) 100%); color: var(--emphasis); }
+.seat-av.open { background: transparent; border: 1.5px dashed rgba(184,201,217,0.5); color: rgba(184,201,217,0.75); }
+.seat-who { font-size: 14px; font-weight: 600; color: var(--ash-light); }
+.seat-who.open { color: #93A2B2; }
+.seat-job { font-size: 11.5px; color: #93A2B2; letter-spacing: 0.04em; }
+.seat-st { margin-left: auto; font-size: 10px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent); }
+.seat-st.open { color: #7E8C9B; }
+.seat-caption { font-size: 12px; color: #7E8C9B; margin-top: 12px; text-align: center; }
+
+.strip { display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; background: var(--ash-light); border: 1px solid var(--hairline); border-radius: 10px; padding: 20px 26px; margin-top: 22px; }
+.strip-t { font-size: 14px; color: var(--slate); }
+.strip-t b { color: var(--emphasis); }
+
+@media (max-width: 840px) {
+  .door { padding: 38px 28px; }
+  .door-grid { grid-template-columns: 1fr; gap: 34px; }
+}
+
+/* Kevin: trained and placeable, but no scarcity number — a study buddy has no
+   capacity ceiling, so the badge states the pricing unit instead of a fake one. */
+.badge.trained { background: var(--moss); color: var(--ash-light); }
+.avatar.moss { background: linear-gradient(135deg, #8CA485 0%, var(--moss) 100%); }
+.tc-price { font-size: 12.5px; color: var(--mute); align-self: center; letter-spacing: 0.02em; }

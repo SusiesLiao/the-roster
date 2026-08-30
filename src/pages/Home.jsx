@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom'
 import Avatar from '../components/Avatar.jsx'
 import { AGENTS } from '../data/roster.js'
+import { appLink, APP_URL, SIGN_IN } from '../lib/app.js'
 
 function TalentCard({ a }) {
-  const card = (
+  return (
     <div className={`talent-card ${a.status === 'available' ? 'available' : 'dim'}`}>
-      {a.status === 'available' && <span className="badge spots">{a.spots} spots</span>}
+      {a.status === 'available' && (
+        <span className={`badge ${a.spots ? 'spots' : 'trained'}`}>
+          {a.spots ? `${a.spots} spots` : a.badgeText}
+        </span>
+      )}
       {a.status === 'soon' && <span className="badge soon">Joining soon</span>}
       <div className="tc-head">
         <Avatar initial={a.initial} variant={a.avatarClass} />
@@ -17,20 +22,34 @@ function TalentCard({ a }) {
       <p className="tc-bio"><strong style={{ color: 'var(--emphasis)' }}>{a.tagline}</strong> {a.bio}</p>
       <div className="tc-tags">{a.tags.map((t) => <span key={t} className="tag">{t}</span>)}</div>
       {a.status === 'available' && (
-        <div style={{ display: 'flex', gap: 10 }}>
-          <Link to="/interview" className="btn btn-primary btn-sm">Interview her</Link>
-          <Link to="/amber" className="btn btn-ghost btn-sm">Profile</Link>
+        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+          {/* Hire goes to the app carrying the role, so the button does what it
+              says instead of dropping you at a generic front door. */}
+          <a href={appLink(a.hireIntent)} className="btn btn-primary btn-sm">Hire {a.name}</a>
+          {/* Only Amber has a live interview on this site — roster-interview is
+              her edge function. Offering one for Kevin would be a promise the
+              server can't keep, so his card hires straight into the app. */}
+          {a.interview
+            ? <Link to="/interview" className="btn btn-ghost btn-sm">Interview {a.pronoun} — free</Link>
+            : <span className="tc-price">{a.price}</span>}
         </div>
       )}
       {a.status === 'vote' && (
-        <a href="mailto:hello@theroster.studio?subject=Train this role next" className="btn btn-ghost btn-sm" style={{ alignSelf: 'flex-start' }}>
-          Suggest a role
+        <a href={appLink(a.hireIntent)} className="btn btn-ghost btn-sm" style={{ alignSelf: 'flex-start' }}>
+          Open a seat →
         </a>
       )}
     </div>
   )
-  return card
 }
+
+/* The seats shown inside the door — the app's actual first screen, not a
+ * chat window. One filled, four open. Prices deliberately absent here: the
+ * money is stated once, in words, under the buttons. */
+const SEATS = [
+  { av: 'A', who: 'Amber', job: 'Senior Personal EA', st: 'Hired' },
+  { open: true }, { open: true }, { open: true }, { open: true },
+]
 
 export default function Home() {
   return (
@@ -45,7 +64,9 @@ export default function Home() {
           </p>
           <div className="hero-ctas">
             <Link to="/interview" className="btn btn-primary">Interview Amber — free</Link>
-            <Link to="/amber" className="btn btn-ghost">See her talent card</Link>
+            {/* The interview still leads: a live conversation converts harder
+                than a signup form. The app door sits beside it, not instead. */}
+            <a href={APP_URL} className="btn btn-ghost">Build your Roster →</a>
           </div>
           <div className="hero-note">No signup to start. No credit card. She talks first.</div>
         </div>
@@ -61,6 +82,57 @@ export default function Home() {
           </div>
           <div className="roster-grid">
             {AGENTS.map((a) => <TalentCard key={a.id} a={a} />)}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" style={{ paddingTop: 0 }} id="your-roster">
+        <div className="wrap">
+          <div className="door">
+            <div className="door-grid">
+              <div>
+                <div className="eyebrow">Your Roster</div>
+                <h2>The floor where<br />they <em>actually work.</em></h2>
+                <p className="door-sub">
+                  theroster.studio is the agency — where you meet them.
+                  {' '}<b>my.theroster.studio</b> is your Roster — where you build the team, name them,
+                  write what each one is responsible for, and see exactly what they can reach.
+                </p>
+                <div className="door-ctas">
+                  <a href={APP_URL} className="btn btn-primary">Open your Roster →</a>
+                  <a href={SIGN_IN} className="btn btn-ghost">I already have one — sign in</a>
+                </div>
+                <div className="door-fine">
+                  Free while you build. Your first hire starts a <b>14-day trial</b>, then <b>$29/mo per
+                  employee</b> — cancelled from inside the app, not by emailing us.<br />
+                  Nothing is connected by default. Every permission is granted one at a time, and
+                  revoked the same way. <Link to="/permissions">How permissions work →</Link>
+                </div>
+              </div>
+              <div>
+                <div className="seatlist">
+                  {SEATS.map((s, i) => (
+                    <div className="seat" key={i}>
+                      <div className={`seat-av${s.open ? ' open' : ''}`}>{s.open ? '+' : s.av}</div>
+                      <div>
+                        <div className={`seat-who${s.open ? ' open' : ''}`}>{s.open ? 'Open seat' : s.who}</div>
+                        <div className="seat-job">{s.open ? 'Name the job' : s.job}</div>
+                      </div>
+                      <div className={`seat-st${s.open ? ' open' : ''}`}>{s.open ? 'Hire' : s.st}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="seat-caption">This is the first screen inside — your roster, not a chat window.</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="strip">
+            <div className="strip-t">
+              <b>Already hired someone?</b> Your Roster lives at my.theroster.studio — sign in with the
+              email you claimed it with.
+            </div>
+            <a href={SIGN_IN} className="btn btn-ghost btn-sm">Sign in</a>
           </div>
         </div>
       </section>

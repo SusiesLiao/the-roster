@@ -1,11 +1,31 @@
 {
   "redirects": [
     {
+      "source": "/app",
+      "destination": "https://my.theroster.studio",
+      "permanent": false
+    },
+    {
+      "source": "/app/(.*)",
+      "destination": "https://my.theroster.studio/$1",
+      "permanent": false
+    },
+    {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.theroster.studio" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.theroster.studio"
+        }
+      ],
       "destination": "https://theroster.studio/$1",
       "permanent": true
     }
   ],
-  "rewrites": [{ "source": "/((?!assets/|favicon|\\.well-known|cadence/).*)", "destination": "/index.html" }]
+  "rewrites": [
+    {
+      "source": "/((?!assets/|favicon|\\.well-known|cadence/).*)",
+      "destination": "/index.html"
+    }
+  ]
 }
