@@ -35,9 +35,12 @@ function TalentCard({ a }) {
         </div>
       )}
       {a.status === 'vote' && (
-        <a href={appLink(a.hireIntent)} className="btn btn-ghost btn-sm" style={{ alignSelf: 'flex-start' }}>
-          Open a seat →
-        </a>
+        /* Deliberately NOT a link into the app. The app can only offer roles
+           that already exist; this card is by definition about one that
+           doesn't, so it goes to the survey that captures it. */
+        <Link to="/suggest-a-role" className="btn btn-ghost btn-sm" style={{ alignSelf: 'flex-start' }}>
+          Suggest a role
+        </Link>
       )}
     </div>
   )
@@ -76,6 +79,26 @@ export default function Home() {
             <a href={APP_URL} className="btn btn-ghost">Build your Roster →</a>
           </div>
           <div className="hero-note">No signup to start. No card for 14 days. Nothing connected until you say so.</div>
+        </div>
+      </section>
+
+      {/* Concierge sits above the roster — 2026-08-03, deliberate. It is the tier
+          the money is actually in for the next year, and it anchors the price of
+          everything below it. The self-serve door still comes after the talent,
+          where someone who has met the people needs a way in. */}
+      <section className="section" style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <div className="band">
+            <div>
+              <div className="eyebrow gold" style={{ marginBottom: 8 }}>Concierge</div>
+              <h2>The <em>white-glove</em> tier</h2>
+              <p>
+                School portals, family ops, done-for-you onboarding — the work no global AI tool will touch.
+                Five families at a time, by application only.
+              </p>
+            </div>
+            <Link to="/apply" className="btn btn-gold">Apply</Link>
+          </div>
         </div>
       </section>
 
@@ -169,21 +192,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
-        <div className="wrap">
-          <div className="band">
-            <div>
-              <div className="eyebrow gold" style={{ marginBottom: 8 }}>Concierge</div>
-              <h2>The <em>white-glove</em> tier</h2>
-              <p>
-                School portals, family ops, done-for-you onboarding — the work no global AI tool will touch.
-                Five families at a time, by application only.
-              </p>
-            </div>
-            <a href="mailto:hello@theroster.studio?subject=Concierge application" className="btn btn-gold">Apply</a>
-          </div>
-        </div>
-      </section>
     </>
   )
 }

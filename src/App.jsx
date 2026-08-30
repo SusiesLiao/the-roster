@@ -9,6 +9,7 @@ const Permissions = lazy(() => import('./pages/Permissions.jsx'))
 const Connect = lazy(() => import('./pages/Connect.jsx'))
 const Privacy = lazy(() => import('./pages/Privacy.jsx'))
 const Terms = lazy(() => import('./pages/Terms.jsx'))
+const Apply = lazy(() => import('./pages/Apply.tsx'))
 
 function PageLoading() {
   return (
@@ -54,6 +55,8 @@ export default function App() {
           <Route path="/connect" element={<Connect />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/apply" element={<Apply kind="concierge" />} />
+          <Route path="/suggest-a-role" element={<Apply kind="role" />} />
         </Routes>
       </Suspense>
       <footer>

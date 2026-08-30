@@ -60,14 +60,13 @@ export const AGENTS = [
   },
   {
     id: 'next',
-    hireIntent: 'custom',
     name: 'Your call',
     role: 'The next hire',
     status: 'vote',
     avatarClass: 'dashed',
     initial: '?',
     tagline: 'Who should we train next?',
-    bio: "Travel planner? Money admin? Household ops? Open a seat for the role you'd hire tomorrow — describe the job and we'll train them into it.",
+    bio: "Travel planner? Money admin? Household ops? Tell us the role you'd hire tomorrow and what you'd hand them on day one — we train the ones people actually ask for.",
     tags: ['You decide'],
   },
 ]
