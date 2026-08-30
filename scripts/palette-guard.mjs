@@ -10,13 +10,34 @@
  * Two thresholds, because saturation reads differently at different lightness:
  *
  *   1. Nothing above S 55%.        Vivid is vivid at any lightness.
- *   2. Below L 32%, nothing above S 22%.  A dark colour carrying real
+ *   2. Below L 32%, nothing above S 35%.  A dark colour carrying real
  *      saturation reads as navy / bottle green / oxblood. Muted darks have to
  *      be grey with a hint of hue, not hue with the lights off.
  *
- * The palette that passes today: aged gold #C9A961 (S48), clay #B07A5B (S35),
- * powder #7C9BB7 (S31), moss #6B8964 (S15), and the deep grey-blue #2C343D
- * (S15, L21) that replaced the navy.
+ *      WHERE 35 CAME FROM. It is not a guess — the first two were, and both
+ *      were too tight: 22 rejected Benjamin Moore Gentleman's Gray (S24), 28
+ *      rejected the charcoal blue Susan actually picked (S31). So the line is
+ *      set from her two real data points instead:
+ *
+ *          ACCEPTED  Gentleman's Gray  S24 at L27   <- --emphasis, shipped
+ *          ACCEPTED  charcoal blue     S31 at L26   <- also picked, not kept
+ *          REJECTED  plain charcoal    S13 at L21   <- not blue ENOUGH
+ *          REJECTED  the old navy      S40 at L16
+ *
+ *      Note the shape of that list: the rejections run in BOTH directions.
+ *      S13 was thrown out for having too little blue, S40 for too much. This
+ *      rule only ever catches the top end, so the bottom end stays a matter of
+ *      taste — which is correct. A guard can stop a colour being garish. It
+ *      cannot stop one being dull.
+ *
+ *      35 sits between them with room on both sides. If a future colour is
+ *      rejected that shouldn't be, move the line — and write the new data point
+ *      here, so the rule keeps being derived from judgements actually made
+ *      rather than from someone's idea of muted.
+ *
+ * The palette that passes today: aged gold (S48), clay (S35), powder (S31),
+ * moss (S15), and --emphasis, the deep grey-blue that replaced the navy.
+ * (Hexes deliberately not quoted here — see the note in styles.css.)
  *
  * ESCAPE HATCH: put the hex in ALLOW below with a reason. There is deliberately
  * no inline-comment override — an exception should cost a line in this file, so
@@ -29,7 +50,7 @@ import { join, extname } from 'node:path';
 
 const MAX_S = 55;
 const DARK_L = 32;
-const DARK_MAX_S = 22;
+const DARK_MAX_S = 35;
 
 /** hex -> reason it is allowed to break the rule. Keep this list short. */
 const ALLOW = {};
@@ -83,3 +104,4 @@ if (bad.length) {
   process.exit(1);
 }
 console.log(`palette guard: clean (S<=${MAX_S}%, and S<=${DARK_MAX_S}% below L${DARK_L}%)`);
+
