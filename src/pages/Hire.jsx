@@ -9,19 +9,12 @@ import Avatar from '../components/Avatar.jsx'
 
 const BOT = 'AmberRosterBot'
 
-// Pre-filled claim email: a claimant should never face a blank compose window.
-// Send-as-is works — the from-address is all the pipeline actually needs.
-const CLAIM_MAILTO =
-  'mailto:hello@theroster.studio?subject=' +
-  encodeURIComponent('First 8 — hire Amber') +
-  '&body=' +
-  encodeURIComponent(
-    "Hi Amber — I'd like to claim one of the eight founding spots ($39/month for the household, locked in).\n\n" +
-      'My name:\n' +
-      'City my mornings happen in:\n\n' +
-      "(Fine to send as-is — the address you're writing from is all she needs. " +
-      'Your private invite comes back from Amber herself.)'
-  )
+/* The claim used to be a mailto — a half-written email to a human. Retired
+   2026-08-30: on a phone with no mail app the link does nothing and the person
+   silently leaves; an email captures a name and nothing else; and eight
+   founding spots need a count, which an inbox is not. /claim is the same
+   survey engine as /apply and lands in concierge_applications with
+   kind='founding', so every claim is a row with the household's shape on it. */
 
 const STEPS = [
   {
@@ -180,7 +173,7 @@ export default function Hire() {
         to anything real. (Want the real AI? <a href="/interview" style={{ textDecoration: 'underline', fontWeight: 600 }}>Interview her</a> — that one's live.)
         Hiring is invite-only — the first 8 clients this month.
         Want a spot?{' '}
-        <a href={CLAIM_MAILTO} style={{ textDecoration: 'underline', fontWeight: 600 }}>Claim one</a>{' '}
+        <a href="/claim" style={{ textDecoration: 'underline', fontWeight: 600 }}>Claim one</a>{' '}
         — or interview her first and she'll hold it for you.
       </div>
       <div className="chat-shell" style={{ height: 'calc(100vh - 160px)' }}>
@@ -225,7 +218,7 @@ export default function Hire() {
               <h4>That's day one.</h4>
               <p>No settings to learn. No app to remember. In the live version, tomorrow at 7:00 your brief
               beats your alarm. Ready for the real thing?{' '}
-              <a href={CLAIM_MAILTO} style={{ textDecoration: 'underline', fontWeight: 600 }}>Claim a founding spot</a>.</p>
+              <a href="/claim" style={{ textDecoration: 'underline', fontWeight: 600 }}>Claim a founding spot</a>.</p>
             </div>
           )}
         </div>

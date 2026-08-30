@@ -16,7 +16,7 @@ const SUPABASE_URL = "https://erulkblczpqblbuxllvz.supabase.co";
 // no SELECT policy, so nobody can read applications back with it.
 const SUPABASE_KEY = "sb_publishable_5x2m281Fj-aIRTeCuVMkoA_j0sGeWvS";
 
-type Kind = "concierge" | "role";
+type Kind = "concierge" | "role" | "founding";
 
 /* ------------------------------------------------------------------ config */
 
@@ -28,6 +28,21 @@ const CONCIERGE = {
   submitLabel: "Submit application",
   foot: "Five places. We read every one.",
   subject: "Concierge application",
+};
+
+/* The founding claim. Same question set as Concierge on purpose — what is
+   eating your week, which portals, what you would hand over first — because
+   that IS the onboarding interview, captured while they are warm. The mailto
+   this replaced got us a name and an address; this gets us the shape of the
+   household before the first conversation. */
+const FOUNDING = {
+  eyebrow: "Founding eight",
+  title: ["Claim a ", "founding", " spot."],
+  lede: "Eight households this month, $39/mo locked in for as long as you stay. Two minutes — mostly tick boxes.",
+  meta: "No card now. We reply within two working days with your invite.",
+  submitLabel: "Claim my spot",
+  foot: "Eight places. First come, properly served.",
+  subject: "Founding spot claim",
 };
 
 const ROLE = {
@@ -157,7 +172,7 @@ const CSS = `
 type Props = { kind?: Kind };
 
 export default function Apply({ kind = "concierge" }: Props) {
-  const copy = kind === "role" ? ROLE : CONCIERGE;
+  const copy = kind === "role" ? ROLE : kind === "founding" ? FOUNDING : CONCIERGE;
 
   const [pain, setPain] = useState<string[]>([]);
   const [painOther, setPainOther] = useState("");
@@ -311,7 +326,9 @@ export default function Apply({ kind = "concierge" }: Props) {
             <p>
               {kind === "role"
                 ? "Your suggestion is in. If we train this role, you'll be the first to know."
-                : "Your application is in. We read every one and reply within two working days — from a real person, not a bot."}
+                : kind === "founding"
+                  ? "Your spot is held. Your invite comes back within two working days — from a real person, not a bot — and your rate is locked from the day you start."
+                  : "Your application is in. We read every one and reply within two working days — from a real person, not a bot."}
             </p>
             <p style={{ marginTop: 22 }}>
               <a className="back" href="/">
@@ -349,12 +366,12 @@ export default function Apply({ kind = "concierge" }: Props) {
                 <div className="card">
                   <p className="tier">Amber</p>
                   <p className="price">
-                    $29<small>/mo</small>
+                    $39<small>/mo</small>
                   </p>
                   <p className="body">
                     Hire her yourself. She lands in your Telegram, you connect your
-                    calendar and inbox, and she's working the same day. Morning brief,
-                    diary, inbox triage.
+                    calendar and inbox, and she's working the same day. One price for
+                    the household — up to five employees, however many you hire.
                   </p>
                   <p className="who">You set her up.</p>
                 </div>
@@ -378,7 +395,7 @@ export default function Apply({ kind = "concierge" }: Props) {
             </>
           )}
 
-          {kind === "concierge" ? (
+          {kind !== "role" ? (
             <>
               <fieldset>
                 <legend>What's eating your week?</legend>

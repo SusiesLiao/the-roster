@@ -57,6 +57,7 @@ export default function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/apply" element={<Apply kind="concierge" />} />
           <Route path="/suggest-a-role" element={<Apply kind="role" />} />
+          <Route path="/claim" element={<Apply kind="founding" />} />
         </Routes>
       </Suspense>
       <footer>
