@@ -99,14 +99,14 @@ const CSS = `
   --deep:var(--emphasis);--cream:#F4F5F2;--blue:#7C9BB7;--gold:#C9A961;
   --line:rgba(52,68,85,.18);--muted:#4A5568;--faint:#5C6880;--goldink:#9A7C34;
   background:var(--cream);color:var(--deep);min-height:100vh;
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:400;line-height:1.62}
+  font-family:'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:400;line-height:1.62}
 .rp *{box-sizing:border-box}
 .rp .wrap{max-width:640px;margin:0 auto;padding:56px 24px 96px}
-.rp .logo{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;letter-spacing:.02em;
+.rp .logo{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:22px;letter-spacing:.02em;
   color:var(--deep);text-decoration:none;display:inline-block;margin-bottom:48px}
 .rp .logo em{font-style:italic;color:var(--blue)}
 .rp .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 14px;font-weight:500}
-.rp h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:40px;line-height:1.12;margin:0 0 16px;letter-spacing:-.01em;color:var(--deep)}
+.rp h1{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:34px;line-height:1.12;margin:0 0 16px;letter-spacing:-.01em;color:var(--deep)}
 .rp h1 em{font-style:italic;color:var(--blue)}
 .rp .lede{font-size:17px;color:var(--muted);margin:0 0 8px;max-width:52ch;line-height:1.6}
 .rp .meta{font-size:14px;color:var(--faint);margin:0 0 44px}
@@ -117,7 +117,7 @@ const CSS = `
 .rp .card.hero{border-color:var(--gold);background:rgba(201,169,97,.07)}
 .rp .card .tier{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:0 0 3px;font-weight:600}
 .rp .card.hero .tier{color:var(--goldink)}
-.rp .card .price{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:600;margin:0 0 10px;line-height:1.15}
+.rp .card .price{font-family:'Fraunces',Georgia,serif;font-size:27px;font-weight:600;margin:0 0 10px;line-height:1.15}
 .rp .card .price small{font-size:15px;font-weight:400}
 .rp .card p.body{font-size:15px;color:var(--muted);margin:0;line-height:1.62}
 .rp .card .who{font-size:13.5px;color:var(--deep);margin:12px 0 0;font-weight:500}
@@ -125,7 +125,7 @@ const CSS = `
 .rp .verdict strong{color:var(--deep);font-weight:600}
 
 .rp fieldset{border:0;margin:0 0 38px;padding:0}
-.rp legend{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;color:var(--deep);padding:0;margin:0 0 4px;line-height:1.3}
+.rp legend{font-family:'Fraunces',Georgia,serif;font-size:23px;font-weight:600;color:var(--deep);padding:0;margin:0 0 4px;line-height:1.3}
 .rp .hint{font-size:13.5px;color:var(--faint);margin:0 0 16px;letter-spacing:.02em}
 .rp .opt{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;margin-bottom:8px;
   border:1px solid var(--line);border-radius:3px;cursor:pointer;transition:border-color .15s,background .15s;background:#fff}
@@ -161,7 +161,7 @@ const CSS = `
 .rp .tick{width:52px;height:52px;border:1px solid var(--gold);border-radius:50%;margin:0 auto 26px;position:relative}
 .rp .tick::after{content:'';position:absolute;left:19px;top:14px;width:9px;height:19px;
   border:solid var(--gold);border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
-.rp .done h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:32px;margin:0 0 12px;color:var(--deep)}
+.rp .done h2{font-family:'Fraunces',Georgia,serif;font-weight:600;font-size:32px;margin:0 0 12px;color:var(--deep)}
 .rp .done h2 em{font-style:italic;color:var(--blue)}
 .rp .done p{color:var(--muted);font-size:16px;max-width:38ch;margin:0 auto 10px}
 .rp .back{color:var(--goldink);font-size:13px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;font-weight:500}

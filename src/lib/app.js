@@ -18,5 +18,11 @@ export function appLink(intent) {
   return intent ? `${APP_URL}/?hire=${encodeURIComponent(intent)}` : APP_URL
 }
 
-/** Returning customers. Same address; the app decides what to show a session. */
-export const SIGN_IN = `${APP_URL}/?in=1`
+/* Returning customers -> the app's /in route (email, six digits).
+ *
+ * This was `/?in=1` — a query param the app never read. The app shrugged it
+ * off and booted from whatever the browser held, which for anyone who had
+ * poked a Hire button earlier was a half-finished hire in localStorage. So
+ * "I already have one — sign in" replayed a stale Kevin hire. A sign-in link
+ * must point at a ROUTE the app actually serves, not a hint it might honour. */
+export const SIGN_IN = `${APP_URL}/in`
