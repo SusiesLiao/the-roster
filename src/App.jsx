@@ -41,6 +41,10 @@ export default function App() {
                 site. Sign in is that way back, and it is a plain anchor because
                 the app is a different origin, not a route in this bundle. */}
             <a href={SIGN_IN} className="nav-signin">Sign in</a>
+            {/* The mock promised a new-customer door in the nav and the build
+                shipped without one — someone who scrolled past the hero had a
+                way back in but no way IN. */}
+            <a href={APP_URL} className="btn btn-ghost btn-sm">Sign up</a>
             <Link to="/interview" className="btn btn-primary btn-sm">Interview Amber — free</Link>
           </div>
         </div>
