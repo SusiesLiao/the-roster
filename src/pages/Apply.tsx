@@ -96,8 +96,8 @@ const CSS = `
 .rp{/* was a hardcoded copy of the old navy; the palette lives in styles.css now.
      No hex here on purpose - the guard reads comments, and a stale value quoted
      in one is the one that gets pasted back in. */
-  --deep:var(--emphasis);--cream:#F4F5F2;--blue:#7C9BB7;--gold:#C9A961;
-  --line:rgba(52,68,85,.18);--muted:#4A5568;--faint:#5C6880;--goldink:#9A7C34;
+  --deep:var(--emphasis);--cream:#F4F5F2;--blue:#7C9BB7;--gold:#C4B58B;
+  --line:rgba(52,68,85,.18);--muted:#4A5568;--faint:#5C6880;--goldink:#8F7A4E;
   background:var(--cream);color:var(--deep);min-height:100vh;
   font-family:'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-weight:400;line-height:1.62}
 .rp *{box-sizing:border-box}
@@ -114,7 +114,7 @@ const CSS = `
 
 .rp .compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 40px}
 .rp .card{border:1px solid var(--line);border-radius:3px;padding:20px 20px 22px;background:#fff}
-.rp .card.hero{border-color:var(--gold);background:rgba(201,169,97,.07)}
+.rp .card.hero{border-color:var(--gold);background:rgba(196,181,139,.07)}
 .rp .card .tier{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:0 0 3px;font-weight:600}
 .rp .card.hero .tier{color:var(--goldink)}
 .rp .card .price{font-family:'Fraunces',Georgia,serif;font-size:27px;font-weight:600;margin:0 0 10px;line-height:1.15}
@@ -137,7 +137,7 @@ const CSS = `
 .rp .opt input[type=checkbox]:checked::after{content:'';position:absolute;left:5px;top:1px;width:4px;height:9px;
   border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
 .rp .opt input[type=radio]:checked::after{content:'';position:absolute;left:4px;top:4px;width:7px;height:7px;border-radius:50%;background:#fff}
-.rp .opt.on{border-color:var(--gold);background:rgba(201,169,97,.11)}
+.rp .opt.on{border-color:var(--gold);background:rgba(196,181,139,.11)}
 .rp .opt span{font-size:16px;color:var(--deep);line-height:1.5}
 .rp label.field{display:block;margin-bottom:18px}
 .rp label.field .lbl{display:block;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:7px;font-weight:500}
@@ -154,7 +154,7 @@ const CSS = `
 .rp button.submit:hover{opacity:.87}
 .rp button.submit:disabled{opacity:.4;cursor:default}
 .rp .foot{font-size:13.5px;color:var(--faint);text-align:center;margin-top:18px;line-height:1.6}
-.rp .err{border:1px solid rgba(201,169,97,.7);background:rgba(201,169,97,.12);border-radius:3px;
+.rp .err{border:1px solid rgba(196,181,139,.7);background:rgba(196,181,139,.12);border-radius:3px;
   padding:14px 16px;font-size:14px;margin-top:18px;color:var(--deep)}
 .rp .err a{color:var(--goldink)}
 .rp .done{text-align:center;padding:70px 0 40px}

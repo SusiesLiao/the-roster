@@ -35,7 +35,22 @@
  *      here, so the rule keeps being derived from judgements actually made
  *      rather than from someone's idea of muted.
  *
- * The palette that passes today: aged gold (S48), clay (S35), powder (S31),
+ *   3. Warm hues (H 20–75), nothing above S 40%.  Added 2026-08-31, when the
+ *      aged gold went the way of the navy. Susan's words: "less saturated…
+ *      elegant and chic. more transparent." Data points, same method as rule 2:
+ *
+ *          REJECTED  aged gold      S49 at L58  <- the coin-gold chips
+ *          REJECTED  amber warn     S45 at L43  <- same family, retired with it
+ *          ACCEPTED  muted gold ink S30 at L46
+ *          ACCEPTED  gold-soft      S34 at L69
+ *          ACCEPTED  clay           S35 at L52  <- pre-dates the rule, still in
+ *
+ *      40 sits between her accepts (30–35) and rejects (45–49). Gold now ships
+ *      as glass where it fills — a translucent wash + hairline ring — so most
+ *      gold surfaces are rgba, which this guard can't see; the rule exists to
+ *      stop the next SOLID saturated warm from arriving.
+ *
+ * The palette that passes today: muted gold (S30), clay (S35), powder (S31),
  * moss (S15), and --emphasis, the deep grey-blue that replaced the navy.
  * (Hexes deliberately not quoted here — see the note in styles.css.)
  *
@@ -51,6 +66,7 @@ import { join, extname } from 'node:path';
 const MAX_S = 55;
 const DARK_L = 32;
 const DARK_MAX_S = 35;
+const WARM_H_LO = 20, WARM_H_HI = 75, WARM_MAX_S = 40;
 
 /** hex -> reason it is allowed to break the rule. Keep this list short. */
 const ALLOW = {};
@@ -73,10 +89,13 @@ function hsl(hex) {
     : [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
   const [r, g, b] = n.map((v) => v / 255);
   const max = Math.max(r, g, b), min = Math.min(r, g, b), l = (max + min) / 2;
-  if (max === min) return { s: 0, l: l * 100 };
+  if (max === min) return { h: null, s: 0, l: l * 100 };
   const d = max - min;
   const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-  return { s: s * 100, l: l * 100 };
+  let h = max === r ? ((g - b) / d + (g < b ? 6 : 0))
+        : max === g ? (b - r) / d + 2
+        : (r - g) / d + 4;
+  return { h: h * 60, s: s * 100, l: l * 100 };
 }
 
 const bad = [];
@@ -86,12 +105,14 @@ for (const file of walk('src').concat(walk('scripts'))) {
     for (const m of line.matchAll(/#[0-9A-Fa-f]{6}\b|#[0-9A-Fa-f]{3}\b/g)) {
       const hex = m[0].toUpperCase();
       if (hex in ALLOW) continue;
-      const { s, l } = hsl(hex);
+      const { h, s, l } = hsl(hex);
       const over = s > MAX_S
         ? `S ${s.toFixed(0)}% > ${MAX_S}%`
         : l < DARK_L && s > DARK_MAX_S
           ? `S ${s.toFixed(0)}% > ${DARK_MAX_S}% at L ${l.toFixed(0)}% — this reads as navy, not grey`
-          : null;
+          : h !== null && h >= WARM_H_LO && h <= WARM_H_HI && s > WARM_MAX_S && l <= 85 /* near-whites: S is meaningless math at the top of the L scale — a warm paper tone is not a gold */
+            ? `warm hue H${h.toFixed(0)} at S ${s.toFixed(0)}% > ${WARM_MAX_S}% — the aged gold was retired for exactly this (31 Aug)`
+            : null;
       if (over) bad.push(`  ${file}:${i + 1}  ${hex}  ${over}`);
     }
   });
@@ -103,5 +124,5 @@ if (bad.length) {
   console.error('\n  Desaturate it, or add the hex to ALLOW in scripts/palette-guard.mjs with a reason.\n');
   process.exit(1);
 }
-console.log(`palette guard: clean (S<=${MAX_S}%, and S<=${DARK_MAX_S}% below L${DARK_L}%)`);
+console.log(`palette guard: clean (S<=${MAX_S}%, S<=${DARK_MAX_S}% below L${DARK_L}%, S<=${WARM_MAX_S}% on warm hues)`);
 
