@@ -3,6 +3,7 @@ import { useEffect, lazy, Suspense } from 'react'
 import { APP_URL, SIGN_IN } from './lib/app.js'
 import Home from './pages/Home.jsx'
 const AmberProfile = lazy(() => import('./pages/AmberProfile.jsx'))
+const PepperProfile = lazy(() => import('./pages/PepperProfile.jsx'))
 const Interview = lazy(() => import('./pages/Interview.jsx'))
 const Hire = lazy(() => import('./pages/Hire.jsx'))
 const Permissions = lazy(() => import('./pages/Permissions.jsx'))
@@ -53,6 +54,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/amber" element={<AmberProfile />} />
+          {/* The real Pepper — a studio hire with a live deployment behind her,
+              deliberately not in the household roster on the homepage. */}
+          <Route path="/pepper" element={<PepperProfile />} />
           <Route path="/interview" element={<Interview />} />
           <Route path="/hire" element={<Hire />} />
           <Route path="/permissions" element={<Permissions />} />
