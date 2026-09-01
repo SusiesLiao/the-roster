@@ -213,3 +213,23 @@ footer { border-top: 1px solid var(--hairline); padding: 40px 0 56px; margin-top
 .badge.trained { background: var(--moss); color: var(--ash-light); }
 .avatar.moss { background: linear-gradient(135deg, #8CA485 0%, var(--moss) 100%); }
 .tc-price { font-size: 12.5px; color: var(--mute); align-self: center; letter-spacing: 0.02em; }
+
+/* ---------- the nav on a phone (measured 31 Aug: 467px of nav in a 375px
+   viewport, so the home page could be dragged sideways and "Interview Amber
+   — free" hung 92px off the right edge — on the first screen of the first
+   page a customer ever sees).
+
+   Five items don't fit and shouldn't try. Below 720px the two browse links
+   step aside — they're duplicated in the page itself, one scroll away — and
+   the nav keeps only the three that DO something: sign in, sign up, and the
+   free interview. Under 420px the ghost "Sign up" folds too, because the hero
+   carries the same door twenty pixels below. ---------- */
+@media (max-width: 720px) {
+  .nav-links { gap: 14px; }
+  .nav-links .nav-browse { display: none; }
+  .nav-inner { gap: 12px; }
+  .nav-links .btn-sm { padding: 8px 14px; font-size: 12.5px; }
+}
+@media (max-width: 420px) {
+  .nav-links > a.btn-ghost { display: none; }
+}

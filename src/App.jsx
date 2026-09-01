@@ -35,8 +35,8 @@ export default function App() {
         <div className="wrap nav-inner">
           <Link to="/" className="logo">The <em>Roster</em></Link>
           <div className="nav-links">
-            <Link to="/#roster">The talent</Link>
-            <Link to="/amber">Amber</Link>
+            <Link to="/#roster" className="nav-browse">The talent</Link>
+            <Link to="/amber" className="nav-browse">Amber</Link>
             {/* A paying customer had no way back into their Roster from this
                 site. Sign in is that way back, and it is a plain anchor because
                 the app is a different origin, not a route in this bundle. */}
