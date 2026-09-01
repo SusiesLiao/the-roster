@@ -140,8 +140,9 @@ export default function Home() {
                 </div>
                 <div className="door-fine">
                   Free while you build. Your first hire starts a <b>14-day trial</b>, then <b>$39/mo
-                  for the household</b> — up to five employees, however many you hire. Cancelled
-                  from inside the app, not by emailing us.<br />
+                  for Amber</b> and <b>$18/mo for each teammate you hire after her</b> — you pay per
+                  employee, the way you would anywhere else. End a hire and the bill drops the same
+                  month. Cancelled from inside the app, not by emailing us.<br />
                   Nothing is connected by default. Every permission is granted one at a time, and
                   revoked the same way. <Link to="/permissions">How permissions work →</Link>
                 </div>

@@ -38,7 +38,7 @@ const CONCIERGE = {
 const FOUNDING = {
   eyebrow: "Founding eight",
   title: ["Claim a ", "founding", " spot."],
-  lede: "Eight households this month, $39/mo locked in for as long as you stay. Two minutes — mostly tick boxes.",
+  lede: "Eight households this month. $39/mo for your whole roster, locked for as long as you stay \u2014 the only households that will ever pay one price for everyone. Two minutes, mostly tick boxes.",
   meta: "No card now. We reply within two working days with your invite.",
   submitLabel: "Claim my spot",
   foot: "Eight places. First come, properly served.",
@@ -370,8 +370,9 @@ export default function Apply({ kind = "concierge" }: Props) {
                   </p>
                   <p className="body">
                     Hire her yourself. She lands in your Telegram, you connect your
-                    calendar and inbox, and she's working the same day. One price for
-                    the household — up to five employees, however many you hire.
+                    calendar and inbox, and she's working the same day. Every teammate
+                    you hire after her is $18/mo — you pay per employee, and the bill
+                    drops the month you end one.
                   </p>
                   <p className="who">You set her up.</p>
                 </div>

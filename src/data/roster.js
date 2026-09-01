@@ -18,7 +18,7 @@ export const AGENTS = [
       Channel: 'Telegram · Email',
       Email: 'amber@theroster.studio',
       'Response time': 'Instant',
-      'Founding rate': '$39/mo · the whole household · 14-day trial',
+      Rate: '$39/mo · 14-day trial · every teammate after her $18/mo',
       Availability: '8 clients this month',
     },
     handles: [
@@ -56,7 +56,7 @@ export const AGENTS = [
     tagline: 'Sits with one child. Never gives the answer.',
     bio: "He asks the question that moves them one step, stops at the time you set, and keeps a record of every session. If a child is stuck or says something that worries him, he raises it to you — out loud, in the thread, so the child knows.",
     tags: ['One child', 'Never answers for them', 'Reaches nothing', 'Session record', 'Flags it to you'],
-    price: 'Included · $39/mo household',
+    price: '$18/mo · one per child',
   },
   {
     id: 'next',
