@@ -76,7 +76,7 @@ export default function Home() {
             <Link to="/interview" className="btn btn-primary">Interview Amber — free</Link>
             {/* The interview still leads: a live conversation converts harder
                 than a signup form. The app door sits beside it, not instead. */}
-            <a href={APP_URL} className="btn btn-ghost">Sign up — build your Roster</a>
+            <a href={SIGN_IN} className="btn btn-ghost">Sign up — build your Roster</a>
           </div>
           <div className="hero-note">No signup to start. No card for 14 days. Nothing connected until you say so.</div>
         </div>
@@ -128,14 +128,16 @@ export default function Home() {
                   {' '}<b>my.theroster.studio</b> is your Roster — where you build the team, name them,
                   write what each one is responsible for, and see exactly what they can reach.
                 </p>
-                {/* Two verbs, two people. "Open your Roster" and "sign in" were
-                    the same door wearing two labels — a new visitor and a
-                    returning customer both landed on whatever the app decided.
-                    Now the primary says what a stranger actually does (sign up
-                    = build, because building IS the signup), and sign-in goes
-                    to /in and nowhere else. */}
+                {/* Two verbs, two people — and as of 1 Sep both land on /in.
+                    "Sign up" used to drop a stranger straight into Amber's
+                    interview, so the button said one thing and the screen did
+                    another; Susan hit it trying to open a studio account and
+                    could not get past a conversation she hadn't asked for.
+                    Now signing up means what it says: give an email, take a
+                    code, THEN build your roster. /in creates the account if
+                    there isn't one, so one door serves both people. */}
                 <div className="door-ctas">
-                  <a href={APP_URL} className="btn btn-primary">Sign up — build your Roster</a>
+                  <a href={SIGN_IN} className="btn btn-primary">Sign up — build your Roster</a>
                   <a href={SIGN_IN} className="btn btn-ghost">I already have one — sign in</a>
                 </div>
                 <div className="door-fine">

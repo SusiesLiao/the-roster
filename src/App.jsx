@@ -45,7 +45,7 @@ export default function App() {
             {/* The mock promised a new-customer door in the nav and the build
                 shipped without one — someone who scrolled past the hero had a
                 way back in but no way IN. */}
-            <a href={APP_URL} className="btn btn-ghost btn-sm">Sign up</a>
+            <a href={SIGN_IN} className="btn btn-ghost btn-sm">Sign up</a>
             <Link to="/interview" className="btn btn-primary btn-sm">Interview Amber — free</Link>
           </div>
         </div>
