@@ -19,8 +19,6 @@
      colour is on buttons and headings, where it is meant to be seen.
      (No hex in this comment. The guard reads comments too, and an old value
      quoted in one is the one that gets pasted back in.) */
-     (Deliberately no hex in this comment. The guard reads comments too, and an
-     old value quoted in one is the one that gets pasted back in.) */
   --serif: "Fraunces", "Hoefler Text", "Iowan Old Style", Georgia, serif;
   --sans: "Schibsted Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;

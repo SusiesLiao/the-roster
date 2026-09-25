@@ -2,6 +2,8 @@ import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import { useEffect, lazy, Suspense } from 'react'
 import { APP_URL, SIGN_IN } from './lib/app.js'
 import Home from './pages/Home.jsx'
+import StudioHome from './pages/StudioHome.jsx'
+import Rooms from './pages/Rooms.jsx'
 const AmberProfile = lazy(() => import('./pages/AmberProfile.jsx'))
 const PepperProfile = lazy(() => import('./pages/PepperProfile.jsx'))
 const Interview = lazy(() => import('./pages/Interview.jsx'))
@@ -29,6 +31,10 @@ function ScrollTop() {
 }
 
 export default function App() {
+  const { pathname } = useLocation()
+  // Preserve every existing customer route, outside the new studio-service shell.
+  if (pathname === '/') return <StudioHome />
+  if (pathname === '/rooms') return <Rooms />
   return (
     <>
       <ScrollTop />
@@ -36,7 +42,8 @@ export default function App() {
         <div className="wrap nav-inner">
           <Link to="/" className="logo">The <em>Roster</em></Link>
           <div className="nav-links">
-            <Link to="/#roster" className="nav-browse">The talent</Link>
+            <Link to="/personal#roster" className="nav-browse">Personal assistants</Link>
+            <Link to="/rooms" className="nav-browse">Find your room</Link>
             <Link to="/amber" className="nav-browse">Amber</Link>
             {/* A paying customer had no way back into their Roster from this
                 site. Sign in is that way back, and it is a plain anchor because
@@ -53,6 +60,7 @@ export default function App() {
       <Suspense fallback={<PageLoading />}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/personal" element={<Home />} />
           <Route path="/amber" element={<AmberProfile />} />
           {/* The real Pepper — a studio hire with a live deployment behind her,
               deliberately not in the household roster on the homepage. */}
