@@ -1,6 +1,17 @@
 // Reviewed website copy. Product names remain unchanged across languages.
 export const translations = {
   "zh-Hans": {
+    "From making one project work to making good work sustainable.": "从做好一个项目，到让好作品持续发生。",
+    "Velaire began with a question Susan kept returning to between design and running a business.": "Velaire 的起点，是 Susan 在设计与经营之间不断追问的一个问题：",
+    "How can the business behind good work be just as healthy?": "好作品背后的企业，怎样才能同样健康？",
+    "Aesthetic judgment reveals possibilities. But carrying a standard through teams, projects and countless handoffs takes more than taste.": "审美让人看见可能。但让一个标准穿过团队、项目和一次次交接，需要的不只是审美。",
+    "A decision changes the scope of a project. Scope changes affect people and time. More time changes costs and affects the team. The outcome of delivery shapes what can be invested next.": "一个决定，会改变项目的范围。范围改变，会影响人员与时间。时间增加，会影响成本，也会影响团队。交付的结果，又决定了下一次投入的空间。",
+    "Susan began following these relationships, asking how each part could support the next.": "Susan 开始沿着这些关系思考。不是只问哪里出了问题，而是问：怎样让每一个环节，都能支持下一个环节？",
+    "Velaire grew from that question.": "Velaire 从这个问题中生长出来。",
+    "Advisory redesigns operating relationships. Parti structures them. Roster helps the team keep acting on them.": "以咨询重新设计经营关系，以 Parti 把关系结构化，再以 Roster 协助团队持续行动。",
+    "Clearer projects, supported teams, healthier delivery and profit. The results go back into people and the next project.": "让项目更清晰，让团队有支持，让交付与利润更健康。再把这些成果，投入到人和下一个项目中。",
+    "Make good work happen again.": "让好作品不只发生一次。",
+
     "Business Home": "业务主页",
     "Aesthetic judgment.": "审美判断。",
     "Operating insight.": "经营洞察。",
@@ -352,6 +363,17 @@ export const translations = {
     "Back to Velaire": "返回 Velaire"
   },
   "zh-Hant": {
+    "From making one project work to making good work sustainable.": "從做好一個專案，到讓好作品持續發生。",
+    "Velaire began with a question Susan kept returning to between design and running a business.": "Velaire 的起點，是 Susan 在設計與經營之間不斷追問的一個問題：",
+    "How can the business behind good work be just as healthy?": "好作品背後的企業，怎樣才能同樣健康？",
+    "Aesthetic judgment reveals possibilities. But carrying a standard through teams, projects and countless handoffs takes more than taste.": "審美讓人看見可能。但讓一個標準穿過團隊、專案和一次次交接，需要的不只是審美。",
+    "A decision changes the scope of a project. Scope changes affect people and time. More time changes costs and affects the team. The outcome of delivery shapes what can be invested next.": "一個決定，會改變專案的範圍。範圍改變，會影響人員與時間。時間增加，會影響成本，也會影響團隊。交付的結果，又決定了下一次投入的空間。",
+    "Susan began following these relationships, asking how each part could support the next.": "Susan 開始沿著這些關係思考。不是只問哪裡出了問題，而是問：怎樣讓每一個環節，都能支持下一個環節？",
+    "Velaire grew from that question.": "Velaire 從這個問題中生長出來。",
+    "Advisory redesigns operating relationships. Parti structures them. Roster helps the team keep acting on them.": "以諮詢重新設計經營關係，以 Parti 把關係結構化，再以 Roster 協助團隊持續行動。",
+    "Clearer projects, supported teams, healthier delivery and profit. The results go back into people and the next project.": "讓專案更清晰，讓團隊有支持，讓交付與利潤更健康。再把這些成果，投入到人和下一個專案中。",
+    "Make good work happen again.": "讓好作品不只發生一次。",
+
     "Business Home": "業務主頁",
     "Aesthetic judgment.": "審美判斷。",
     "Operating insight.": "經營洞察。",
