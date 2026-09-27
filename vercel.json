@@ -15,6 +15,17 @@
       "has": [
         {
           "type": "host",
+          "value": "www.velaireco.com"
+        }
+      ],
+      "destination": "https://velaireco.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
           "value": "www.theroster.studio"
         }
       ],
