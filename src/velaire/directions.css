@@ -1,0 +1,23 @@
+.directions{background:#f6f4f0;color:#343c43;padding:55px 4vw 30px;min-height:100vh;font-family:Inter,Arial,sans-serif}
+.directions *{box-sizing:border-box}
+.directions header{max-width:1400px;margin:0 auto 50px;display:grid;grid-template-columns:1fr 1fr;gap:15px 70px;align-items:end}
+.directions-eyebrow{grid-column:1/-1;font-size:11px;letter-spacing:.2em}
+.directions h1{font:500 clamp(48px,5vw,76px)/.95 'Cormorant Garamond',Georgia,serif;letter-spacing:-.035em;margin:10px 0 0}
+.directions h1 em{font-weight:300}
+.directions header>p:last-child{font-size:14px;line-height:1.9;color:#616970;margin:0}
+.directions-grid{max-width:1400px;margin:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:38px}
+.direction-heading{display:flex;gap:15px;align-items:center;border-top:1px solid #cdd0d0;padding-top:20px}
+.direction-heading>span{font-size:11px;letter-spacing:.1em}
+.direction-heading h2{font:500 32px 'Cormorant Garamond',Georgia,serif;margin:0}
+.direction-swatches{display:flex;margin-left:auto;gap:5px}
+.direction-swatches span{width:23px;height:23px;border-radius:50%;border:1px solid #343c4320}
+.direction-note{font-size:11px;letter-spacing:.025em;margin:12px 0 24px;color:#616970}
+.direction-frame{display:block;width:100%;overflow:hidden;position:relative;box-shadow:0 10px 32px #343c4310;border:1px solid #d9dcdd;background:#f7f6f2}
+.direction-frame iframe{display:block;width:1280px;height:1090px;border:0;transform-origin:0 0;pointer-events:none}
+.direction-description{font-size:13px;line-height:1.8;max-width:480px;margin:24px 0 14px;color:#616970}
+.direction-open{display:inline-flex;gap:45px;border-bottom:1px solid #343c43;padding:0 0 7px;color:#343c43;font-size:13px;text-decoration:none}
+.direction-open:hover{opacity:.7}.directions a:focus-visible{outline:2px solid #526d7e;outline-offset:5px}
+.directions footer{max-width:1400px;margin:45px auto 0;border-top:1px solid #cdd0d0;padding-top:22px;font-size:11px;color:#616970}
+@media(max-width:850px){.directions{padding:35px 22px}.directions header{grid-template-columns:1fr;gap:22px;margin-bottom:35px}.directions-grid{grid-template-columns:1fr;gap:50px}.direction-heading h2{font-size:30px}.directions footer{line-height:1.8}}
+
+.direction-card{min-width:0}.direction-frame{contain:inline-size}

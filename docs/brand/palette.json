@@ -1,0 +1,83 @@
+{
+  "name": "Velaire / Parti / Roster Suite — approved palette",
+  "version": "1.0",
+  "approved_date": "2026-09-27",
+  "approved_by": "Susan Liao",
+  "status": "Approved colour direction",
+  "colours": {
+    "powder-blue": {
+      "name": "Powder blue",
+      "hex": "#DFE5EC",
+      "usage": "Primary brand field, mastheads and generous feature panels.",
+      "provenance": "Selected 11:02 screenshot; representative flat colour sampled from its subtle gradient."
+    },
+    "ink": {
+      "name": "Deep blue-grey ink",
+      "hex": "#3A3A4A",
+      "usage": "Headlines, primary text and solid buttons.",
+      "provenance": "Original Roster stylesheet; screenshot pixels vary slightly with rendering."
+    },
+    "slate": {
+      "name": "Muted slate blue",
+      "hex": "#5A6A84",
+      "usage": "Secondary brand accents, links, numbering and restrained emphasis.",
+      "provenance": "Original Roster stylesheet."
+    },
+    "body": {
+      "name": "Slate body text",
+      "hex": "#56606A",
+      "usage": "Supporting copy and longer descriptions.",
+      "provenance": "Sampled from the approved 11:03 screenshot."
+    },
+    "ivory": {
+      "name": "Soft ivory",
+      "hex": "#F4F5F2",
+      "usage": "Main canvas and generous whitespace.",
+      "provenance": "Original Roster stylesheet and screenshot."
+    },
+    "paper": {
+      "name": "Light paper",
+      "hex": "#F9FAF8",
+      "usage": "Raised paper surfaces and text on dark buttons.",
+      "provenance": "Original Roster stylesheet supporting token."
+    },
+    "mist": {
+      "name": "Silver mist",
+      "hex": "#ECEFEF",
+      "usage": "Neutral cards and supporting panels.",
+      "provenance": "Original Roster stylesheet; first card in the reference."
+    },
+    "ice": {
+      "name": "Pale blue",
+      "hex": "#E6ECF0",
+      "usage": "Blue-tinted cards and product context.",
+      "provenance": "Original Roster stylesheet; second card in the reference."
+    },
+    "sage": {
+      "name": "Pale sage-grey",
+      "hex": "#ECEFEA",
+      "usage": "Quiet complementary panels and service sections.",
+      "provenance": "Original Roster stylesheet; third card in the reference."
+    },
+    "line": {
+      "name": "Soft blue-grey rule",
+      "hex": "#D4DDE1",
+      "usage": "Fine rules, borders and separators.",
+      "provenance": "Original Roster stylesheet supporting token."
+    }
+  },
+  "rules": [
+    "Keep every colour soft and low in saturation.",
+    "Use light surfaces for most of the composition; reserve darker colours for type and clear actions.",
+    "Use powder blue as the shared family signature. Differentiate products through hierarchy and content rather than introducing unrelated colours.",
+    "Do not use plum, mauve, burgundy or saturated crimson in this approved direction.",
+    "Use living-room photography in the homepage hero and spiral-stair photography in the lower founder section.",
+    "Use Roster Suite in all public product language. Leave legacy internal database names unchanged."
+  ],
+  "references": [
+    "Susan’s Screenshot 2026-09-27 at 11.02.45 AM: selected powder-blue field.",
+    "Susan’s Screenshot 2026-09-27 at 11.03.30 AM: approved overall combination.",
+    "Existing source: src/studio-site.css."
+  ],
+  "implementation_note": "This records the approved palette. It does not itself recolour the current preview or deploy production. The current preview already uses powder blue #DFE5EC; other existing preview tokens may differ and should be aligned in the next styling pass."
+}

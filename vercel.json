@@ -24,7 +24,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/|favicon|\\.well-known|cadence/).*)",
+      "source": "/((?!assets/|favicon|robots\\.txt|sitemap\\.xml|\\.well-known|cadence/).*)",
       "destination": "/index.html"
     }
   ]
