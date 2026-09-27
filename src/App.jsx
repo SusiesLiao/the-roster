@@ -4,6 +4,8 @@ import { APP_URL, SIGN_IN } from './lib/app.js'
 import Home from './pages/Home.jsx'
 import StudioHome from './pages/StudioHome.jsx'
 import Rooms from './pages/Rooms.jsx'
+import VelaireSite from './velaire/VelaireSite.jsx'
+const Directions = import.meta.env.DEV ? lazy(() => import('./velaire/Directions.jsx')) : null
 const AmberProfile = lazy(() => import('./pages/AmberProfile.jsx'))
 const PepperProfile = lazy(() => import('./pages/PepperProfile.jsx'))
 const Interview = lazy(() => import('./pages/Interview.jsx'))
@@ -31,10 +33,14 @@ function ScrollTop() {
 }
 
 export default function App() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
+  if (import.meta.env.DEV && pathname === '/directions') return <Suspense fallback={<PageLoading />}><Directions /></Suspense>
   // Preserve every existing customer route, outside the new studio-service shell.
-  if (pathname === '/') return <StudioHome />
+  if (pathname === '/' && ['#services', '#inside', '#approach', '#questions', '#contact'].includes(hash)) return <StudioHome />
+  if (['/', '/advisory', '/parti', '/roster', '/about', '/contact'].includes(pathname.replace(/\/$/, '') || '/')) return <VelaireSite />
+  if (pathname === '/service-details') return <StudioHome />
   if (pathname === '/rooms') return <Rooms />
+  if (!['/personal', '/amber', '/pepper', '/interview', '/hire', '/permissions', '/connect', '/privacy', '/terms', '/apply', '/suggest-a-role', '/claim'].includes(pathname)) return <VelaireSite />
   return (
     <>
       <ScrollTop />
