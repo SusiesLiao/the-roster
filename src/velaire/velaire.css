@@ -111,3 +111,5 @@
 .velaire-site:lang(en) .v-final h2 em{display:block}
 
 .velaire-site:lang(en) .v-diagnostic h2 em{display:block;white-space:nowrap;font-size:clamp(26px,3.2vw,48px)}@media(max-width:650px){.velaire-site:lang(en) .v-diagnostic h2 em{font-size:clamp(22px,6.2vw,36px)}}
+
+.velaire-site h2 em.v-roster-newline{display:block}
