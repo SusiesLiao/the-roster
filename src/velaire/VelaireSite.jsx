@@ -134,7 +134,7 @@ function Home() {
   <section className="v-section v-container"><SectionTitle label={t("The connection is the point")} body={t("Parti tells you what is happening. Roster helps you do something about it.")}>{t("A signal becomes")}<br /><em>{t("a next step.")}</em></SectionTitle><ConnectedExample /></section>
   <section className="v-product-pair v-container"><article className="v-parti-tone"><Label>{t("Parti / Business operating system")}</Label><h2>{t("Your business is")}<br />{t("already a system.")}</h2><p>{t("Parti makes the relationships visible. Projects, phases, people and economics belong in the same conversation.")}</p><Action to="/parti" quiet>{t("Explore Parti")}</Action></article><article className="v-roster-tone"><Label>{t("Roster / AI workforce")}</Label><h2>{t("Visibility is useful.")}<br /><em>{t("Action is better.")}</em></h2><p>{t("Roster Suite brings agent work, context and human decisions together, so the team can respond with intention.")}</p><Action to="/roster" quiet>{t("Explore Roster Suite")}</Action></article></section>
   <Diagnostic />
-  <section className="v-section v-container v-founder"><PhotoSpace detail /><div><Label>{t("The founder")}</Label><h2>{t("Aesthetic judgment.")}<br />{t("Operating insight.")}<br /><em>{t("Making complexity clear.")}</em></h2><p className="v-founder-name">Susan Liao</p><p>{t("Projects, people, time, cost and accountability are already one system.")}</p><p>{t("Good management connects these relationships so each part supports the next, creating a positive operating loop.")}</p><Action to="/about" quiet>{t("Meet Susan")}</Action></div></section><FinalCTA ecosystem />
+  <FinalCTA ecosystem />
   </>;
 }
 function Parti() {
