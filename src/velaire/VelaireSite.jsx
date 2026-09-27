@@ -8,16 +8,17 @@ import '@fontsource/inter/latin-500.css';
 import '@fontsource/inter/latin-600.css';
 import './velaire.css';
 import { LanguageProvider, useLanguage, useT } from './i18n.jsx';
-function cleanHeading(value) {
+function cleanHeading(value, keepBreaks = false) {
   return Children.map(value, child => {
     if (typeof child === 'string') return child.replace(/[.。]/g, '');
-    if (isValidElement(child) && child.type === 'br') return ' ';
-    if (isValidElement(child) && child.props.children !== undefined) return cloneElement(child, {}, cleanHeading(child.props.children));
+    if (isValidElement(child) && child.type === 'br') return keepBreaks ? child : ' ';
+    if (isValidElement(child) && child.props.children !== undefined) return cloneElement(child, {}, cleanHeading(child.props.children, keepBreaks));
     return child;
   });
 }
 function Heading({ level, children, ...props }) {
-  return createElement(`h${level}`, props, cleanHeading(children));
+  const { language } = useLanguage();
+  return createElement(`h${level}`, props, cleanHeading(children, language === "en"));
 }
 function Link({
   to,
