@@ -90,4 +90,4 @@
 
 @media(max-width:759px){.v-page-about:lang(en) .v-page-intro p:first-child{font-size:clamp(18.7px,1.955vw,25.5px)}.v-page-about:lang(en) .v-page-intro p:last-child{font-size:15.3px}}
 
-.v-founder-story h2{font-size:clamp(22.4px,2.38vw,33.6px)}
+.v-page-about:lang(zh) .v-founder-story h2{font-size:clamp(22.4px,2.38vw,33.6px)}
