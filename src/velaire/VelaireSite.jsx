@@ -17,8 +17,7 @@ function cleanHeading(value, keepBreaks = false) {
   });
 }
 function Heading({ level, children, ...props }) {
-  const { language } = useLanguage();
-  return createElement(`h${level}`, props, cleanHeading(children, language === "en"));
+  return createElement(`h${level}`, props, cleanHeading(children));
 }
 function Link({
   to,
