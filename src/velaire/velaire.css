@@ -107,3 +107,5 @@
 .v-example-signal h3{max-width:none;text-wrap:wrap;word-break:normal;font-size:clamp(25px,2.6vw,36px);line-height:1.35}
 
 .v-fit-line{display:block}
+
+.velaire-site:lang(en) .v-final h2 em{display:block}
