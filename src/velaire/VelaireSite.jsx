@@ -181,7 +181,7 @@ function FitIntroLine({ children, secondary = false }) {
       element.style.whiteSpace = 'nowrap';
       const base = parseFloat(getComputedStyle(element).fontSize);
       const textWidth = range.getBoundingClientRect().width;
-      if (textWidth) element.style.fontSize = `${Math.min(secondary ? 32 : 52, base * width / textWidth * .98) * .65}px`;
+      if (textWidth) element.style.fontSize = `${Math.min(secondary ? 32 : 52, base * width / textWidth * .98) * (element.closest("[lang]")?.lang === "en" ? .85 : .65)}px`;
     };
     const observer = new ResizeObserver(fit);
     observer.observe(element);
