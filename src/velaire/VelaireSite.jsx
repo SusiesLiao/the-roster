@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { SIGN_IN } from '../lib/app.js';
 import '@fontsource/cormorant-garamond/latin-500.css';
@@ -165,11 +165,37 @@ function Advisory() {
   <section className="v-section v-container v-faq"><SectionTitle label={t("Before we begin")}>{t("A few practical questions.")}</SectionTitle><div>{t([['Do we need to adopt Parti or Roster?', 'The diagnostic begins with your business and existing tools. The roadmap may include process changes, clearer accountability, configuration or implementation. Product choices follow the findings.'], ['What will you need from us?', 'Access to the people who understand the work and an agreed sample of project, time, workload and financial information. We agree access and confidentiality before starting.'], ["What happens after the 4 to 6 weeks?", 'You receive an Operating Blueprint and implementation roadmap. We can then agree a separate implementation scope, or you can use the roadmap with your own team.']].map(([q, a]) => <details key={q}><summary>{t(q)}<span aria-hidden="true">{t("+")}</span></summary><p>{t(a)}</p></details>))}</div></section><FinalCTA />
   </>;
 }
+function FitIntroLine({ children, secondary = false }) {
+  const ref = useRef(null);
+  useLayoutEffect(() => {
+    const element = ref.current;
+    let active = true;
+    const fit = () => {
+      if (!active || !element) return;
+      element.style.fontSize = '';
+      element.style.whiteSpace = '';
+      if (window.innerWidth < 760) return;
+      const width = element.clientWidth;
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      element.style.whiteSpace = 'nowrap';
+      const base = parseFloat(getComputedStyle(element).fontSize);
+      const textWidth = range.getBoundingClientRect().width;
+      if (textWidth) element.style.fontSize = `${Math.min(secondary ? 32 : 52, base * width / textWidth * .98)}px`;
+    };
+    const observer = new ResizeObserver(fit);
+    observer.observe(element);
+    fit();
+    document.fonts.ready.then(fit);
+    return () => { active = false; observer.disconnect(); };
+  }, [children, secondary]);
+  return <p ref={ref}>{children}</p>;
+}
 function About() {
   const t = useT();
   const loop = ['Clear project goals', 'Thoughtful resource planning', 'Time used with intention', 'Healthier costs', 'Clear accountability', 'Better delivery', 'Less rework and overtime', 'More stable profit', 'Reinvest in people and projects'];
   return <>
-    <section className="v-page-hero v-container"><h1 className="v-about-title v-principles">{t("Aesthetic judgment × Operating insight × Making complexity clear").split(" × ").map((phrase,i)=><span key={phrase}>{i>0 && <small aria-hidden="true">×</small>}<span>{phrase}</span></span>)}</h1><div className="v-page-intro"><p>{t("Projects, people, time, cost and accountability are already one system.")}</p><p>{t("Good management connects these relationships so each part supports the next, creating a positive operating loop.")}</p></div></section>
+    <section className="v-page-hero v-container"><h1 className="v-about-title v-principles">{t("Aesthetic judgment × Operating insight × Making complexity clear").split(" × ").map((phrase,i)=><span key={phrase}>{i>0 && <small aria-hidden="true">×</small>}<span>{phrase}</span></span>)}</h1><div className="v-page-intro"><FitIntroLine>{t("Projects, people, time, cost and accountability are already one system.")}</FitIntroLine><FitIntroLine secondary>{t("Good management connects these relationships so each part supports the next, creating a positive operating loop.")}</FitIntroLine></div></section>
     <section className="v-container v-about v-founder-story"><PhotoSpace detail /><div><Label>{t("Why Velaire exists")}</Label><h2>{t("From making one project work to making good work sustainable.")}</h2><p>{t("Velaire began with a question Susan kept returning to between design and running a business.")}</p><h3 className="v-story-question">{t("How can the business behind good work be just as healthy?")}</h3><p>{t("Aesthetic judgment reveals possibilities. But carrying a standard through teams, projects and countless handoffs takes more than taste.")}</p><p>{t("A decision changes the scope of a project. Scope changes affect people and time. More time changes costs and affects the team. The outcome of delivery shapes what can be invested next.")}</p><p>{t("Projects, people, time, cost and accountability are already one system.")}</p><p>{t("Susan began following these relationships, asking how each part could support the next.")}</p><p>{t("Velaire grew from that question.")}</p><p>{t("Advisory redesigns operating relationships. Parti structures them. Roster helps the team keep acting on them.")}</p><p>{t("Clearer projects, supported teams, healthier delivery and profit. The results go back into people and the next project.")}</p><p className="v-story-close">{t("Make good work happen again.")}</p><p className="v-story-signature"><span>Susan Liao</span><span>{t("Founder")}</span></p></div></section>
     <section className="v-section v-container"><SectionTitle label={t("The positive operating loop")} body={t("Healthier profit protects the team and gives the next project a stronger beginning.")}>{t("Each part supports")}<br /><em>{t("what comes next.")}</em></SectionTitle><ol className="v-about-loop">{loop.map((step,i)=><li key={step}><span className="v-label">{String(i+1).padStart(2,'0')}</span><h3>{t(step)}</h3><span aria-hidden="true">↗</span></li>)}</ol></section>
     <section className="v-section v-container"><div className="v-feature-grid">{[['Susan','Makes complexity clear.'],['Velaire','Redesigns operating relationships.'],['Parti','Structures the relationships.'],['Roster','Keeps the system moving.']].map(([name,body])=><article key={name}><Label>{name}</Label><h3>{t(body)}</h3></article>)}</div></section>
