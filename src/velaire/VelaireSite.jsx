@@ -11,6 +11,7 @@ import { LanguageProvider, useLanguage, useT } from './i18n.jsx';
 function cleanHeading(value) {
   return Children.map(value, child => {
     if (typeof child === 'string') return child.replace(/[.。]/g, '');
+    if (isValidElement(child) && child.type === 'br') return ' ';
     if (isValidElement(child) && child.props.children !== undefined) return cloneElement(child, {}, cleanHeading(child.props.children));
     return child;
   });

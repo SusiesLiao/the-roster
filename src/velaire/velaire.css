@@ -93,3 +93,5 @@
 .v-page-about:lang(zh) .v-founder-story h2{font-size:clamp(22.4px,2.38vw,33.6px)}
 
 .v-loop-title{display:block;font-size:clamp(23px,3.6vw,48px);line-height:1.3;white-space:nowrap}@media(max-width:650px){.v-loop-title{font-size:clamp(13px,3.8vw,24px)}}
+
+.velaire-site h1,.velaire-site h2,.velaire-site h3{text-wrap:wrap}.velaire-site h1 em,.velaire-site h2 em,.velaire-site h3 em{display:inline}
