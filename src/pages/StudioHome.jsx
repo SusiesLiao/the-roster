@@ -39,6 +39,7 @@ export default function StudioHome() {
       <button className="studio-menu" aria-expanded={menuOpen} aria-controls="studio-nav" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? c.close : c.menu}</button>
       <nav id="studio-nav" aria-label={c.navigation} className={menuOpen ? 'open' : ''}>
         {c.nav.map((label, i) => <a key={label} href={['#services', '#inside', '#approach'][i]} onClick={() => setMenuOpen(false)}>{label}</a>)}
+        <a href="https://velaireco.com/">Velaire &amp; Co.</a>
         <a href="/rooms">{language === 'en' ? 'Your room' : language === 'zh-Hans' ? '专属空间' : '專屬空間'}</a>
         <a href={SIGN_IN} className="studio-signin">{c.signIn}</a>
       </nav>

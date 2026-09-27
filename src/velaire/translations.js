@@ -1,6 +1,13 @@
 // Reviewed website copy. Product names remain unchanged across languages.
 export const translations = {
   "zh-Hans": {
+    "The Roster / Studio operating services": "The Roster / 工作室运营服务",
+    "Good work needs": "好作品需要",
+    "a better way to work.": "更好的工作方式。",
+    "Explore The Roster’s studio operating services, from finding the friction to implementing a clearer system and keeping it running.": "了解 The Roster 的工作室运营服务，从找到阻力、建立清晰的系统，到持续维护运营。",
+    "Part of Velaire, alongside Parti. Existing client spaces and Roster Suite remain available.": "与 Parti 同属 Velaire 品牌家族。现有客户空间与 Roster Suite 继续开放。",
+    "Explore The Roster": "探索 The Roster",
+
     "Velaire · Clearer operating systems": "Velaire · 让企业运营更清晰",
     "Velaire helps project-based businesses connect people, projects, time, cost and decisions through advisory, software and AI.": "Velaire 通过咨询、软件与 AI，帮助项目制企业连接人员、项目、工时、成本与决策。",
     "Velaire Advisory · Operating Diagnostic": "Velaire 咨询 · 运营诊断",
@@ -307,6 +314,13 @@ export const translations = {
     "Back to Velaire": "返回 Velaire"
   },
   "zh-Hant": {
+    "The Roster / Studio operating services": "The Roster / 工作室營運服務",
+    "Good work needs": "好作品需要",
+    "a better way to work.": "更好的工作方式。",
+    "Explore The Roster’s studio operating services, from finding the friction to implementing a clearer system and keeping it running.": "了解 The Roster 的工作室營運服務，從找出阻力、建立清晰的系統，到持續維護營運。",
+    "Part of Velaire, alongside Parti. Existing client spaces and Roster Suite remain available.": "與 Parti 同屬 Velaire 品牌家族。現有客戶空間與 Roster Suite 持續開放。",
+    "Explore The Roster": "探索 The Roster",
+
     "Velaire · Clearer operating systems": "Velaire · 讓企業營運更清晰",
     "Velaire helps project-based businesses connect people, projects, time, cost and decisions through advisory, software and AI.": "Velaire 通過諮詢、軟體與 AI，幫助專案制企業連線人員、專案、工時、成本與決策。",
     "Velaire Advisory · Operating Diagnostic": "Velaire 諮詢 · 營運診斷",
