@@ -1,6 +1,7 @@
 // Reviewed website copy. Product names remain unchanged across languages.
 export const translations = {
   "zh-Hans": {
+    "Business Home": "业务主页",
     "Aesthetic judgment.": "审美判断。",
     "Operating insight.": "经营洞察。",
     "Making complexity clear.": "把复杂变清晰。",
@@ -351,6 +352,7 @@ export const translations = {
     "Back to Velaire": "返回 Velaire"
   },
   "zh-Hant": {
+    "Business Home": "業務主頁",
     "Aesthetic judgment.": "審美判斷。",
     "Operating insight.": "經營洞察。",
     "Making complexity clear.": "把複雜變清晰。",
