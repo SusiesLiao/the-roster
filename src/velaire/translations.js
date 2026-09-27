@@ -1,6 +1,12 @@
 // Reviewed website copy. Product names remain unchanged across languages.
 export const translations = {
   "zh-Hans": {
+    "When the relationships are clear": "当关系变得清晰",
+    "A clearer picture can become a next step": "清晰的经营依据，也可以成为下一步行动",
+    "Parti gives your team a shared view of projects, people, time and cost. When you are ready, Roster can use that context to flag what needs attention, prepare follow-ups and help keep work moving.": "Parti 让团队共同看清项目、人员、时间与成本。当你准备好时，Roster 可以基于这些背景提示需要关注的事、准备跟进，并协助工作持续推进。",
+    "Start with Parti. Add Roster where a specific job needs support, with clear permissions and human review.": "先把 Parti 用好。再根据具体工作需要引入 Roster，并明确权限与人工审核。",
+    "See how Roster works with Parti": "看看 Roster 如何与 Parti 协作",
+
     "When a six-month budget has to cover nine months of work": "六个月的预算要撑九个月的工作",
     "The fee is agreed. The work is good. Then a client change adds revisions, an approval stalls, and the next phase starts late.": "项目费定好了，作品也很好。随后客户的改动带来返工，审批卡住，下一个阶段迟迟无法开始。",
     "The team fills the gap with overtime. Three extra months of salaries, coordination and delivery come out of the same fee. The margin shrinks and the team has less capacity for the next project.": "团队用加班补上差距。多出的三个月工资、协调和交付成本，都从同一笔项目费里支付。利润减少，团队也没有余力投入下一个项目。",
@@ -385,6 +391,12 @@ export const translations = {
     "Back to Velaire": "返回 Velaire"
   },
   "zh-Hant": {
+    "When the relationships are clear": "當關係變得清晰",
+    "A clearer picture can become a next step": "清晰的經營依據，也可以成為下一步行動",
+    "Parti gives your team a shared view of projects, people, time and cost. When you are ready, Roster can use that context to flag what needs attention, prepare follow-ups and help keep work moving.": "Parti 讓團隊共同看清專案、人員、時間與成本。當你準備好時，Roster 可以基於這些背景提示需要關注的事、準備跟進，並協助工作持續推進。",
+    "Start with Parti. Add Roster where a specific job needs support, with clear permissions and human review.": "先把 Parti 用好。再依具體工作需要引入 Roster，並明確權限與人工審核。",
+    "See how Roster works with Parti": "看看 Roster 如何與 Parti 協作",
+
     "When a six-month budget has to cover nine months of work": "六個月的預算要撐九個月的工作",
     "The fee is agreed. The work is good. Then a client change adds revisions, an approval stalls, and the next phase starts late.": "專案費定好了，作品也很好。隨後客戶的改動帶來返工，審批卡住，下一個階段遲遲無法開始。",
     "The team fills the gap with overtime. Three extra months of salaries, coordination and delivery come out of the same fee. The margin shrinks and the team has less capacity for the next project.": "團隊用加班補上差距。多出的三個月薪資、協調和交付成本，都從同一筆專案費裡支付。利潤減少，團隊也沒有餘力投入下一個專案。",

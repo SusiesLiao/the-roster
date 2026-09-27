@@ -115,3 +115,5 @@
 .velaire-site h2 em.v-roster-newline{display:block}
 
 .v-advisory-story{max-width:850px;margin:auto}.v-advisory-story h2{font-size:clamp(30px,3.4vw,46px);line-height:1.3;margin:24px 0 32px}.v-advisory-story p:not(.v-label){font-size:18px;line-height:1.9;margin-bottom:24px}.v-advisory-story h3{font-size:30px;margin:36px 0 20px}
+
+.v-roster-nudge{display:grid;grid-template-columns:1fr 1fr;gap:8%;border-top:1px solid var(--v-line)}.v-roster-nudge h2{font-size:clamp(30px,3.2vw,44px);line-height:1.3;margin-top:20px}.v-roster-nudge p{line-height:1.8;margin-bottom:24px}@media(max-width:650px){.v-roster-nudge{grid-template-columns:1fr;gap:24px}}
