@@ -77,3 +77,5 @@
 .v-founder-story{align-items:start}.v-founder-story h2{font-size:clamp(32px,3.4vw,48px);line-height:1.3;text-wrap:balance;margin-bottom:30px}.v-founder-story p{line-height:1.9;margin-bottom:22px}.v-founder-story .v-story-question{font-size:27px;line-height:1.5;margin:26px 0}.v-founder-story .v-story-close{font-family:Georgia,serif;font-size:28px;margin-top:34px;padding-top:24px;border-top:1px solid var(--v-line)}
 
 .v-page-about .v-page-intro{width:100%;max-width:none}.v-page-about .v-page-intro p:first-child,.v-page-about .v-page-intro p:last-child{max-width:none;text-wrap:wrap}
+
+.v-story-signature{display:flex;flex-direction:column;gap:5px;margin-top:28px!important}.v-story-signature span:first-child{font-family:Georgia,serif;font-style:italic;font-size:25px}.v-story-signature span:last-child{font-size:12px;letter-spacing:.08em;color:var(--v-muted)}

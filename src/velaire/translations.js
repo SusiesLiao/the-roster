@@ -1,6 +1,7 @@
 // Reviewed website copy. Product names remain unchanged across languages.
 export const translations = {
   "zh-Hans": {
+    "Founder": "创始人",
     "From making one project work to making good work sustainable.": "从做好一个项目，到让好作品持续发生。",
     "Velaire began with a question Susan kept returning to between design and running a business.": "Velaire 的起点，是 Susan 在设计与经营之间不断追问的一个问题：",
     "How can the business behind good work be just as healthy?": "好作品背后的企业，怎样才能同样健康？",
@@ -363,6 +364,7 @@ export const translations = {
     "Back to Velaire": "返回 Velaire"
   },
   "zh-Hant": {
+    "Founder": "創辦人",
     "From making one project work to making good work sustainable.": "從做好一個專案，到讓好作品持續發生。",
     "Velaire began with a question Susan kept returning to between design and running a business.": "Velaire 的起點，是 Susan 在設計與經營之間不斷追問的一個問題：",
     "How can the business behind good work be just as healthy?": "好作品背後的企業，怎樣才能同樣健康？",
