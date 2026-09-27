@@ -38,6 +38,7 @@ export default function App() {
   if (['/', '/advisory', '/parti', '/roster', '/about', '/contact'].includes(pathname.replace(/\/$/, '') || '/')) return <VelaireSite />
   if (pathname === '/service-details') return <StudioHome />
   if (pathname === '/rooms') return <Rooms />
+  if (!['/personal', '/amber', '/pepper', '/interview', '/hire', '/permissions', '/connect', '/privacy', '/terms', '/apply', '/suggest-a-role', '/claim'].includes(pathname)) return <VelaireSite />
   return (
     <>
       <ScrollTop />

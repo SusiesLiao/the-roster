@@ -1,106 +1,241 @@
-import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { SIGN_IN } from '../lib/app.js'
-import '@fontsource/cormorant-garamond/latin-500.css'
-import '@fontsource/cormorant-garamond/latin-300-italic.css'
-import '@fontsource/inter/latin-400.css'
-import '@fontsource/inter/latin-500.css'
-import '@fontsource/inter/latin-600.css'
-import './velaire.css'
-
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { SIGN_IN } from '../lib/app.js';
+import '@fontsource/cormorant-garamond/latin-500.css';
+import '@fontsource/cormorant-garamond/latin-300-italic.css';
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/inter/latin-600.css';
+import './velaire.css';
+import { LanguageProvider, useLanguage, useT } from './i18n.jsx';
 const pages = {
+  '/404': ['Page not found — Velaire', 'Find your way back to Velaire, Parti and Roster.'],
   '/': ['Velaire — Clearer operating systems', 'Velaire helps project-based businesses connect people, projects, time, cost and decisions through advisory, software and AI.'],
   '/advisory': ['Velaire Advisory — Operating Diagnostic', 'A 4–6 week operating diagnostic for founder-led creative and project-based businesses. An Operating Blueprint and an implementation roadmap.'],
   '/parti': ['Parti — The system of record · Velaire', 'Connect projects, people, time and economics. Understand what is happening inside your business, and why.'],
   '/roster': ['Roster — The system of action · Velaire', 'An AI workforce grounded in business context. Discover Roster and Roster Suite.'],
   '/about': ['Susan Liao — Founder · Velaire', 'Taste, systems thinking and the work of building a better-run business. Meet Velaire founder Susan Liao.'],
-  '/contact': ['Start a conversation — Velaire', 'Tell us where your business feels harder to run than it should. Enquire about the Velaire Operating Diagnostic.'],
+  '/contact': ['Start a conversation — Velaire', 'Tell us where your business feels harder to run than it should. Enquire about the Velaire Operating Diagnostic.']
+};
+const nav = [['Advisory', '/advisory'], ['Parti', '/parti'], ['Roster', '/roster'], ['About', '/about']];
+const Label = ({
+  children
+}) => {
+  const t = useT();
+  return <p className="v-label">{t(children)}</p>;
+};
+const Action = ({
+  to = '/contact?interest=diagnostic',
+  children = 'Book an Operating Diagnostic',
+  quiet = false
+}) => {
+  const t = useT();
+  return <Link className={quiet ? 'v-link' : 'v-button'} to={to}>{t(children)}</Link>;
+};
+const SectionTitle = ({
+  label,
+  children,
+  body
+}) => {
+  const t = useT();
+  return <div className="v-section-title"><Label>{t(label)}</Label><h2>{t(children)}</h2>{t(body && <p>{t(body)}</p>)}</div>;
+};
+function PhotoSpace({
+  detail = false
+}) {
+  const t = useT();
+  return <figure className={`v-photo ${detail ? 'v-photo-detail' : ''}`}><img src={detail ? '/images/roxelle-living-room.jpg' : '/images/roxelle-stair-detail.jpeg'} alt={t(detail ? 'Light-filled Roxelle living room with sheer curtains, sculptural seating and layered textiles.' : 'Overhead view through a curving Roxelle staircase with suspended glass lights.')} width={detail ? 1350 : 768} height={detail ? 1800 : 1024} loading={detail ? 'lazy' : 'eager'} fetchpriority={detail ? 'auto' : 'high'} /><figcaption><span>{t("ROXELLE / SELECTED WORK")}</span><span>{t(detail ? 'The detail and the whole.' : 'Design, made real.')}</span></figcaption></figure>;
 }
-const nav = [['Advisory', '/advisory'], ['Parti', '/parti'], ['Roster', '/roster'], ['About', '/about']]
-const Label = ({children}) => <p className="v-label">{children}</p>
-const Action = ({to='/contact?interest=diagnostic', children='Book an Operating Diagnostic', quiet=false}) => <Link className={quiet?'v-link':'v-button'} to={to}>{children}</Link>
-const SectionTitle = ({label,children,body}) => <div className="v-section-title"><Label>{label}</Label><h2>{children}</h2>{body&&<p>{body}</p>}</div>
-
-function PhotoSpace({detail=false}) {
-  return <figure className={`v-photo ${detail?'v-photo-detail':''}`}><img src={detail?'/images/roxelle-stair-detail.jpeg':'/images/roxelle-sculptural-stair.jpeg'} alt={detail?'Overhead view through a curving Roxelle staircase with suspended glass lights.':'Sculptural ivory staircase in a light-filled Roxelle interior.'} width={detail?768:665} height={detail?1024:1182} loading={detail?'lazy':'eager'} fetchpriority={detail?'auto':'high'}/><figcaption><span>ROXELLE / SELECTED WORK</span><span>{detail?'The detail and the whole.':'Design, made real.'}</span></figcaption></figure>
-}
-
 function Family() {
-  return <section className="v-section v-container" id="system"><SectionTitle label="One house. Three connected layers." body="Understand the business. Give it structure. Help it act.">Better work begins<br/>with a clearer system.</SectionTitle><div className="v-family">
-    <article><Label>01 / The advisory</Label><h3>Velaire Advisory</h3><p>Find the friction between how the business looks on paper and how it actually runs.</p><span>Diagnosis · design · implementation</span><Action to="/advisory" quiet>Explore the advisory</Action></article>
-    <article className="v-parti-tone"><Label>02 / The system of record</Label><h3>Parti</h3><p>Connect projects, people, time and cost. See the relationships behind the numbers.</p><span>Context · visibility · accountability</span><Action to="/parti" quiet>Discover Parti</Action></article>
-    <article className="v-roster-tone"><Label>03 / The system of action</Label><h3>Roster</h3><p>An AI workforce that uses business context to flag what matters and help your team respond.</p><span>Attention · coordination · action</span><Action to="/roster" quiet>Meet Roster</Action></article>
-  </div></section>
+  const t = useT();
+  return <section className="v-section v-container" id="system"><SectionTitle label={t("One house. Three connected layers.")} body={t("Understand the business. Give it structure. Help it act.")}>{t("Better work begins")}<br />{t("with a clearer system.")}</SectionTitle><div className="v-family">
+    <article><Label>{t("01 / The advisory")}</Label><h3>{t("Velaire Advisory")}</h3><p>{t("Find the friction between how the business looks on paper and how it actually runs.")}</p><span>{t("Diagnosis · design · implementation")}</span><Action to="/advisory" quiet>{t("Explore the advisory")}</Action></article>
+    <article className="v-parti-tone"><Label>{t("02 / The system of record")}</Label><h3>{t("Parti")}</h3><p>{t("Connect projects, people, time and cost. See the relationships behind the numbers.")}</p><span>{t("Context · visibility · accountability")}</span><Action to="/parti" quiet>{t("Discover Parti")}</Action></article>
+    <article className="v-roster-tone"><Label>{t("03 / The system of action")}</Label><h3>{t("Roster")}</h3><p>{t("An AI workforce that uses business context to flag what matters and help your team respond.")}</p><span>{t("Attention · coordination · action")}</span><Action to="/roster" quiet>{t("Meet Roster")}</Action></article>
+  </div></section>;
 }
-
-const scenarios = [
-  {name:'Project drift', signal:'Six months becomes nine.', metric:'3 months', caption:'beyond the original programme', context:'Same fee. More time. More handoffs. The revenue line has not moved, but the work has.', parti:'Connect the phase timeline, actual hours, repeat submissions and unchanged fee.', roster:'Flag the drift, trace delayed approvals and prepare a follow-up for the project lead.', bars:[48,74,90]},
-  {name:'Overtime', signal:'Everyone is working late. Still late.', metric:'24 hours', caption:'of illustrative overtime in one week', context:'A busy team can still be blocked. More hours do not tell you whether the work is moving forward.', parti:'Compare planned capacity, recorded time and the work waiting on a decision.', roster:'Surface a workload imbalance and suggest a capacity review with the responsible lead.', bars:[42,85,66]},
-  {name:'Rework', signal:'One rejected drawing is never just one.', metric:'3 rounds', caption:'of illustrative repeat submissions', context:'A revision moves through people, phases and deadlines. Its true cost rarely stays in one place.', parti:'Link rejected submissions to revision hours, dependencies and the project budget.', roster:'Identify the repeated issue, draft a review request and ask the team lead to act.', bars:[35,62,87]},
-]
-function ConnectedExample({compact=false}) {
-  const [selected,setSelected]=useState(0)
-  const s=scenarios[selected]
-  return <div className={`v-example ${compact?'v-example-compact':''}`}><div className="v-example-head"><span>PARTI × ROSTER</span><span>Illustrative workflow</span></div><div className="v-tabs" role="group" aria-label="Choose an operating challenge">{scenarios.map((item,i)=><button key={item.name} aria-pressed={selected===i} onClick={()=>setSelected(i)}>{item.name}</button>)}</div><div className="v-example-body" aria-live="polite"><div className="v-example-signal"><Label>The question beneath the numbers</Label><h3>{s.signal}</h3><p>{s.context}</p><div className="v-bars" aria-hidden="true">{s.bars.map((n,i)=><div key={i} style={{height:`${n}%`}}><span>0{i+1}</span></div>)}</div><div className="v-example-metric"><strong>{s.metric}</strong><span>{s.caption}</span></div></div><div className="v-example-layers"><article><Label>Parti / makes it visible</Label><p>{s.parti}</p></article><article><Label>Roster / helps you respond</Label><p>{s.roster}</p></article><p className="v-note">Concept example with sample data. Proposed agent workflows, subject to permissions and human review.</p></div></div></div>
+const scenarios = [{
+  name: 'Project drift',
+  signal: 'Six months becomes nine.',
+  metric: '3 months',
+  caption: 'beyond the original programme',
+  context: 'Same fee. More time. More handoffs. The revenue line has not moved, but the work has.',
+  parti: 'Connect the phase timeline, actual hours, repeat submissions and unchanged fee.',
+  roster: 'Flag the drift, trace delayed approvals and prepare a follow-up for the project lead.',
+  bars: [48, 74, 90]
+}, {
+  name: 'Overtime',
+  signal: 'Everyone is working late. Still late.',
+  metric: '24 hours',
+  caption: 'of illustrative overtime in one week',
+  context: 'A busy team can still be blocked. More hours do not tell you whether the work is moving forward.',
+  parti: 'Compare planned capacity, recorded time and the work waiting on a decision.',
+  roster: 'Surface a workload imbalance and suggest a capacity review with the responsible lead.',
+  bars: [42, 85, 66]
+}, {
+  name: 'Rework',
+  signal: 'One rejected drawing is never just one.',
+  metric: '3 rounds',
+  caption: 'of illustrative repeat submissions',
+  context: 'A revision moves through people, phases and deadlines. Its true cost rarely stays in one place.',
+  parti: 'Link rejected submissions to revision hours, dependencies and the project budget.',
+  roster: 'Identify the repeated issue, draft a review request and ask the team lead to act.',
+  bars: [35, 62, 87]
+}];
+function ConnectedExample({
+  compact = false
+}) {
+  const t = useT();
+  const [selected, setSelected] = useState(0);
+  const s = scenarios[selected];
+  return <div className={`v-example ${compact ? 'v-example-compact' : ''}`}><div className="v-example-head"><span>{t("PARTI × ROSTER")}</span><span>{t("Illustrative workflow")}</span></div><div className="v-tabs" role="group" aria-label={t("Choose an operating challenge")}>{t(scenarios.map((item, i) => <button key={item.name} aria-pressed={selected === i} onClick={() => setSelected(i)}>{t(item.name)}</button>))}</div><div className="v-example-body" aria-live="polite"><div className="v-example-signal"><Label>{t("The question beneath the numbers")}</Label><h3>{t(s.signal)}</h3><p>{t(s.context)}</p><div className="v-bars" aria-hidden="true">{t(s.bars.map((n, i) => <div key={i} style={{
+            height: `${n}%`
+          }}><span>{t("0")}{t(i + 1)}</span></div>))}</div><div className="v-example-metric"><strong>{t(s.metric)}</strong><span>{t(s.caption)}</span></div></div><div className="v-example-layers"><article><Label>{t("Parti / makes it visible")}</Label><p>{t(s.parti)}</p></article><article><Label>{t("Roster / helps you respond")}</Label><p>{t(s.roster)}</p></article><p className="v-note">{t("Concept example with sample data. Proposed agent workflows, subject to permissions and human review.")}</p></div></div></div>;
 }
-
-function Diagnostic({full=false}) {
-  return <section className={`v-diagnostic ${full?'v-diagnostic-full':''}`}><div className="v-container v-split"><div><Label>A good place to begin</Label><h2>The Velaire<br/><em>Operating Diagnostic.</em></h2><p className="v-lede">Before you add another tool, understand the system you already have.</p><Action/></div><div><div className="v-diagnostic-meta"><span>4–6 weeks</span><span>Founder-led businesses</span></div><p>We map how projects, people, time and decisions move through your business, and where value gets lost along the way.</p><ul className="v-simple-list"><li>Projects, workload and team structure</li><li>Overtime, rework and stalled approvals</li><li>Scope, economics and accountability</li></ul><div className="v-deliverable"><Label>What you leave with</Label><h3>An Operating Blueprint.</h3><p>A clear view of the friction, the changes that matter, and an implementation roadmap.</p></div></div></div></section>
+function Diagnostic({
+  full = false
+}) {
+  const t = useT();
+  return <section className={`v-diagnostic ${full ? 'v-diagnostic-full' : ''}`}><div className="v-container v-split"><div><Label>{t("A good place to begin")}</Label><h2>{t("The Velaire")}<br /><em>{t("Operating Diagnostic.")}</em></h2><p className="v-lede">{t("Before you add another tool, understand the system you already have.")}</p><Action /></div><div><div className="v-diagnostic-meta"><span>{t("4–6 weeks")}</span><span>{t("Founder-led businesses")}</span></div><p>{t("We map how projects, people, time and decisions move through your business, and where value gets lost along the way.")}</p><ul className="v-simple-list"><li>{t("Projects, workload and team structure")}</li><li>{t("Overtime, rework and stalled approvals")}</li><li>{t("Scope, economics and accountability")}</li></ul><div className="v-deliverable"><Label>{t("What you leave with")}</Label><h3>{t("An Operating Blueprint.")}</h3><p>{t("A clear view of the friction, the changes that matter, and an implementation roadmap.")}</p></div></div></div></section>;
 }
-function FinalCTA() {return <section className="v-final v-container"><Label>Let’s start with the real question</Label><h2>You probably don’t need<br/>more software.<br/><em>You need to see what is actually happening.</em></h2><Action/></section>}
-
-function Home() {return <>
-  <section className="v-hero v-container"><div className="v-hero-copy"><Label>Advisory · Software · AI</Label><h1>Complex businesses<br/>need clearer<br/><em>operating systems.</em></h1><p>Velaire helps project-based businesses connect people, projects, time, cost and decisions — through advisory, software and AI.</p><div className="v-actions"><Action/><Action to="/#system" quiet>Explore the system</Action></div></div><PhotoSpace/></section>
-  <div className="v-audience v-container"><span>FOR THE BUSINESSES BEHIND THE WORK</span><p>Creative studios. Design practices. Project-based teams.</p></div>
-  <section className="v-section v-container v-problem"><Label>The work behind the work</Label><h2>Revenue can look healthy.<br/>A project underneath it<br/>can be <em>quietly bleeding.</em></h2><div><p>Six months becomes nine. Scope moves. Overtime climbs. Drawings are reworked. Approvals stall.</p><p>The numbers tell you that something happened. We want to show you why.</p></div></section>
-  <Family/>
-  <section className="v-method v-container"><Label>From seeing to doing</Label><div>{[['Susan','Sees the problem.'],['Velaire','Redesigns the business.'],['Parti','Structures it.'],['Roster','Helps it act.']].map(([name,body])=><div key={name}><h3>{name}</h3><p>{body}</p></div>)}</div></section>
-  <section className="v-section v-container"><SectionTitle label="The connection is the point" body="Parti tells you what is happening. Roster helps you do something about it.">A signal becomes<br/><em>a next step.</em></SectionTitle><ConnectedExample/></section>
-  <section className="v-product-pair v-container"><article className="v-parti-tone"><Label>Parti / Business operating system</Label><h2>Your business is<br/>already a system.</h2><p>Parti makes the relationships visible. Projects, phases, people and economics belong in the same conversation.</p><Action to="/parti" quiet>Explore Parti</Action></article><article className="v-roster-tone"><Label>Roster / AI workforce</Label><h2>Visibility is useful.<br/><em>Action is better.</em></h2><p>Roster Suite brings agent work, context and human decisions together, so the team can respond with intention.</p><Action to="/roster" quiet>Explore Roster Suite</Action></article></section>
-  <Diagnostic/>
-  <section className="v-section v-container v-founder"><div><Label>The founder</Label><h2>Taste sees the possibility.<br/><em>Systems make it repeatable.</em></h2></div><div><p className="v-founder-name">Susan Liao</p><p>Founder, operator and builder. Velaire brings together Susan’s interest in design, people and the logic of how a business works.</p><p>Because protecting a standard across many people and handoffs is a different challenge from setting it.</p><Action to="/about" quiet>Meet Susan</Action></div></section><FinalCTA/>
-  </>}
-
-function Parti() {return <>
-  <section className="v-page-hero v-container"><Label>Parti / The system of record</Label><h1>Your business is<br/>already <em>a system.</em></h1><div className="v-page-intro"><p>Parti makes the relationships visible.</p><p>Know whether each project is consuming the time, people and margin you planned for — before it becomes a problem.</p></div><div className="v-actions"><Action to="/contact?interest=parti">Explore Parti for your business</Action><span className="v-note">Developing with paid design partners</span></div></section>
-  <section className="v-container v-parti-map"><div><Label>The relationships behind the work</Label><h2>One project.<br/><em>The whole picture.</em></h2><p>Ask why a project is drifting, and follow the connections.</p></div><div className="v-relationship"><div className="v-project-core"><span>PROJECT / 01</span><h3>The studio commission</h3><span>Illustrative relationship model</span></div><div className="v-nodes">{['Phases & deadlines','People & capacity','Time & overtime','Cost & margin','Quality & rework','Approvals & owners'].map(n=><span key={n}>{n}</span>)}</div></div></section>
-  <section className="v-section v-container"><SectionTitle label="The commercial starting point">Where did the time go?<br/>What did it do to the margin?</SectionTitle><div className="v-feature-grid">{[
-    ['Projects & phases','See work in its delivery context, from the first brief to the final handoff.'],['People & capacity','Connect staffing plans with real workloads, team structure and availability.'],['Time & overtime','Compare planned and actual effort. Ask what additional hours are telling you.'],['Project economics','Put fees, budgets, time and cost in one view of project performance.'],['Quality & rework','Follow submissions, rejects and revisions through their delivery consequences.'],['Approvals & accountability','Make the next decision, its owner and its dependencies visible.']
-  ].map(([title,body],i)=><article key={title}><Label>0{i+1}</Label><h3>{title}</h3><p>{body}</p></article>)}</div><p className="v-note">Initial product scope. Availability and configuration are agreed with each design partner.</p></section>
-  <section className="v-statement v-container"><h2>Relationships matter<br/><em>more than feature count.</em></h2><p>A timesheet can tell you someone worked late. A connected system can help explain why, what it cost, and which decision changes the outcome.</p></section><section className="v-section v-container"><ConnectedExample/></section><Diagnostic/><FinalCTA/>
-  </>}
-
-function Roster() {return <>
-  <section className="v-page-hero v-container"><Label>Roster / The system of action</Label><h1>Visibility is useful.<br/><em>Action is better.</em></h1><div className="v-page-intro"><p>An AI workforce with the context to be useful.</p><p>Roster helps teams notice, reason, draft, coordinate and escalate — using structured business context and clear boundaries.</p></div><div className="v-actions"><Action to="/contact?interest=roster">Explore Roster with us</Action><a className="v-link" href={SIGN_IN}>Sign in to Roster Suite</a></div></section>
-  <section className="v-suite v-container"><div><Label>The environment</Label><h2>Roster Suite</h2><p>A place for the work your agents do and the decisions your team needs to make.</p><p>Context, assignments, permissions, approvals and work history belong together. People stay responsible for the decisions that matter.</p><a className="v-link" href={SIGN_IN}>Open your Roster Suite</a></div><div className="v-suite-panel"><div className="v-suite-panel-head"><strong>Roster Suite</strong><span>Concept preview</span></div><Label>Project health / Review requested</Label><h3>The deadline moved.<br/>The fee didn’t.</h3><p>Review the link between overtime, repeat submissions and a delayed approval.</p><div className="v-suite-task"><span>01</span><div><strong>Context gathered</strong><p>Phase timeline · hours · submission history</p></div></div><div className="v-suite-task"><span>02</span><div><strong>Follow-up drafted</strong><p>Prepared for the responsible project lead</p></div></div><div className="v-review-tag">Human review before action</div><p className="v-note">Illustrative proposed workflow, not live account data.</p></div></section>
-  <section className="v-section v-container"><SectionTitle label="The business agent roadmap" body="Introduced as trustworthy structured context becomes available in Parti.">Specific work.<br/><em>Specific value.</em></SectionTitle><div className="v-feature-grid v-two">{[['Project Health Agent','Spot delivery drift and connect it to the decisions holding work up.'],['Resource Agent','Flag capacity pressure and help leads review how the work is distributed.'],['Profitability Agent','Trace changes in project economics back to time, scope and rework.'],['HR / Team Health Agent','Surface workload patterns for an accountable human conversation.']].map(([title,body])=><article key={title}><Label>Planned capability</Label><h3>{title}</h3><p>{body}</p></article>)}</div></section>
-  <section className="v-statement v-container"><h2>Parti organizes the business.<br/><em>Roster augments the team.</em></h2><p>We begin with reliable context and a specific job to be done. Each agent’s scope, permissions and review points are agreed before it acts.</p></section><section className="v-section v-container"><ConnectedExample/></section><FinalCTA/>
-  </>}
-
-function Advisory() {return <>
-  <section className="v-page-hero v-container"><Label>Velaire Advisory</Label><h1>Good work deserves<br/><em>a better-run business.</em></h1><div className="v-page-intro"><p>Start with what is actually happening.</p><p>We help founder-led creative and project-based businesses understand how their work, people and decisions fit together — and redesign what gets in the way.</p></div><div className="v-actions"><Action/><span className="v-note">Initially focused on teams of around 15–75 people</span></div></section><Diagnostic full/>
-  <section className="v-section v-container"><SectionTitle label="The engagement">From operating friction<br/><em>to a practical blueprint.</em></SectionTitle><div className="v-feature-grid">{[['01 / Discover','Map the business as it is','Understand projects, team structure, workload and the way decisions actually get made.'],['02 / Connect','Follow the consequences','Trace how scope, overtime, rework and delayed approvals affect delivery and project economics.'],['03 / Design','Decide what changes first','Set priorities, clarify ownership and build an implementation roadmap around the work.']].map(([label,title,body])=><article key={label}><Label>{label}</Label><h3>{title}</h3><p>{body}</p></article>)}</div></section>
-  <section className="v-container v-split v-fit"><div><Label>A useful fit</Label><h2>The work is strong.<br/>Running the business<br/><em>feels harder than it should.</em></h2></div><div><ul className="v-simple-list"><li>Projects stretch while fees stay the same.</li><li>Everyone is busy, but ownership is unclear.</li><li>You can see the numbers, but not what caused them.</li><li>Too much operating knowledge lives in the founder’s head.</li></ul><p>Scope and fees are agreed after an initial conversation. Implementation is a separate, deliberate next step.</p></div></section>
-  <section className="v-section v-container v-faq"><SectionTitle label="Before we begin">A few practical questions.</SectionTitle><div>{[['Do we need to adopt Parti or Roster?','The diagnostic begins with your business and existing tools. The roadmap may include process changes, clearer accountability, configuration or implementation. Product choices follow the findings.'],['What will you need from us?','Access to the people who understand the work and an agreed sample of project, time, workload and financial information. We agree access and confidentiality before starting.'],['What happens after the 4–6 weeks?','You receive an Operating Blueprint and implementation roadmap. We can then agree a separate implementation scope, or you can use the roadmap with your own team.']].map(([q,a])=><details key={q}><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></section><FinalCTA/>
-  </>}
-
-function About() {return <>
-  <section className="v-page-hero v-container"><Label>Susan Liao / Founder</Label><h1>Taste. An operator’s eye.<br/><em>A builder’s instinct.</em></h1><div className="v-page-intro"><p>Good design is only part of the work.</p><p>Protecting a standard across people, projects and handoffs takes a different kind of thinking. That is the space Velaire works in.</p></div></section><section className="v-container v-about"><PhotoSpace detail/><div><Label>Why Velaire exists</Label><h2>The question<br/><em>behind the build.</em></h2><p>Where did the profit go? If everyone is working overtime, why are we still late? What does one rejected drawing really cost?</p><p>Susan’s approach starts with these questions, then follows the relationships: how a decision changes the work, how the work affects a team, and how that becomes a business result.</p><p>Velaire brings that thinking into advisory and implementation. Parti gives the business structure. Roster helps the team act on it.</p><p className="v-signature">Susan Liao</p></div></section><section className="v-statement v-container"><h2>Building systems<br/><em>without losing the human point of view.</em></h2><p>Design, leadership, team health and commercial clarity are connected. A better operating system should make room for all of them.</p></section><FinalCTA/>
-  </>}
-
+function FinalCTA() {
+  const t = useT();
+  return <section className="v-final v-container"><Label>{t("Let’s start with the real question")}</Label><h2>{t("You probably don’t need")}<br />{t("more software.")}<br /><em>{t("You need to see what is actually happening.")}</em></h2><Action /></section>;
+}
+function BrandGuide() {
+  const t = useT()
+  return <div className="v-brand-guide" aria-label={t('The Velaire family')}>
+    {[
+      ['Velaire', 'Advisory & implementation', '/advisory'],
+      ['Parti', 'Business operating system', '/parti'],
+      ['Roster', 'AI workforce', '/roster'],
+    ].map(([name, description, url]) => <Link to={url} key={name}><strong>{name}</strong><span>{t(description)}</span></Link>)}
+  </div>
+}
+function Home() {
+  const t = useT();
+  return <>
+  <section className="v-hero v-container"><div className="v-hero-copy"><Label>{t("Advisory · Software · AI")}</Label><h1>{t("Complex businesses")}<br />{t("need clearer")}<br /><em>{t("operating systems.")}</em></h1><p>{t("We help project-based businesses run better — with expert advisory, connected business software and an AI workforce.")}</p><BrandGuide /><div className="v-actions"><Action /><Action to="/#system" quiet>{t("Explore the system")}</Action></div></div><PhotoSpace /></section>
+  <div className="v-audience v-container"><span>{t("FOR THE BUSINESSES BEHIND THE WORK")}</span><p>{t("Creative studios. Design practices. Project-based teams.")}</p></div>
+  <Family /><section className="v-section v-container v-problem"><Label>{t("The work behind the work")}</Label><h2>{t("Revenue can look healthy.")}<br />{t("A project underneath it")}<br />{t("can be ")}<em>{t("quietly bleeding.")}</em></h2><div><p>{t("Six months becomes nine. Scope moves. Overtime climbs. Drawings are reworked. Approvals stall.")}</p><p>{t("The numbers tell you that something happened. We want to show you why.")}</p></div></section>
+  <section className="v-method v-container"><Label>{t("From seeing to doing")}</Label><div>{t([['Susan', 'Sees the problem.'], ['Velaire', 'Redesigns the business.'], ['Parti', 'Structures it.'], ['Roster', 'Helps it act.']].map(([name, body]) => <div key={name}><h3>{t(name)}</h3><p>{t(body)}</p></div>))}</div></section>
+  <section className="v-section v-container"><SectionTitle label={t("The connection is the point")} body={t("Parti tells you what is happening. Roster helps you do something about it.")}>{t("A signal becomes")}<br /><em>{t("a next step.")}</em></SectionTitle><ConnectedExample /></section>
+  <section className="v-product-pair v-container"><article className="v-parti-tone"><Label>{t("Parti / Business operating system")}</Label><h2>{t("Your business is")}<br />{t("already a system.")}</h2><p>{t("Parti makes the relationships visible. Projects, phases, people and economics belong in the same conversation.")}</p><Action to="/parti" quiet>{t("Explore Parti")}</Action></article><article className="v-roster-tone"><Label>{t("Roster / AI workforce")}</Label><h2>{t("Visibility is useful.")}<br /><em>{t("Action is better.")}</em></h2><p>{t("Roster Suite brings agent work, context and human decisions together, so the team can respond with intention.")}</p><Action to="/roster" quiet>{t("Explore Roster Suite")}</Action></article></section>
+  <Diagnostic />
+  <section className="v-section v-container v-founder"><PhotoSpace detail /><div><Label>{t("The founder")}</Label><h2>{t("Taste sees the possibility.")}<br /><em>{t("Systems make it repeatable.")}</em></h2><p className="v-founder-name">Susan Liao</p><p>{t("Founder, operator and builder. Velaire brings together Susan’s interest in design, people and the logic of how a business works.")}</p><p>{t("Because protecting a standard across many people and handoffs is a different challenge from setting it.")}</p><Action to="/about" quiet>{t("Meet Susan")}</Action></div></section><FinalCTA />
+  </>;
+}
+function Parti() {
+  const t = useT();
+  return <>
+  <section className="v-page-hero v-container"><Label>{t("Parti / Business operating system")}</Label><h1>{t("Your business is")}<br />{t("already ")}<em>{t("a system.")}</em></h1><div className="v-page-intro"><p>{t("Parti makes the relationships visible.")}</p><p>{t("Know whether each project is consuming the time, people and margin you planned for — before it becomes a problem.")}</p></div><div className="v-actions"><Action to="/contact?interest=parti">{t("Explore Parti for your business")}</Action><span className="v-note">{t("Developing with paid design partners")}</span></div></section>
+  <section className="v-container v-parti-map"><div><Label>{t("The relationships behind the work")}</Label><h2>{t("One project.")}<br /><em>{t("The whole picture.")}</em></h2><p>{t("Ask why a project is drifting, and follow the connections.")}</p></div><div className="v-relationship"><div className="v-project-core"><span>{t("PROJECT / 01")}</span><h3>{t("The studio commission")}</h3><span>{t("Illustrative relationship model")}</span></div><div className="v-nodes">{t(['Phases & deadlines', 'People & capacity', 'Time & overtime', 'Cost & margin', 'Quality & rework', 'Approvals & owners'].map(n => <span key={n}>{t(n)}</span>))}</div></div></section>
+  <section className="v-section v-container"><SectionTitle label={t("The commercial starting point")}>{t("Where did the time go?")}<br />{t("What did it do to the margin?")}</SectionTitle><div className="v-feature-grid">{t([['Projects & phases', 'See work in its delivery context, from the first brief to the final handoff.'], ['People & capacity', 'Connect staffing plans with real workloads, team structure and availability.'], ['Time & overtime', 'Compare planned and actual effort. Ask what additional hours are telling you.'], ['Project economics', 'Put fees, budgets, time and cost in one view of project performance.'], ['Quality & rework', 'Follow submissions, rejects and revisions through their delivery consequences.'], ['Approvals & accountability', 'Make the next decision, its owner and its dependencies visible.']].map(([title, body], i) => <article key={title}><Label>{t("0")}{t(i + 1)}</Label><h3>{t(title)}</h3><p>{t(body)}</p></article>))}</div><p className="v-note">{t("Initial product scope. Availability and configuration are agreed with each design partner.")}</p></section>
+  <section className="v-statement v-container"><h2>{t("Relationships matter")}<br /><em>{t("more than feature count.")}</em></h2><p>{t("A timesheet can tell you someone worked late. A connected system can help explain why, what it cost, and which decision changes the outcome.")}</p></section><section className="v-section v-container"><ConnectedExample /></section><Diagnostic /><FinalCTA />
+  </>;
+}
+function Roster() {
+  const t = useT();
+  return <>
+  <section className="v-page-hero v-container"><Label>{t("Roster / AI workforce")}</Label><h1>{t("Visibility is useful.")}<br /><em>{t("Action is better.")}</em></h1><div className="v-page-intro"><p>{t("An AI workforce with the context to be useful.")}</p><p>{t("Roster helps teams notice, reason, draft, coordinate and escalate — using structured business context and clear boundaries.")}</p></div><div className="v-actions"><Action to="/contact?interest=roster">{t("Explore Roster with us")}</Action><a className="v-link" href={SIGN_IN}>{t("Sign in to Roster Suite")}</a></div></section>
+  <section className="v-suite v-container"><div><Label>{t("The environment")}</Label><h2>{t("Roster Suite")}</h2><p>{t("A place for the work your agents do and the decisions your team needs to make.")}</p><p>{t("Context, assignments, permissions, approvals and work history belong together. People stay responsible for the decisions that matter.")}</p><a className="v-link" href={SIGN_IN}>{t("Open your Roster Suite")}</a></div><div className="v-suite-panel"><div className="v-suite-panel-head"><strong>{t("Roster Suite")}</strong><span>{t("Concept preview")}</span></div><Label>{t("Project health / Review requested")}</Label><h3>{t("The deadline moved.")}<br />{t("The fee didn’t.")}</h3><p>{t("Review the link between overtime, repeat submissions and a delayed approval.")}</p><div className="v-suite-task"><span>{t("01")}</span><div><strong>{t("Context gathered")}</strong><p>{t("Phase timeline · hours · submission history")}</p></div></div><div className="v-suite-task"><span>{t("02")}</span><div><strong>{t("Follow-up drafted")}</strong><p>{t("Prepared for the responsible project lead")}</p></div></div><div className="v-review-tag">{t("Human review before action")}</div><p className="v-note">{t("Illustrative proposed workflow, not live account data.")}</p></div></section>
+  <section className="v-section v-container"><SectionTitle label={t("The business agent roadmap")} body={t("Introduced as trustworthy structured context becomes available in Parti.")}>{t("Specific work.")}<br /><em>{t("Specific value.")}</em></SectionTitle><div className="v-feature-grid v-two">{t([['Project Health Agent', 'Spot delivery drift and connect it to the decisions holding work up.'], ['Resource Agent', 'Flag capacity pressure and help leads review how the work is distributed.'], ['Profitability Agent', 'Trace changes in project economics back to time, scope and rework.'], ['HR / Team Health Agent', 'Surface workload patterns for an accountable human conversation.']].map(([title, body]) => <article key={title}><Label>{t("Planned capability")}</Label><h3>{t(title)}</h3><p>{t(body)}</p></article>))}</div></section>
+  <section className="v-statement v-container"><h2>{t("Parti organizes the business.")}<br /><em>{t("Roster augments the team.")}</em></h2><p>{t("We begin with reliable context and a specific job to be done. Each agent’s scope, permissions and review points are agreed before it acts.")}</p></section><section className="v-section v-container"><ConnectedExample /></section><FinalCTA />
+  </>;
+}
+function Advisory() {
+  const t = useT();
+  return <>
+  <section className="v-page-hero v-container"><Label>{t("Velaire Advisory")}</Label><h1>{t("Good work deserves")}<br /><em>{t("a better-run business.")}</em></h1><div className="v-page-intro"><p>{t("Start with what is actually happening.")}</p><p>{t("We help founder-led creative and project-based businesses understand how their work, people and decisions fit together — and redesign what gets in the way.")}</p></div><div className="v-actions"><Action /><span className="v-note">{t("Initially focused on teams of around 15–75 people")}</span></div></section><Diagnostic full />
+  <section className="v-section v-container"><SectionTitle label={t("The engagement")}>{t("From operating friction")}<br /><em>{t("to a practical blueprint.")}</em></SectionTitle><div className="v-feature-grid">{t([['01 / Discover', 'Map the business as it is', 'Understand projects, team structure, workload and the way decisions actually get made.'], ['02 / Connect', 'Follow the consequences', 'Trace how scope, overtime, rework and delayed approvals affect delivery and project economics.'], ['03 / Design', 'Decide what changes first', 'Set priorities, clarify ownership and build an implementation roadmap around the work.']].map(([label, title, body]) => <article key={label}><Label>{t(label)}</Label><h3>{t(title)}</h3><p>{t(body)}</p></article>))}</div></section>
+  <section className="v-container v-split v-fit"><div><Label>{t("A useful fit")}</Label><h2>{t("The work is strong.")}<br />{t("Running the business")}<br /><em>{t("feels harder than it should.")}</em></h2></div><div><ul className="v-simple-list"><li>{t("Projects stretch while fees stay the same.")}</li><li>{t("Everyone is busy, but ownership is unclear.")}</li><li>{t("You can see the numbers, but not what caused them.")}</li><li>{t("Too much operating knowledge lives in the founder’s head.")}</li></ul><p>{t("Scope and fees are agreed after an initial conversation. Implementation is a separate, deliberate next step.")}</p></div></section>
+  <section className="v-section v-container v-faq"><SectionTitle label={t("Before we begin")}>{t("A few practical questions.")}</SectionTitle><div>{t([['Do we need to adopt Parti or Roster?', 'The diagnostic begins with your business and existing tools. The roadmap may include process changes, clearer accountability, configuration or implementation. Product choices follow the findings.'], ['What will you need from us?', 'Access to the people who understand the work and an agreed sample of project, time, workload and financial information. We agree access and confidentiality before starting.'], ['What happens after the 4–6 weeks?', 'You receive an Operating Blueprint and implementation roadmap. We can then agree a separate implementation scope, or you can use the roadmap with your own team.']].map(([q, a]) => <details key={q}><summary>{t(q)}<span aria-hidden="true">{t("+")}</span></summary><p>{t(a)}</p></details>))}</div></section><FinalCTA />
+  </>;
+}
+function About() {
+  const t = useT();
+  return <>
+  <section className="v-page-hero v-container"><Label>{t("Susan Liao / Founder")}</Label><h1>{t("Taste. An operator’s eye.")}<br /><em>{t("A builder’s instinct.")}</em></h1><div className="v-page-intro"><p>{t("Good design is only part of the work.")}</p><p>{t("Protecting a standard across people, projects and handoffs takes a different kind of thinking. That is the space Velaire works in.")}</p></div></section><section className="v-container v-about"><PhotoSpace detail /><div><Label>{t("Why Velaire exists")}</Label><h2>{t("The question")}<br /><em>{t("behind the build.")}</em></h2><p>{t("Where did the profit go? If everyone is working overtime, why are we still late? What does one rejected drawing really cost?")}</p><p>{t("Susan’s approach starts with these questions, then follows the relationships: how a decision changes the work, how the work affects a team, and how that becomes a business result.")}</p><p>{t("Velaire brings that thinking into advisory and implementation. Parti gives the business structure. Roster helps the team act on it.")}</p><p className="v-signature">{t("Susan Liao")}</p></div></section><section className="v-statement v-container"><h2>{t("Building systems")}<br /><em>{t("without losing the human point of view.")}</em></h2><p>{t("Design, leadership, team health and commercial clarity are connected. A better operating system should make room for all of them.")}</p></section><FinalCTA />
+  </>;
+}
 function Contact() {
-  const {search}=useLocation()
-  const interest=new URLSearchParams(search).get('interest')
-  const [draft,setDraft]=useState(null)
-  const [copied,setCopied]=useState(false)
-  function prepare(e){e.preventDefault();const d=new FormData(e.currentTarget);const text=`Hello Velaire,\n\nI would like to discuss ${d.get('interest')}.\n\nName: ${d.get('name')}\nEmail: ${d.get('email')}\nBusiness: ${d.get('company')}\nTeam size: ${d.get('size')}\n\nWhat is happening:\n${d.get('challenge')}\n\nBest,\n${d.get('name')}`;setDraft(text);setCopied(false);requestAnimationFrame(()=>document.getElementById('inquiry-draft')?.focus())}
-  async function copy(){try{await navigator.clipboard.writeText(draft);setCopied(true)}catch{setCopied(false);document.getElementById('draft-copy')?.select()}}
-  return <section className="v-container v-contact"><div><Label>Start a conversation</Label><h1>What feels harder<br/>than <em>it should?</em></h1><p className="v-lede">Tell us a little about your business and the question that brought you here.</p><p>We’ll start by understanding whether the Velaire Operating Diagnostic is the right next step.</p><a className="v-contact-email" href="mailto:hello@theroster.studio">hello@theroster.studio</a><p className="v-note">Velaire, Parti and Roster share this contact address.</p></div><div>{!draft?<form onSubmit={prepare} className="v-form"><div className="v-form-row"><label>Your name<input name="name" autoComplete="name" required maxLength={100}/></label><label>Work email<input name="email" type="email" autoComplete="email" required maxLength={200}/></label></div><label>Business / studio<input name="company" autoComplete="organization" required maxLength={160}/></label><div className="v-form-row"><label>Team size<select name="size" defaultValue="" required><option value="" disabled>Select</option><option>1–14 people</option><option>15–30 people</option><option>31–75 people</option><option>76+ people</option></select></label><label>I’m interested in<select name="interest" defaultValue={{diagnostic:'Operating Diagnostic',parti:'Parti',roster:'Roster / Roster Suite'}[interest]||'Operating Diagnostic'}><option>Operating Diagnostic</option><option>Parti</option><option>Roster / Roster Suite</option><option>Something else</option></select></label></div><label>What would you like to understand or change?<textarea name="challenge" rows={5} required maxLength={2500} placeholder="A project pattern, a team challenge, a question about the numbers…"/></label><p className="v-note">This prepares an email for you to review and send. Nothing is submitted or stored by this form.</p><button className="v-button" type="submit">Prepare my inquiry</button></form>:<div className="v-draft" id="inquiry-draft" tabIndex={-1}><Label>Your inquiry / ready to review</Label><h2>A conversation starts here.</h2><p>No message has been sent. Open the draft in your email app, or copy it into an email to hello@theroster.studio.</p><textarea id="draft-copy" aria-label="Your inquiry draft" value={draft} readOnly rows={12}/><div className="v-actions"><a className="v-button" href={`mailto:hello@theroster.studio?subject=${encodeURIComponent('Velaire — business inquiry')}&body=${encodeURIComponent(draft)}`}>Open email draft</a><button className="v-link" onClick={copy}>{copied?'Copied':'Copy inquiry'}</button></div><p className="v-note" role="status">{copied?'Inquiry copied. Paste it into your email app.':'Please review the message before sending.'}</p><button className="v-link" onClick={()=>setDraft(null)}>Start another inquiry</button></div>}</div></section>
+  const t = useT();
+  const {
+    search
+  } = useLocation();
+  const interest = new URLSearchParams(search).get('interest');
+  const [inquiry, setInquiry] = useState(null);
+  const draft = inquiry ? [t('Hello Velaire,'), '', t('I would like to discuss') + ' ' + t(inquiry.interest), '', t('Your name') + ': ' + inquiry.name, t('Work email') + ': ' + inquiry.email, t('Business / studio') + ': ' + inquiry.company, t('Team size') + ': ' + t(inquiry.size), '', t('What would you like to understand or change?'), inquiry.challenge, '', t('Best,'), inquiry.name].join('\n') : null;
+  const [copied, setCopied] = useState(false);
+  function prepare(e) {
+    e.preventDefault();
+    setInquiry(Object.fromEntries(new FormData(e.currentTarget)));
+    setCopied(false);
+    requestAnimationFrame(() => document.getElementById('inquiry-draft')?.focus());
+  }
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(draft);
+      setCopied(true);
+    } catch {
+      setCopied(false);
+      document.getElementById('draft-copy')?.select();
+    }
+  }
+  return <section className="v-container v-contact"><div><Label>{t("Start a conversation")}</Label><h1>{t("What feels harder")}<br />{t("than ")}<em>{t("it should?")}</em></h1><p className="v-lede">{t("Tell us a little about your business and the question that brought you here.")}</p><p>{t("We’ll start by understanding whether the Velaire Operating Diagnostic is the right next step.")}</p><a className="v-contact-email" href="mailto:hello@theroster.studio">{t("hello@theroster.studio")}</a><p className="v-note">{t("Velaire, Parti and Roster share this contact address.")}</p></div><div>{t(!draft ? <form onSubmit={prepare} className="v-form"><div className="v-form-row"><label>{t("Your name")}<input name="name" autoComplete="name" required maxLength={100} /></label><label>{t("Work email")}<input name="email" type="email" autoComplete="email" required maxLength={200} /></label></div><label>{t("Business / studio")}<input name="company" autoComplete="organization" required maxLength={160} /></label><div className="v-form-row"><label>{t("Team size")}<select name="size" defaultValue="" required><option value="" disabled>{t("Select")}</option><option value="1–14 people">{t("1–14 people")}</option><option value="15–30 people">{t("15–30 people")}</option><option value="31–75 people">{t("31–75 people")}</option><option value="76+ people">{t("76+ people")}</option></select></label><label>{t("I’m interested in")}<select name="interest" defaultValue={{
+              diagnostic: 'Operating Diagnostic',
+              parti: 'Parti',
+              roster: 'Roster / Roster Suite'
+            }[interest] || 'Operating Diagnostic'}><option value="Operating Diagnostic">{t("Operating Diagnostic")}</option><option value="Parti">{t("Parti")}</option><option value="Roster / Roster Suite">{t("Roster / Roster Suite")}</option><option value="Something else">{t("Something else")}</option></select></label></div><label>{t("What would you like to understand or change?")}<textarea name="challenge" rows={5} required maxLength={2500} placeholder={t("A project pattern, a team challenge, a question about the numbers…")} /></label><p className="v-note">{t("This prepares an email for you to review and send. Nothing is submitted or stored by this form.")}</p><button className="v-button" type="submit">{t("Prepare my inquiry")}</button></form> : <div className="v-draft" id="inquiry-draft" tabIndex={-1}><Label>{t("Your inquiry / ready to review")}</Label><h2>{t("A conversation starts here.")}</h2><p>{t("No message has been sent. Open the draft in your email app, or copy it into an email to hello@theroster.studio.")}</p><textarea id="draft-copy" aria-label={t("Your inquiry draft")} value={draft} readOnly rows={12} /><div className="v-actions"><a className="v-button" href={`mailto:hello@theroster.studio?subject=${encodeURIComponent(t('Velaire — business inquiry'))}&body=${encodeURIComponent(draft)}`}>{t("Open email draft")}</a><button className="v-link" onClick={copy}>{t(copied ? 'Copied' : 'Copy inquiry')}</button></div><p className="v-note" role="status">{t(copied ? 'Inquiry copied. Paste it into your email app.' : 'Please review the message before sending.')}</p><button className="v-link" onClick={() => setInquiry(null)}>{t("Start another inquiry")}</button></div>)}</div></section>;
 }
-
-export default function VelaireSite(){
-  const {pathname,hash}=useLocation();const path=pathname.replace(/\/$/,'')||'/';const [menu,setMenu]=useState(false)
-  useEffect(()=>{setMenu(false);document.documentElement.lang='en';const [title,description]=pages[path];document.title=title;document.querySelector('meta[name="description"]')?.setAttribute('content',description);document.querySelector('meta[property="og:title"]')?.setAttribute('content',title);document.querySelector('meta[property="og:description"]')?.setAttribute('content',description);if(hash){requestAnimationFrame(()=>document.getElementById(hash.slice(1))?.scrollIntoView({behavior:'instant',block:'start'}))}else{window.scrollTo({top:0,behavior:'instant'})}},[path,hash])
-  const Page={'/':Home,'/parti':Parti,'/roster':Roster,'/advisory':Advisory,'/about':About,'/contact':Contact}[path]
-  return <div className={`velaire-site v-page-${path.slice(1)||'home'}`}><a className="v-skip" href="#v-main">Skip to content</a><header className="v-header v-container"><Link className="v-wordmark" aria-label="Velaire home" to="/">VELAIRE<span>THE WORK BEHIND THE WORK</span></Link><button className="v-menu" aria-expanded={menu} aria-controls="v-navigation" onClick={()=>setMenu(!menu)}>{menu?'Close':'Menu'}</button><nav id="v-navigation" aria-label="Main navigation" className={menu?'is-open':''}>{nav.map(([label,url])=><Link key={url} to={url} aria-current={path===url?'page':undefined}>{label}</Link>)}<Link className="v-nav-contact" to="/contact">Let’s talk</Link><a className="v-signin" href={SIGN_IN}>Roster Suite sign in</a></nav></header><main id="v-main"><Page/></main><footer className="v-footer v-container"><div><Link className="v-wordmark" to="/">VELAIRE</Link><p>Clearer systems.<br/>Better decisions. Better work.</p></div><div><Label>The family</Label><Link to="/advisory">Velaire Advisory</Link><Link to="/parti">Parti</Link><Link to="/roster">Roster</Link></div><div><Label>Stay connected</Label><Link to="/about">Susan Liao</Link><Link to="/contact">Start a conversation</Link><a href={SIGN_IN}>Roster Suite sign in</a><Link to="/rooms">Existing client spaces</Link></div><div className="v-footer-bottom"><span>© {new Date().getFullYear()} Velaire · theroster.studio</span><span><Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link></span></div></footer></div>
+function NotFound() {
+  const t=useT()
+  return <section className="v-page-hero v-container"><Label>404</Label><h1>{t('A different way back.')}</h1><p className="v-lede">{t('This page is not here. Explore the Velaire family or start a conversation with us.')}</p><div className="v-actions"><Action to="/">{t('Back to Velaire')}</Action><Action to="/contact" quiet>{t('Start a conversation')}</Action></div></section>
+}
+function VelaireContent() {
+  const t = useT();
+  const {
+    language,
+    setLanguage
+  } = useLanguage();
+  const {
+    pathname,
+    hash
+  } = useLocation();
+  const path = pathname.replace(/\/$/, '') || '/';
+  const [menu, setMenu] = useState(false);
+  useEffect(() => {
+    setMenu(false);
+    if (hash) {
+      requestAnimationFrame(() => document.getElementById(hash.slice(1))?.scrollIntoView({
+        behavior: 'instant',
+        block: 'start'
+      }));
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: 'instant'
+      });
+    }
+  }, [path, hash]);
+  useEffect(() => {
+    document.documentElement.lang = language;
+    const [title, description] = pages[path] || pages['/404'];
+    document.title = t(title);
+    document.querySelector('meta[name="description"]')?.setAttribute('content', t(description));
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', t(title));
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', t(description));
+  }, [path, language, t]);
+  const Page = {
+    '/': Home,
+    '/parti': Parti,
+    '/roster': Roster,
+    '/advisory': Advisory,
+    '/about': About,
+    '/contact': Contact
+  }[path] || NotFound;
+  return <div lang={language} className={`velaire-site v-page-${path.slice(1) || 'home'}`}><a className="v-skip" href="#v-main">{t("Skip to content")}</a><header className="v-header v-container"><span className="v-header-kicker">{t("Advisory · Software · AI")}</span><Link className="v-wordmark" aria-label={t("Velaire home")} to="/">{t("VELAIRE")}<span>{t("THE WORK BEHIND THE WORK")}</span></Link><button className="v-menu" aria-expanded={menu} aria-controls="v-navigation" onClick={() => setMenu(!menu)}>{t(menu ? 'Close' : 'Menu')}</button><nav id="v-navigation" aria-label={t("Main navigation")} className={menu ? 'is-open' : ''}>{t(nav.map(([label, url]) => <Link key={url} to={url} aria-current={path === url ? 'page' : undefined}>{t(label)}</Link>))}<Link className="v-nav-contact" to="/contact">{t("Let’s talk")}</Link><a className="v-signin" href={SIGN_IN}>{t("Roster Suite sign in")}</a></nav><div className="v-languages" role="group" aria-label={t("Choose language")}>{t([['en', 'EN'], ['zh-Hans', '简体'], ['zh-Hant', '繁體']].map(([code, label]) => <button key={code} type="button" lang={code} aria-pressed={language === code} onClick={() => setLanguage(code)}>{t(label)}</button>))}</div></header><main id="v-main"><Page /></main><footer className="v-footer v-container"><div><Link className="v-wordmark" to="/">{t("VELAIRE")}</Link><p>{t("Clearer systems.")}<br />{t("Better decisions. Better work.")}</p></div><div><Label>{t("The family")}</Label><Link to="/advisory">{t("Velaire Advisory")}</Link><Link to="/parti">{t("Parti")}</Link><Link to="/roster">{t("Roster")}</Link></div><div><Label>{t("Stay connected")}</Label><Link to="/about">{t("Susan Liao")}</Link><Link to="/contact">{t("Start a conversation")}</Link><a href={SIGN_IN}>{t("Roster Suite sign in")}</a><Link to="/rooms">{t("Existing client spaces")}</Link></div><div className="v-footer-bottom"><span>{t("© ")}{t(new Date().getFullYear())}{t(" Velaire · theroster.studio")}</span><span><Link to="/privacy">{t("Privacy")}</Link><Link to="/terms">{t("Terms")}</Link></span></div></footer></div>;
+}
+export default function VelaireSite() {
+  return <LanguageProvider><VelaireContent /></LanguageProvider>;
 }
