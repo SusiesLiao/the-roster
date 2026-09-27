@@ -1,6 +1,14 @@
 // Reviewed website copy. Product names remain unchanged across languages.
 export const translations = {
   "zh-Hans": {
+    "Aesthetic judgment.": "审美判断。",
+    "Operating insight.": "经营洞察。",
+    "Making complexity clear.": "把复杂变清晰。",
+    "A positive operating loop": "经营的正向循环",
+    "Connect the relationships.": "让关系彼此支撑。",
+    "Let the business thrive.": "让经营持续向好。",
+    "Clearer projects. Supported teams. Healthier delivery and profit. Each part strengthens the next.": "项目更清晰，团队有支持，交付与利润更健康。每一个环节，都为下一个环节积累力量。",
+
     "Aesthetic judgment \u00d7 Operating insight \u00d7 Making complexity clear": "审美判断 × 经营洞察 × 把复杂变清晰",
     "Projects, people, time, cost and accountability are already one system.": "项目、人员、时间、成本和责任，本来就是同一个系统。",
     "Good management connects these relationships so each part supports the next, creating a positive operating loop.": "好的经营，不是把每个环节单独管好，而是让它们彼此支撑，形成正向循环。",
@@ -343,6 +351,14 @@ export const translations = {
     "Back to Velaire": "返回 Velaire"
   },
   "zh-Hant": {
+    "Aesthetic judgment.": "審美判斷。",
+    "Operating insight.": "經營洞察。",
+    "Making complexity clear.": "把複雜變清晰。",
+    "A positive operating loop": "經營的正向循環",
+    "Connect the relationships.": "讓關係彼此支撐。",
+    "Let the business thrive.": "讓經營持續向好。",
+    "Clearer projects. Supported teams. Healthier delivery and profit. Each part strengthens the next.": "專案更清晰，團隊有支持，交付與利潤更健康。每一個環節，都為下一個環節累積力量。",
+
     "Aesthetic judgment \u00d7 Operating insight \u00d7 Making complexity clear": "審美判斷 × 經營洞察 × 把複雜變清晰",
     "Projects, people, time, cost and accountability are already one system.": "專案、人員、時間、成本和責任，本來就是同一個系統。",
     "Good management connects these relationships so each part supports the next, creating a positive operating loop.": "好的經營，不是把每個環節單獨管好，而是讓它們彼此支撐，形成正向循環。",
