@@ -1,6 +1,14 @@
 // Reviewed website copy. Product names remain unchanged across languages.
 export const translations = {
   "zh-Hans": {
+    "A six-month budget pays for nine months of work": "六个月的预算，要撑九个月的工作",
+    "of extra work with no extra fee": "额外工作，项目费却没增加",
+    "The fee was planned to cover six months. The project takes nine. Three more months of salaries, coordination and delivery costs come out of the same budget, eating into the margin.": "项目费原本只覆盖六个月，项目却做了九个月。多出的三个月工资、协调与交付成本，都要从同一笔预算里支付，利润被一点点吃掉。",
+    "Overtime costs more, but the deadline still slips": "加班成本上升，交付还是延期",
+    "The team works extra hours, but approvals and handoffs are still blocked. Payroll costs climb, people lose recovery time, and the client still waits.": "团队不断加班，审批和交接却仍然卡住。人力成本上涨，员工失去休息时间，客户还是等不到交付。",
+    "One rejected drawing adds work across the team": "一张图纸被退回，整个团队多一轮工作",
+    "One rejection triggers revisions, coordination, checking and another submission. Other tasks wait, hours accumulate, and the project pays for work the original budget did not allow for.": "一次退回，带来修改、协调、复核和再次提交。其他工作被推迟，工时不断累积，项目还要承担原预算没有预留的成本。",
+
     "Founder": "创始人",
     "From making one project work to making good work sustainable.": "从做好一个项目，到让好作品持续发生。",
     "Velaire began with a question Susan kept returning to between design and running a business.": "Velaire 的起点，是 Susan 在设计与经营之间不断追问的一个问题：",
@@ -364,6 +372,14 @@ export const translations = {
     "Back to Velaire": "返回 Velaire"
   },
   "zh-Hant": {
+    "A six-month budget pays for nine months of work": "六個月的預算，要撐九個月的工作",
+    "of extra work with no extra fee": "額外工作，專案費卻沒增加",
+    "The fee was planned to cover six months. The project takes nine. Three more months of salaries, coordination and delivery costs come out of the same budget, eating into the margin.": "專案費原本只涵蓋六個月，專案卻做了九個月。多出的三個月薪資、協調與交付成本，都要從同一筆預算裡支付，利潤被一點點吃掉。",
+    "Overtime costs more, but the deadline still slips": "加班成本上升，交付還是延期",
+    "The team works extra hours, but approvals and handoffs are still blocked. Payroll costs climb, people lose recovery time, and the client still waits.": "團隊不斷加班，審批和交接卻仍然卡住。人力成本上漲，員工失去休息時間，客戶還是等不到交付。",
+    "One rejected drawing adds work across the team": "一張圖紙被退回，整個團隊多一輪工作",
+    "One rejection triggers revisions, coordination, checking and another submission. Other tasks wait, hours accumulate, and the project pays for work the original budget did not allow for.": "一次退回，帶來修改、協調、複核和再次提交。其他工作被推遲，工時不斷累積，專案還要承擔原預算沒有預留的成本。",
+
     "Founder": "創辦人",
     "From making one project work to making good work sustainable.": "從做好一個專案，到讓好作品持續發生。",
     "Velaire began with a question Susan kept returning to between design and running a business.": "Velaire 的起點，是 Susan 在設計與經營之間不斷追問的一個問題：",

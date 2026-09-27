@@ -82,28 +82,28 @@ function Family() {
 }
 const scenarios = [{
   name: 'Project drift',
-  signal: 'Six months becomes nine.',
+  signal: 'A six-month budget pays for nine months of work',
   metric: '3 months',
-  caption: 'beyond the original programme',
-  context: 'Same fee. More time. More handoffs. The revenue line has not moved, but the work has.',
+  caption: 'of extra work with no extra fee',
+  context: 'The fee was planned to cover six months. The project takes nine. Three more months of salaries, coordination and delivery costs come out of the same budget, eating into the margin.',
   parti: 'Connect the phase timeline, actual hours, repeat submissions and unchanged fee.',
   roster: 'Flag the drift, trace delayed approvals and prepare a follow-up for the project lead.',
   bars: [48, 74, 90]
 }, {
   name: 'Overtime',
-  signal: 'Everyone is working late. Still late.',
+  signal: 'Overtime costs more, but the deadline still slips',
   metric: '24 hours',
   caption: 'of illustrative overtime in one week',
-  context: 'A busy team can still be blocked. More hours do not tell you whether the work is moving forward.',
+  context: 'The team works extra hours, but approvals and handoffs are still blocked. Payroll costs climb, people lose recovery time, and the client still waits.',
   parti: 'Compare planned capacity, recorded time and the work waiting on a decision.',
   roster: 'Surface a workload imbalance and suggest a capacity review with the responsible lead.',
   bars: [42, 85, 66]
 }, {
   name: 'Rework',
-  signal: 'One rejected drawing is never just one.',
+  signal: 'One rejected drawing adds work across the team',
   metric: '3 rounds',
   caption: 'of illustrative repeat submissions',
-  context: 'A revision moves through people, phases and deadlines. Its true cost rarely stays in one place.',
+  context: 'One rejection triggers revisions, coordination, checking and another submission. Other tasks wait, hours accumulate, and the project pays for work the original budget did not allow for.',
   parti: 'Link rejected submissions to revision hours, dependencies and the project budget.',
   roster: 'Identify the repeated issue, draft a review request and ask the team lead to act.',
   bars: [35, 62, 87]
