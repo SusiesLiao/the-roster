@@ -4,6 +4,7 @@ import { APP_URL, SIGN_IN } from './lib/app.js'
 import Home from './pages/Home.jsx'
 import StudioHome from './pages/StudioHome.jsx'
 import Rooms from './pages/Rooms.jsx'
+import VelaireSite from './velaire/VelaireSite.jsx'
 const AmberProfile = lazy(() => import('./pages/AmberProfile.jsx'))
 const PepperProfile = lazy(() => import('./pages/PepperProfile.jsx'))
 const Interview = lazy(() => import('./pages/Interview.jsx'))
@@ -31,9 +32,11 @@ function ScrollTop() {
 }
 
 export default function App() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   // Preserve every existing customer route, outside the new studio-service shell.
-  if (pathname === '/') return <StudioHome />
+  if (pathname === '/' && ['#services', '#inside', '#approach', '#questions', '#contact'].includes(hash)) return <StudioHome />
+  if (['/', '/advisory', '/parti', '/roster', '/about', '/contact'].includes(pathname.replace(/\/$/, '') || '/')) return <VelaireSite />
+  if (pathname === '/service-details') return <StudioHome />
   if (pathname === '/rooms') return <Rooms />
   return (
     <>
