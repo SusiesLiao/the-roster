@@ -85,3 +85,5 @@
 .v-principles .v-chrome-sparkle{top:33px;left:-27px;width:20px;height:20px;line-height:0}.v-chrome-sparkle svg{width:100%;height:100%;fill:#a4a9b0;stroke:#626c78;stroke-width:.6;filter:drop-shadow(0 1px 0 #fff)}
 
 .v-page-about .v-principles>span{text-align:center}.v-principles .v-chrome-sparkle{left:-28px;top:calc(50% + 11px);transform:translateY(-50%)}
+
+@media(max-width:759px){.v-page-about .v-page-intro p:first-child{font-size:clamp(14.3px,1.495vw,19.5px)}.v-page-about .v-page-intro p:last-child{font-size:11.7px}}
