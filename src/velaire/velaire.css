@@ -79,3 +79,5 @@
 .v-page-about .v-page-intro{width:100%;max-width:none}.v-page-about .v-page-intro p:first-child,.v-page-about .v-page-intro p:last-child{max-width:none;text-wrap:wrap}
 
 .v-story-signature{display:flex;flex-direction:column;gap:5px;margin-top:28px!important}.v-story-signature span:first-child{font-family:Georgia,serif;font-style:italic;font-size:25px}.v-story-signature span:last-child{font-size:12px;letter-spacing:.08em;color:var(--v-muted)}
+
+.v-page-about .v-page-intro{text-align:center}.v-page-about .v-page-intro p:first-child,.v-page-about .v-page-intro p:last-child{color:#79565D}
