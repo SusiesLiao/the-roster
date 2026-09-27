@@ -105,3 +105,5 @@
 :is(.v-page-advisory,.v-page-parti,.v-page-roster) .v-page-hero>.v-label{display:block;width:100%;max-width:none;margin-left:auto;margin-right:auto}
 
 .v-example-signal h3{max-width:none;text-wrap:wrap;word-break:normal;font-size:clamp(25px,2.6vw,36px);line-height:1.35}
+
+.v-fit-line{display:block}
