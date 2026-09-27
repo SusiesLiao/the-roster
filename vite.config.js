@@ -11,7 +11,7 @@ export default defineConfig({
     },
     generateBundle() {
       this.emitFile({ type: 'asset', fileName: 'robots.txt', source: productionRelease
-        ? 'User-agent: *\nAllow: /\nSitemap: https://theroster.studio/sitemap.xml\n'
+        ? 'User-agent: *\nAllow: /\nSitemap: https://velaireco.com/sitemap.xml\n'
         : 'User-agent: *\nDisallow: /\n' })
     }
   }],
