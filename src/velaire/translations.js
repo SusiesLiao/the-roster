@@ -1,6 +1,19 @@
 // Reviewed website copy. Product names remain unchanged across languages.
 export const translations = {
   "zh-Hans": {
+    "When a six-month budget has to cover nine months of work": "六个月的预算要撑九个月的工作",
+    "The fee is agreed. The work is good. Then a client change adds revisions, an approval stalls, and the next phase starts late.": "项目费定好了，作品也很好。随后客户的改动带来返工，审批卡住，下一个阶段迟迟无法开始。",
+    "The team fills the gap with overtime. Three extra months of salaries, coordination and delivery come out of the same fee. The margin shrinks and the team has less capacity for the next project.": "团队用加班补上差距。多出的三个月工资、协调和交付成本，都从同一笔项目费里支付。利润减少，团队也没有余力投入下一个项目。",
+    "The question is not who should work harder. It is what needs to change so good work stops depending on people absorbing the cost.": "问题不是谁应该更努力，而是哪些关系需要改变，让好作品不再依赖团队默默承担代价。",
+    "This is where Velaire Advisory begins": "这就是 Velaire Advisory 的起点",
+    "We follow the work from the first commitment to final delivery, connecting decisions, workload, time, cost and ownership. Together we identify what needs to change and what should change first.": "我们从最初的承诺追踪到最终交付，把决策、工作量、时间、成本和责任连接起来。一起找出需要改变的关系，以及最该先改变的环节。",
+    "From diagnosis to a system that keeps working": "从诊断到持续运转",
+    "Advisory redesigns the relationships. Parti structures them. Roster helps the team keep acting on them.": "Advisory 重新设计经营关系。Parti 把关系结构化。Roster 协助团队持续行动。",
+    "Understand the problem and redesign how projects, people, time, cost and accountability support one another.": "理解问题，重新设计项目、人员、时间、成本和责任之间的关系。",
+    "Structure those relationships so the team works from a shared view of the business.": "把这些关系结构化，让团队有共同的经营依据。",
+    "Use that context to help the team follow up, coordinate and act within agreed permissions.": "基于这些依据，在约定权限内协助团队跟进、协调和行动。",
+    "The diagnostic starts with your business and existing tools. Whether Parti or Roster belongs in the roadmap depends on what you need.": "诊断从你的企业和现有工具开始。是否引入 Parti 或 Roster，由实际需要决定。",
+
     "A six-month budget pays for nine months of work": "六个月的预算，要撑九个月的工作",
     "of extra work with no extra fee": "额外工作，项目费却没增加",
     "The fee was planned to cover six months. The project takes nine. Three more months of salaries, coordination and delivery costs come out of the same budget, eating into the margin.": "项目费原本只覆盖六个月，项目却做了九个月。多出的三个月工资、协调与交付成本，都要从同一笔预算里支付，利润被一点点吃掉。",
@@ -372,6 +385,19 @@ export const translations = {
     "Back to Velaire": "返回 Velaire"
   },
   "zh-Hant": {
+    "When a six-month budget has to cover nine months of work": "六個月的預算要撐九個月的工作",
+    "The fee is agreed. The work is good. Then a client change adds revisions, an approval stalls, and the next phase starts late.": "專案費定好了，作品也很好。隨後客戶的改動帶來返工，審批卡住，下一個階段遲遲無法開始。",
+    "The team fills the gap with overtime. Three extra months of salaries, coordination and delivery come out of the same fee. The margin shrinks and the team has less capacity for the next project.": "團隊用加班補上差距。多出的三個月薪資、協調和交付成本，都從同一筆專案費裡支付。利潤減少，團隊也沒有餘力投入下一個專案。",
+    "The question is not who should work harder. It is what needs to change so good work stops depending on people absorbing the cost.": "問題不是誰應該更努力，而是哪些關係需要改變，讓好作品不再依賴團隊默默承擔代價。",
+    "This is where Velaire Advisory begins": "這就是 Velaire Advisory 的起點",
+    "We follow the work from the first commitment to final delivery, connecting decisions, workload, time, cost and ownership. Together we identify what needs to change and what should change first.": "我們從最初的承諾追蹤到最終交付，把決策、工作量、時間、成本和責任連結起來。一起找出需要改變的關係，以及最該先改變的環節。",
+    "From diagnosis to a system that keeps working": "從診斷到持續運轉",
+    "Advisory redesigns the relationships. Parti structures them. Roster helps the team keep acting on them.": "Advisory 重新設計經營關係。Parti 把關係結構化。Roster 協助團隊持續行動。",
+    "Understand the problem and redesign how projects, people, time, cost and accountability support one another.": "理解問題，重新設計專案、人員、時間、成本和責任之間的關係。",
+    "Structure those relationships so the team works from a shared view of the business.": "把這些關係結構化，讓團隊有共同的經營依據。",
+    "Use that context to help the team follow up, coordinate and act within agreed permissions.": "基於這些依據，在約定權限內協助團隊跟進、協調和行動。",
+    "The diagnostic starts with your business and existing tools. Whether Parti or Roster belongs in the roadmap depends on what you need.": "診斷從你的企業和現有工具開始。是否引入 Parti 或 Roster，由實際需要決定。",
+
     "A six-month budget pays for nine months of work": "六個月的預算，要撐九個月的工作",
     "of extra work with no extra fee": "額外工作，專案費卻沒增加",
     "The fee was planned to cover six months. The project takes nine. Three more months of salaries, coordination and delivery costs come out of the same budget, eating into the margin.": "專案費原本只涵蓋六個月，專案卻做了九個月。多出的三個月薪資、協調與交付成本，都要從同一筆預算裡支付，利潤被一點點吃掉。",
