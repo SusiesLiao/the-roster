@@ -8,16 +8,26 @@ import '@fontsource/inter/latin-500.css';
 import '@fontsource/inter/latin-600.css';
 import './velaire.css';
 import { LanguageProvider, useLanguage, useT } from './i18n.jsx';
+// Headlines carry no full stops. A line break that follows the end of a sentence
+// is kept, so the break does the work the period used to do. Breaks inside a
+// sentence collapse to a space and the text reflows naturally.
+const SENTENCE_END = /[.。!?！？]\s*$/;
 function cleanHeading(value, keepBreaks = false) {
+  let previous = '';
   return Children.map(value, child => {
-    if (typeof child === 'string') return child.replace(/[.。]/g, '');
-    if (isValidElement(child) && child.type === 'br') return keepBreaks ? child : ' ';
+    if (typeof child === 'string') { previous = child; return child.replace(/[.。]/g, ''); }
+    if (isValidElement(child) && child.type === 'br') {
+      const keep = keepBreaks || SENTENCE_END.test(previous);
+      previous = '';
+      return keep ? child : ' ';
+    }
+    previous = '';
     if (isValidElement(child) && child.props.children !== undefined) return cloneElement(child, {}, cleanHeading(child.props.children, keepBreaks));
     return child;
   });
 }
-function Heading({ level, children, ...props }) {
-  return createElement(`h${level}`, props, cleanHeading(children));
+function Heading({ level, children, breaks = false, ...props }) {
+  return createElement(`h${level}`, props, cleanHeading(children, breaks));
 }
 function Link({
   to,
@@ -70,7 +80,22 @@ function PhotoSpace({
   detail = false
 }) {
   const t = useT();
-  return <figure className={`v-photo ${detail ? 'v-photo-detail' : ''}`}><img src={detail ? '/images/roxelle-stair-detail.jpeg' : '/images/roxelle-living-room.jpg'} alt={t(detail ? 'Overhead view through a curving Roxelle staircase with suspended glass lights.' : 'Light-filled Roxelle living room with sheer curtains, sculptural seating and layered textiles.')} width={detail ? 768 : 1350} height={detail ? 1024 : 1800} loading={detail ? 'lazy' : 'eager'} fetchpriority={detail ? 'auto' : 'high'} /><figcaption><span>{t("ROXELLE / SELECTED WORK")}</span><span>{t(detail ? 'The detail and the whole.' : 'Design, made real.')}</span></figcaption></figure>;
+  return <figure className={`v-photo ${detail ? 'v-photo-detail' : ''}`}><img src={detail ? '/images/roxelle-stair-detail.jpeg' : '/images/roxelle-living-room.jpg'} alt={t(detail ? 'Overhead view through a curving Roxelle staircase with suspended glass lights.' : 'Light-filled Roxelle living room with sheer curtains, sculptural seating and layered textiles.')} width={detail ? 768 : 1350} height={detail ? 1024 : 1800} loading={detail ? 'lazy' : 'eager'} fetchpriority={detail ? 'auto' : 'high'} />{!detail && <PartiCard />}<figcaption>{detail ? <><span>{t("ROXELLE / SELECTED WORK")}</span><span>{t('The detail and the whole.')}</span></> : <><span>{t("ROXELLE DESIGN STUDIO / SHANGHAI")}</span><span>{t("The studio where Parti was built.")}</span></>}</figcaption></figure>;
+}
+function PartiCard() {
+  const t = useT();
+  return <div className="v-parti-card" role="img" aria-label={t("Illustrative Parti view: a project planned for six months is running at nine, with the fee unchanged.")}>
+    <div className="v-parti-card-head"><strong>Parti</strong><span>{t("Illustrative")}</span></div>
+    <p className="v-parti-card-kicker">{t("PROJECT HEALTH")}</p>
+    <p className="v-parti-card-title">{t("Private residence · Phase 3 of 5")}</p>
+    <div className="v-parti-card-row"><span>{t("Planned")}</span><i><b style={{ width: '66%' }} /></i><span>{t("6 mo")}</span></div>
+    <div className="v-parti-card-row is-actual"><span>{t("Actual")}</span><i><b style={{ width: '100%' }} /></i><span>{t("9 mo")}</span></div>
+    <p className="v-parti-card-flag">{t("Fee unchanged · margin under review")}</p>
+  </div>;
+}
+function Proof() {
+  const t = useT();
+  return <section className="v-proof v-container"><div><Label>{t("Built in practice")}</Label><Heading level={2}>{t("Not a concept.")}<br /><em>{t("Built inside a working studio.")}</em></Heading></div><div><p>{t("Parti began as the operating system of Roxelle Design Studio, a 25-person luxury interior design practice in Shanghai. Each part was built for a problem the studio was living with, and the team runs its projects on it every day.")}</p><ul className="v-simple-list">{[t("Phase planning and resource scheduling"), t("Overtime and leave approvals"), t("Deliverable reviews and approvals"), t("Team reviews with role-based access")].map(item => <li key={item}>{item}</li>)}</ul><Action to="/parti" quiet>{t("Explore Parti")}</Action></div></section>;
 }
 function Family() {
   const t = useT();
@@ -138,11 +163,12 @@ function BrandGuide() {
 function Home() {
   const t = useT();
   return <>
-  <section className="v-hero v-container"><div className="v-hero-copy"><Label>{t("Advisory · Software · AI")}</Label><Heading level={1}>{t("Complex businesses")}<br />{t("need clearer")}<br /><em>{t("operating systems.")}</em></Heading><p>{t("We help project-based businesses run better with expert advisory, connected business software and an AI workforce.")}</p><BrandGuide /><div className="v-actions"><Action /><Action to="/#system" quiet>{t("Explore the system")}</Action></div></div><PhotoSpace /></section>
+  <section className="v-hero v-container"><div className="v-hero-copy"><Heading level={1} breaks>{t("Revenue can look healthy.")}<br />{t("A project underneath it")}<br />{t("can be ")}<em>{t("quietly bleeding.")}</em></Heading><p>{t("Velaire helps design studios and project-based teams see where the time and margin actually go, then fix what is causing it.")}</p><BrandGuide /><div className="v-actions"><Action /><Action to="/#system" quiet>{t("Explore the system")}</Action></div></div><PhotoSpace /></section>
   <div className="v-audience v-container"><span>{t("FOR THE BUSINESSES BEHIND THE WORK")}</span><p>{t("Creative studios. Design practices. Project-based teams.")}</p></div>
-  <Family /><section className="v-section v-container v-problem"><Label>{t("The work behind the work")}</Label><Heading level={2}>{t("Revenue can look healthy.")}<br />{t("A project underneath it")}<br />{t("can be ")}<em>{t("quietly bleeding.")}</em></Heading><div><p>{t("Six months becomes nine. Scope moves. Overtime climbs. Drawings are reworked. Approvals stall.")}</p><p>{t("The numbers tell you that something happened. We want to show you why.")}</p></div></section>
-  <section className="v-method v-container"><Label>{t("From seeing to doing")}</Label><div>{t([['Susan', 'Sees the problem.'], ['Velaire', 'Redesigns the business.'], ['Parti', 'Structures it.'], ['Roster', 'Helps it act.']].map(([name, body]) => <div key={name}><Heading level={3}>{t(name)}</Heading><p>{t(body)}</p></div>))}</div></section>
+  <Family /><section className="v-section v-container v-problem"><Label>{t("The work behind the work")}</Label><Heading level={2}>{t("Six months becomes nine.")}<br /><em>{t("The fee stays the same.")}</em></Heading><div><p>{t("Scope moves. Overtime climbs. Drawings are reworked. Approvals stall.")}</p><p>{t("The numbers tell you that something happened. We want to show you why.")}</p></div></section>
+  <section className="v-method v-container"><Label>{t("From seeing to doing")}</Label><div>{t([['Velaire', 'Redesigns the business.'], ['Parti', 'Structures it.'], ['Roster', 'Helps it act.']].map(([name, body]) => <div key={name}><Heading level={3}>{t(name)}</Heading><p>{t(body)}</p></div>))}</div></section>
   <section className="v-section v-container"><SectionTitle label={t("The connection is the point")} body={t("Parti tells you what is happening. Roster helps you do something about it.")}>{t("A signal becomes")}<br /><em>{t("a next step.")}</em></SectionTitle><ConnectedExample /></section>
+  <Proof />
   <section className="v-product-pair v-container"><article className="v-parti-tone"><Label>{t("Parti / Business operating system")}</Label><Heading level={2}>{t("Your business is")}<br />{t("already a system.")}</Heading><p>{t("Parti makes the relationships visible. Projects, phases, people and economics belong in the same conversation.")}</p><Action to="/parti" quiet>{t("Explore Parti")}</Action></article><article className="v-roster-tone"><Label>{t("Roster / AI workforce")}</Label><Heading level={2}>{t("Visibility is useful.")}<br /><em>{t("Action is better.")}</em></Heading><p>{t("Roster Suite brings agent work, context and human decisions together, so the team can respond with intention.")}</p><Action to="/roster" quiet>{t("Explore Roster Suite")}</Action></article></section>
   <Diagnostic />
   <FinalCTA ecosystem />
@@ -297,7 +323,7 @@ function VelaireContent() {
     '/about': About,
     '/contact': Contact
   }[path] || NotFound;
-  return <div lang={language} data-palette={palette} className={`velaire-site v-page-${path.slice(1) || 'home'}`}><a className="v-skip" href="#v-main">{t("Skip to content")}</a><header className="v-header v-container"><span className="v-header-kicker">{t("Advisory · Software · AI")}</span><Link className="v-wordmark" aria-label={t("Velaire home")} to="/">{t("VELAIRE")}<span>{t("THE WORK BEHIND THE WORK")}</span></Link><button className="v-menu" aria-expanded={menu} aria-controls="v-navigation" onClick={() => setMenu(!menu)}>{t(menu ? 'Close' : 'Menu')}</button><nav id="v-navigation" aria-label={t("Main navigation")} className={menu ? 'is-open' : ''}>{t(nav.map(([label, url]) => <Link key={url} to={url} aria-current={path === url ? 'page' : undefined}>{t(label)}</Link>))}<Link className="v-nav-contact" to="/contact">{t("Let’s talk")}</Link><a className="v-signin" href={SIGN_IN}>{t("Roster Suite sign in")}</a></nav><div className="v-languages" role="group" aria-label={t("Choose language")}>{t([['en', 'EN'], ['zh-Hans', '简体'], ['zh-Hant', '繁體']].map(([code, label]) => <button key={code} type="button" lang={code} aria-pressed={language === code} onClick={() => setLanguage(code)}>{t(label)}</button>))}</div></header><main id="v-main"><Page /></main><footer className="v-footer v-container"><div><Link className="v-wordmark" to="/">{t("VELAIRE")}</Link><p>{t("Clearer systems.")}<br />{t("Better decisions. Better work.")}</p></div><div><Label>{t("The family")}</Label><Link to="/advisory">{t("Velaire Advisory")}</Link><Link to="/parti">{t("Parti")}</Link><Link to="/roster">{t("Roster")}</Link></div><div><Label>{t("Stay connected")}</Label><Link to="/about">{t("Susan Liao")}</Link><Link to="/contact">{t("Start a conversation")}</Link><a href={SIGN_IN}>{t("Roster Suite sign in")}</a><Link to="/rooms">{t("Existing client spaces")}</Link><a href="https://home.velaireco.com/">{t("Business Home")}</a></div><div className="v-footer-bottom"><span>{t("© ")}{t(new Date().getFullYear())}{t(" Velaire · velaireco.com")}</span><span><Link to="/privacy">{t("Privacy")}</Link><Link to="/terms">{t("Terms")}</Link></span></div></footer></div>;
+  return <div lang={language} data-palette={palette} className={`velaire-site v-page-${path.slice(1) || 'home'}`}><a className="v-skip" href="#v-main">{t("Skip to content")}</a><header className="v-header v-container"><span className="v-header-kicker">{t("Advisory · Software · AI")}</span><Link className="v-wordmark" aria-label={t("Velaire home")} to="/">{t("VELAIRE")}<span>{t("THE WORK BEHIND THE WORK")}</span></Link><button className="v-menu" aria-expanded={menu} aria-controls="v-navigation" onClick={() => setMenu(!menu)}>{t(menu ? 'Close' : 'Menu')}</button><nav id="v-navigation" aria-label={t("Main navigation")} className={menu ? 'is-open' : ''}>{t(nav.map(([label, url]) => <Link key={url} to={url} aria-current={path === url ? 'page' : undefined}>{t(label)}</Link>))}<Link className="v-nav-contact" to="/contact">{t("Let’s talk")}</Link><a className="v-signin" href={SIGN_IN}>{t("Client login")}</a></nav><div className="v-languages" role="group" aria-label={t("Choose language")}>{t([['en', 'EN'], ['zh-Hans', '简体'], ['zh-Hant', '繁體']].map(([code, label]) => <button key={code} type="button" lang={code} aria-pressed={language === code} onClick={() => setLanguage(code)}>{t(label)}</button>))}</div></header><main id="v-main"><Page /></main><footer className="v-footer v-container"><div><Link className="v-wordmark" to="/">{t("VELAIRE")}</Link><p>{t("Clearer systems.")}<br />{t("Better decisions. Better work.")}</p></div><div><Label>{t("The family")}</Label><Link to="/advisory">{t("Velaire Advisory")}</Link><Link to="/parti">{t("Parti")}</Link><Link to="/roster">{t("Roster")}</Link></div><div><Label>{t("Stay connected")}</Label><Link to="/about">{t("Susan Liao")}</Link><Link to="/contact">{t("Start a conversation")}</Link><a href={SIGN_IN}>{t("Client login")}</a></div><div className="v-footer-bottom"><span>{t("© ")}{t(new Date().getFullYear())}{t(" Velaire · velaireco.com")}</span><span><Link to="/rooms">{t("Client spaces")}</Link><Link to="/privacy">{t("Privacy")}</Link><Link to="/terms">{t("Terms")}</Link></span></div></footer></div>;
 }
 export default function VelaireSite() {
   return <LanguageProvider><VelaireContent /></LanguageProvider>;
