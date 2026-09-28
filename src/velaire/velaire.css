@@ -243,3 +243,6 @@
   .v-final { padding-top: 58px; padding-bottom: 65px; }
   .v-footer { padding-top: 47px; }
 }
+
+/* Mid-sentence hero breaks are for wide screens only; on phones the line reflows naturally. */
+@media(max-width:820px){.v-hero h1 br.v-br-wide{display:none}}
