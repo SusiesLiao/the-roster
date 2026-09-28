@@ -156,3 +156,12 @@
 @media(max-width:480px){.v-header>.v-wordmark{font-size:40px}}
 .velaire-site .v-parti-card p+p{margin-top:0}
 @media(max-width:480px){.v-parti-card{width:250px;left:12px;bottom:64px;padding:13px 14px 12px}.v-parti-card-head{padding-bottom:8px;margin-bottom:10px}.velaire-site .v-parti-card-title{margin-bottom:8px;font-size:12px}.velaire-site .v-parti-card-flag{margin-top:10px!important;padding:6px 8px}}
+
+/* Parti card lives in the hero copy column, beside the photo rather than over it. */
+.v-parti-card{position:static;left:auto;bottom:auto;width:100%;max-width:440px;margin-top:34px;box-shadow:none;padding:18px 20px 16px}
+.v-hero{align-items:stretch}.v-hero-copy{align-self:center}
+.v-hero .v-photo{display:flex;flex-direction:column}
+.v-hero .v-photo img{flex:1;height:auto;min-height:600px}
+@media(max-width:1100px){.v-parti-card{left:auto;width:100%}}
+@media(max-width:820px){.v-parti-card{left:auto;bottom:auto;width:100%;max-width:500px;margin-top:30px}.v-hero .v-photo img{flex:none;height:520px;min-height:0}}
+@media(max-width:480px){.v-parti-card{left:auto;bottom:auto;width:100%}.v-hero .v-photo img{height:440px}}
