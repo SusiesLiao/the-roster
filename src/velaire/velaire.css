@@ -181,3 +181,65 @@
 @media(max-width:820px){.v-proof-shot{margin-top:36px}.v-shots .v-shot{margin-bottom:42px}}
 @media(max-width:480px){.v-shot-bar{padding:7px 12px;font-size:10px}.v-shot-bar span:first-child{font-size:15px}}
 .v-proof{padding-bottom:110px!important}@media(max-width:820px){.v-proof{padding-bottom:70px!important}}
+/* Phone layouts have their own editorial rhythm; desktop composition stays intact. */
+@media (max-width: 650px) {
+  .v-container { padding-left: 22px; padding-right: 22px; }
+  .v-header { grid-template-columns: 1fr auto; gap: 0 12px; padding-top: 13px; padding-bottom: 9px; }
+  .v-header > .v-wordmark { grid-column: 1; grid-row: 1; justify-self: start; margin: 0; font-size: 36px; line-height: 1; text-align: left; }
+  .v-header .v-wordmark span { margin-top: 3px; margin-left: 2px; font-size: 6px; letter-spacing: .11em; }
+  .v-header .v-menu { grid-column: 2; grid-row: 1; align-self: center; padding: 8px 0 8px 12px; font-size: 12px!important; }
+  .v-header .v-languages { grid-column: 1/-1; grid-row: 2; justify-self: start; margin-top: 8px; gap: 8px; }
+  .v-header .v-languages button { min-height: 25px; padding: 3px 5px; font-size: 11px; }
+  .v-header nav { grid-row: 3; margin-top: 8px; padding: 15px 0 10px; border-top: 1px solid var(--v-line); }
+  .v-header nav.is-open { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+  .v-header nav a { white-space: normal; padding: 8px 0; }
+  .v-header nav .v-nav-contact { padding: 8px 0; }
+
+  .v-hero { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding-top: 0; padding-bottom: 52px; }
+  .v-hero > .v-photo { order: -1; width: calc(100% + 44px); margin: 0 -22px 27px; padding: 0; }
+  .v-hero .v-photo img { flex: none; height: clamp(260px, 75vw, 365px); min-height: 0; object-position: 50% 72%; }
+  .v-hero .v-photo figcaption { padding: 9px 22px 0; margin: 0; font-size: 9px; }
+  .v-hero-copy .v-label { margin-bottom: 13px!important; }
+  .v-hero h1 { font-size: clamp(43px, 11.1vw, 56px); line-height: .99; letter-spacing: -.045em; margin-bottom: 17px; }
+  .v-hero-copy > p:not(.v-label) { font-size: 16px; line-height: 1.6; }
+  .v-brand-guide { margin-top: 23px; padding: 10px 0; }
+  .v-hero .v-actions { margin-top: 23px; }
+  .v-hero .v-button { min-height: 48px; }
+  .v-audience { padding-top: 18px; padding-bottom: 18px; }
+  .v-section { padding-top: 58px; padding-bottom: 58px; }
+  .v-section-title { margin-bottom: 29px; }
+  .v-section-title h2 { line-height: 1.13; }
+  .v-family article, .v-family article:first-child, .v-family article:last-child { padding: 27px 0; }
+  .v-family h3 { margin-bottom: 13px; }
+  .v-family p:not(.v-label) { margin-bottom: 14px; }
+  .v-example { padding: 14px; }
+  .v-example-body { margin-top: 18px; }
+
+  :is(.v-page-advisory,.v-page-parti,.v-page-roster) .v-page-hero { text-align: left; padding-top: 39px; padding-bottom: 47px; }
+  :is(.v-page-advisory,.v-page-parti,.v-page-roster) .v-page-hero > .v-label { text-align: left; margin-bottom: 19px!important; }
+  :is(.v-page-advisory,.v-page-parti,.v-page-roster) .v-page-hero h1 { text-align: left; margin: 0 0 23px; max-width: 11ch; font-size: clamp(42px, 11vw, 58px); line-height: 1.02; letter-spacing: -.035em; }
+  :is(.v-page-advisory,.v-page-parti,.v-page-roster) .v-page-intro { align-items: flex-start; gap: 11px; margin: 0; padding-top: 19px; border-top: 1px solid var(--v-line); }
+  :is(.v-page-advisory,.v-page-parti,.v-page-roster) .v-page-intro p { text-align: left; text-wrap: pretty; }
+  :is(.v-page-advisory,.v-page-parti,.v-page-roster) .v-page-intro p:first-child { font-size: 26px; line-height: 1.25; }
+  :is(.v-page-advisory,.v-page-parti,.v-page-roster) .v-page-intro p:last-child { font-size: 15px; line-height: 1.65; }
+  :is(.v-page-advisory,.v-page-parti,.v-page-roster) .v-page-hero .v-actions { align-items: flex-start; gap: 10px; margin-top: 23px; }
+  :is(.v-page-advisory,.v-page-parti,.v-page-roster):lang(zh) .v-page-hero h1 { max-width: none; font-size: clamp(36px, 9.5vw, 48px); line-height: 1.18; }
+  .v-page-parti .v-page-hero { background: var(--v-mist); }
+  .v-page-roster .v-page-hero { background: var(--v-band); }
+
+  .v-page-about .v-page-hero { padding-top: 27px; padding-bottom: 38px; }
+  .v-page-about .v-principles { gap: 0; margin: 0 0 28px; font-size: clamp(36px, 9vw, 46px)!important; line-height: 1.2; }
+  .v-page-about .v-principles > span { padding: 12px 0; text-align: left; }
+  .v-page-about .v-page-intro { text-align: left; }
+  .v-page-about .v-page-intro p:first-child { font-size: clamp(25px, 6.5vw, 32px); line-height: 1.38; text-align: left; }
+  .v-page-about .v-page-intro p:last-child { font-size: 15px; line-height: 1.7; text-align: left; }
+  .v-page-about .v-founder-story { gap: 23px; }
+  .v-page-about .v-founder-story .v-photo-detail img { height: 360px; }
+  .v-founder-story h2 { font-size: 34px; }
+  .v-founder-story p { line-height: 1.75; }
+
+  .v-contact { padding-top: 38px; }
+  .v-contact h1 { font-size: clamp(44px, 10.5vw, 58px); line-height: 1.02; }
+  .v-final { padding-top: 58px; padding-bottom: 65px; }
+  .v-footer { padding-top: 47px; }
+}
