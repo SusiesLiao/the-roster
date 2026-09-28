@@ -37,7 +37,7 @@ export default function App() {
   if (import.meta.env.DEV && pathname === '/directions') return <Suspense fallback={<PageLoading />}><Directions /></Suspense>
   if (pathname === '/' && ['theroster.studio', 'www.theroster.studio'].includes(window.location.hostname)) return <StudioHome />
   // Preserve every existing customer route, outside the new studio-service shell.
-  if (pathname === '/' && ['#services', '#inside', '#approach', '#questions', '#contact'].includes(hash)) return <StudioHome />
+  if (pathname === '/' && ['#services', '#system', '#inside', '#suite', '#approach', '#questions', '#contact'].includes(hash)) return <StudioHome />
   if (['/', '/advisory', '/parti', '/roster', '/about', '/contact'].includes(pathname.replace(/\/$/, '') || '/')) return <VelaireSite />
   if (pathname === '/service-details') return <StudioHome />
   if (pathname === '/rooms') return <Rooms />

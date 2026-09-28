@@ -69,3 +69,26 @@
   .studio-workflow-buttons button { font-size: 12px; padding: 12px 8px; }
 }
 @media (prefers-reduced-motion:reduce) { .studio-site a { transition: none; } }
+
+/* Roster's distinct place in the Velaire system. */
+.studio-system-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.studio-system-grid article{display:flex;flex-direction:column;min-width:0;padding:30px;background:#ECEFEF;border-radius:32px}
+.studio-system-grid article:nth-child(2){background:#E6ECF0}
+.studio-system-grid article:nth-child(3){background:#DCE5ED}
+.studio-system-grid h3{margin:8px 0 2px}
+.studio-system-grid .studio-role{color:var(--studio-blue);font-size:14px;font-weight:600;margin:0 0 22px}
+.studio-system-grid article>p:not(.studio-role){font-family:Georgia,"Songti SC","Songti TC",serif;font-size:16px;line-height:1.8;color:#53606B;margin-bottom:28px}
+.studio-system-grid article>a{margin-top:auto;font-size:14px;font-weight:600;color:var(--studio-ink)}
+.studio-system-grid article>a span{padding-left:8px}
+.studio-suite{display:grid;grid-template-columns:1fr 1fr;gap:8%;align-items:center}
+.studio-suite-intro>p:not(.studio-eyebrow):not(.studio-small){font-family:Georgia,"Songti SC","Songti TC",serif;color:#53606B;font-size:17px;line-height:1.8;margin:20px 0}
+.studio-suite-intro .studio-small{margin-top:18px}
+.studio-suite-parts{background:#DCE5ED;border-radius:44px;padding:26px}
+.studio-suite-parts>div{display:flex;gap:23px;align-items:baseline;padding:25px 15px;border-bottom:1px solid rgba(90,106,132,.2)}
+.studio-suite-parts>div:last-child{border:0}
+.studio-suite-parts>div>span{font-family:var(--serif);font-size:26px;color:var(--studio-blue)}
+.studio-suite-parts h3{font-size:29px;margin-bottom:6px}
+.studio-suite-parts p{font-size:14px;color:#53606B}
+.studio-founder-name{font-family:var(--sans)!important;font-weight:600;font-size:14px!important;color:var(--studio-blue)!important;margin-top:25px}
+@media(max-width:1050px){.studio-header nav{gap:14px;font-size:12px}.studio-header{gap:14px;padding-left:3%;padding-right:3%}.studio-system-grid article{padding:24px}}
+@media(max-width:760px){.studio-system-grid,.studio-suite{grid-template-columns:1fr}.studio-system-grid{gap:12px}.studio-system-grid article{padding:27px}.studio-suite{gap:26px}.studio-suite-parts{padding:13px;border-radius:30px}.studio-suite-parts>div{padding:19px 12px}.studio-hero h1{font-size:clamp(42px,10vw,58px)}.studio-hero-copy h1{overflow-wrap:normal}.studio-workflow-buttons{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:thin}.studio-workflow-buttons button{flex:0 0 auto;white-space:nowrap;padding:12px 14px}.studio-paper-foot{flex-wrap:wrap}.studio-art-heading{font-size:9px}.studio-suite-intro .studio-text-link{max-width:100%}}
