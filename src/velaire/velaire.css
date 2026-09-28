@@ -165,3 +165,19 @@
 @media(max-width:1100px){.v-parti-card{left:auto;width:100%}}
 @media(max-width:820px){.v-parti-card{left:auto;bottom:auto;width:100%;max-width:500px;margin-top:30px}.v-hero .v-photo img{flex:none;height:520px;min-height:0}}
 @media(max-width:480px){.v-parti-card{left:auto;bottom:auto;width:100%}.v-hero .v-photo img{height:440px}}
+
+/* Real Parti screenshots (demo studio). */
+.v-shot{margin:0}
+.v-shot-frame{background:var(--brand-paper,#f9faf8);border:1px solid var(--v-line);border-radius:6px;overflow:hidden;box-shadow:0 24px 50px -34px rgba(58,58,74,.45)}
+.v-shot-bar{display:flex;justify-content:space-between;align-items:center;padding:9px 16px;border-bottom:1px solid var(--v-line);background:var(--v-mist);font-size:11px;color:var(--v-muted);letter-spacing:.04em}
+.v-shot-bar span:first-child{font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;letter-spacing:0;color:var(--v-accent)}
+.v-shot img{display:block;width:100%;height:auto}
+.v-shot figcaption{margin-top:12px;font-size:13px;color:var(--v-muted)}
+.v-proof-shot{grid-column:1/-1;margin-top:56px}
+.v-shots .v-shot{max-width:1120px;margin:0 auto 64px}
+.v-shots .v-shot:last-child{margin-bottom:0}
+.v-shots .v-section-title{margin-left:auto;margin-right:auto;max-width:1120px}
+.v-shots h2 em{display:block}
+@media(max-width:820px){.v-proof-shot{margin-top:36px}.v-shots .v-shot{margin-bottom:42px}}
+@media(max-width:480px){.v-shot-bar{padding:7px 12px;font-size:10px}.v-shot-bar span:first-child{font-size:15px}}
+.v-proof{padding-bottom:110px!important}@media(max-width:820px){.v-proof{padding-bottom:70px!important}}
