@@ -93,16 +93,23 @@ function PartiCard() {
     <p className="v-parti-card-flag">{t("Fee unchanged · margin under review")}</p>
   </div>;
 }
+// Real Parti screens from the demo studio, one set per site language:
+// English in USD, Simplified Chinese in RMB, Traditional Chinese in NT$.
+// The fourth screen shows the other interface language, to show Parti is bilingual.
+const SHOT_SIZES = { finance: [1568, 329], plan: [1443, 840], projects: [1568, 553], dashboard: [1565, 205] };
 const SHOTS = {
-  projects: ['/images/parti/projects.webp', 1568, 553, 'Parti project list showing each project with its phase progress, tasks and fee status.', 'Every project, every phase, at a glance.'],
-  plan: ['/images/parti/phase-plan.webp', 1445, 840, 'Parti phase plan with planned hours, labor cost and each phase with its lead, dates and progress.', 'Phases, leads and planned hours, set before the work starts.'],
-  finance: ['/images/parti/finance-summary.webp', 1568, 348, 'Parti project finance summary: contract, planned and actual cost, variance against plan and cost consumption at 105 percent.', 'Actual cost against plan, while there is still time to act.'],
-  dashboardZh: ['/images/parti/dashboard-zh.webp', 1568, 211, 'Parti studio profit card in Chinese, flagging one project with a 9 percent margin.', 'Fully bilingual. The studio margin view, in Chinese.']
+  projects: ['Parti project list showing each project with its phase progress, tasks and fee status.', 'Every project, every phase, at a glance.'],
+  plan: ['Parti phase plan with planned hours, labor cost and each phase with its lead, dates and progress.', 'Phases, leads and planned hours, set before the work starts.'],
+  finance: ['Parti project finance summary: contract, planned and actual cost, variance against plan and cost consumption at 105 percent.', 'Actual cost against plan, while there is still time to act.'],
+  dashboard: ['Parti studio margin card, flagging one project with a 9 percent margin.', null]
 };
 function ProductShot({ shot }) {
   const t = useT();
-  const [src, width, height, alt, caption] = SHOTS[shot];
-  return <figure className="v-shot"><div className="v-shot-frame"><div className="v-shot-bar"><span>Parti</span><span>{t("Demo studio · sample data")}</span></div><img src={src} width={width} height={height} alt={t(alt)} loading="lazy" decoding="async" /></div><figcaption>{t(caption)}</figcaption></figure>;
+  const { language } = useLanguage();
+  const [alt, caption] = SHOTS[shot];
+  const [width, height] = SHOT_SIZES[shot];
+  const text = caption ?? (language === 'en' ? 'Fully bilingual. The studio margin view, in Chinese.' : 'Fully bilingual. The studio margin view, in English.');
+  return <figure className="v-shot"><div className="v-shot-frame"><div className="v-shot-bar"><span>Parti</span><span>{t("Demo studio · sample data")}</span></div><img src={`/images/parti/${language}/${shot}.webp`} width={width} height={height} alt={t(alt)} loading="lazy" decoding="async" /></div><figcaption>{t(text)}</figcaption></figure>;
 }
 function Proof() {
   const t = useT();
@@ -189,7 +196,7 @@ function Parti() {
   const t = useT();
   return <>
   <section className="v-page-hero v-container"><Label>{t("Parti / Business operating system")}</Label><Heading level={1}>{t("Your business is")}<br />{t("already ")}<em>{t("a system.")}</em></Heading><div className="v-page-intro"><p>{t("Parti makes the relationships visible.")}</p><p>{t("Know whether each project is consuming the time, people and margin you planned for before it becomes a problem.")}</p></div><div className="v-actions"><Action to="/contact?interest=parti">{t("Explore Parti for your business")}</Action><span className="v-note">{t("Developing with paid design partners")}</span></div></section>
-  <section className="v-section v-container v-shots"><SectionTitle label={t("Inside Parti")} body={t("Screens from the Parti demo studio. The data is sample data; the product is the one studios use.")}>{t("The system,")}<br /><em>{t("as your team sees it.")}</em></SectionTitle><ProductShot shot="projects" /><ProductShot shot="plan" /><ProductShot shot="finance" /><ProductShot shot="dashboardZh" /></section>
+  <section className="v-section v-container v-shots"><SectionTitle label={t("Inside Parti")} body={t("Screens from the Parti demo studio. The data is sample data; the product is the one studios use.")}>{t("The system,")}<br /><em>{t("as your team sees it.")}</em></SectionTitle><ProductShot shot="projects" /><ProductShot shot="plan" /><ProductShot shot="finance" /><ProductShot shot="dashboard" /></section>
   <section className="v-container v-parti-map"><div><Label>{t("The relationships behind the work")}</Label><Heading level={2}>{t("One project.")}<br /><em>{t("The whole picture.")}</em></Heading><p>{t("Ask why a project is drifting, and follow the connections.")}</p></div><div className="v-relationship"><div className="v-project-core"><span>{t("PROJECT / 01")}</span><Heading level={3}>{t("The studio commission")}</Heading><span>{t("Illustrative relationship model")}</span></div><div className="v-nodes">{t(['Phases & deadlines', 'People & capacity', 'Time & overtime', 'Cost & margin', 'Quality & rework', 'Approvals & owners'].map(n => <span key={n}>{t(n)}</span>))}</div></div></section>
   <section className="v-section v-container"><SectionTitle label={t("The commercial starting point")}>{t("Where did the time go?")}<br />{t("What did it do to the margin?")}</SectionTitle><div className="v-feature-grid">{t([['Projects & phases', 'See work in its delivery context, from the first brief to the final handoff.'], ['People & capacity', 'Connect staffing plans with real workloads, team structure and availability.'], ['Time & overtime', 'Compare planned and actual effort. Ask what additional hours are telling you.'], ['Project economics', 'Put fees, budgets, time and cost in one view of project performance.'], ['Quality & rework', 'Follow submissions, rejects and revisions through their delivery consequences.'], ['Approvals & accountability', 'Make the next decision, its owner and its dependencies visible.']].map(([title, body], i) => <article key={title}><Label>{t("0")}{t(i + 1)}</Label><Heading level={3}>{t(title)}</Heading><p>{t(body)}</p></article>))}</div><p className="v-note">{t("Initial product scope. Availability and configuration are agreed with each design partner.")}</p></section>
   <section className="v-statement v-container"><Heading level={2}>{t("Relationships matter")}<br /><em>{t("more than feature count.")}</em></Heading><p>{t("A timesheet can tell you someone worked late. A connected system can help explain why, what it cost, and which decision changes the outcome.")}</p></section><section className="v-section v-container"><ConnectedExample /></section><section className="v-section v-container v-roster-nudge"><div><Label>{t("When the relationships are clear")}</Label><Heading level={2}>{t("A clearer picture can become a next step")}</Heading></div><div><p>{t("Parti gives your team a shared view of projects, people, time and cost. When you are ready, Roster can use that context to flag what needs attention, prepare follow-ups and help keep work moving.")}</p><p className="v-note">{t("Start with Parti. Add Roster where a specific job needs support, with clear permissions and human review.")}</p><Action to="/roster" quiet>{t("See how Roster works with Parti")}</Action></div></section><Diagnostic /><FinalCTA />

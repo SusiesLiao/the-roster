@@ -1,6 +1,8 @@
 // Reviewed website copy. Product names remain unchanged across languages.
 export const translations = {
   "zh-Hans": {
+    "Fully bilingual. The studio margin view, in English.": "完整中英双语。工作室利润率，英文界面。",
+    "Parti studio margin card, flagging one project with a 9 percent margin.": "Parti 工作室利润率卡片，提示一个毛利率 9% 的项目。",
     "Demo studio · sample data": "演示工作室 · 示例数据",
     "Inside Parti": "Parti 实景",
     "The system,": "这就是系统，",
@@ -428,6 +430,8 @@ export const translations = {
     "Back to Velaire": "返回 Velaire"
   },
   "zh-Hant": {
+    "Fully bilingual. The studio margin view, in English.": "完整中英雙語。工作室利潤率，英文介面。",
+    "Parti studio margin card, flagging one project with a 9 percent margin.": "Parti 工作室利潤率卡片，提示一個毛利率 9% 的專案。",
     "Demo studio · sample data": "演示工作室 · 範例資料",
     "Inside Parti": "Parti 實景",
     "The system,": "這就是系統，",
