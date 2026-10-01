@@ -17,7 +17,7 @@ function authorized(request: Request): boolean {
   return timingSafeEqual(a, b);
 }
 
-export default async function handler(request: Request): Promise<Response> {
+async function handler(request: Request): Promise<Response> {
   if (request.method === "GET") return json({ ok: true, service: "roster-browser-worker", mode: "draft-confirm-commit" });
   if (request.method !== "POST") return json({ error: "METHOD_NOT_ALLOWED" }, 405);
   if (!authorized(request)) return json({ error: "UNAUTHORIZED" }, 401);
@@ -51,3 +51,9 @@ export default async function handler(request: Request): Promise<Response> {
     return json({ error: message.slice(0, 500) }, status);
   }
 }
+
+// Named HTTP exports opt into Vercel's Web Request/Response adapter. A default
+// function is treated as a Node req/res handler and returning Response there
+// does not end the HTTP response (even GET health checks time out).
+export const GET = handler;
+export const POST = handler;
