@@ -1,4 +1,6 @@
 import { Sandbox } from "@vercel/sandbox";
+import { randomUUID } from "node:crypto";
+import { readRenderedDocument, type PageEvidence } from "./read-only.js";
 import { callBrowserModel } from "./model.js";
 import { PRIVATE_CIDRS, isContextualFinalActionLabel, isDestructiveLabel, isFinalActionLabel, normalizeLabel, parsePublicUrl, refLine, sameSiteHost } from "./policy.js";
 
@@ -194,6 +196,18 @@ export async function createDraft(jobId: string, urlInput: string, instruction: 
     throw new Error("STEP_LIMIT");
   } finally {
     if (!keepAlive) await sandbox.stop().catch(() => undefined);
+  }
+}
+
+export async function readPage(urlInput: string): Promise<PageEvidence> {
+  // Read sessions never retain browser state or require an approval/commit round trip.
+  const url = parsePublicUrl(urlInput).toString();
+  const sandbox = await Sandbox.create({ ...sandboxOptions(`amber-read-${randomUUID()}`), timeout: 300_000 });
+  try {
+    await bootstrap(sandbox);
+    return await readRenderedDocument((args, timeout) => agent(sandbox, args, timeout), url);
+  } finally {
+    await sandbox.stop().catch(() => undefined);
   }
 }
 

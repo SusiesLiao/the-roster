@@ -1,5 +1,5 @@
 import { timingSafeEqual, createHash } from "node:crypto";
-import { cancelDraft, commitDraft, createDraft } from "../src/browser.js";
+import { cancelDraft, commitDraft, createDraft, readPage } from "../src/browser.js";
 import { assertPermittedTask, parsePublicUrl } from "../src/policy.js";
 
 export const maxDuration = 300;
@@ -18,13 +18,17 @@ function authorized(request: Request): boolean {
 }
 
 async function handler(request: Request): Promise<Response> {
-  if (request.method === "GET") return json({ ok: true, service: "roster-browser-worker", mode: "draft-confirm-commit" });
+  if (request.method === "GET") return json({ ok: true, service: "roster-browser-worker", mode: "draft-confirm-commit", reader: "rendered-dom-v1" });
   if (request.method !== "POST") return json({ error: "METHOD_NOT_ALLOWED" }, 405);
   if (!authorized(request)) return json({ error: "UNAUTHORIZED" }, 401);
   const body = await request.json().catch(() => null) as Record<string, unknown> | null;
   if (!body) return json({ error: "BAD_JSON" }, 400);
   const action = String(body.action ?? "");
   try {
+    if (action === "read") {
+      const url = parsePublicUrl(body.url).toString();
+      return json({ ok: true, evidence: await readPage(url) });
+    }
     if (action === "draft") {
       const jobId = String(body.jobId ?? "");
       if (!/^[0-9a-f-]{36}$/i.test(jobId)) return json({ error: "JOB_ID_INVALID" }, 400);

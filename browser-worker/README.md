@@ -4,6 +4,7 @@ Isolated draft/confirm/commit browser execution for Telegram Amber.
 
 The worker exposes one authenticated endpoint at `/api/browser`:
 
+- `read`: renders JavaScript in a fresh ephemeral browser and returns visible text and DOM date sections directly (no model summary). It has no click, fill, or submit operations. Closed/hidden tabs, sign-ins and interactive gates are not handled; partial content is not proof of absence.
 - `draft`: opens a fresh Vercel Sandbox, drives the supplied public website with `agent-browser`, fills the requested change, and stops before the final write button.
 - `commit`: verifies the exact live page, button ref, label, URL, and sandbox created by the draft before clicking once.
 - `cancel`: closes the browser and stops the sandbox.
