@@ -66,12 +66,13 @@ async function screenshot(sandbox: Sbx, name: string): Promise<string> {
   return command(sandbox, "base64", ["-w", "0", path]);
 }
 
-function sandboxOptions(name: string): Parameters<typeof Sandbox.create>[0] {
+export function sandboxOptions(name: string): NonNullable<Parameters<typeof Sandbox.create>[0]> {
   const base = {
     name,
     timeout: JOB_TTL_MS + 2 * 60_000,
-    persistent: true,
-    snapshotExpiration: 60 * 60_000,
+    // Approval uses this still-running VM; there is no need to retain its disk after stop.
+    // Vercel rejects snapshotExpiration values below one day.
+    persistent: false,
     resources: { vcpus: 2 },
     networkPolicy: { allow: ["*"], subnets: { deny: PRIVATE_CIDRS } },
   };
